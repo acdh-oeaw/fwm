@@ -1,0 +1,14 @@
+[flake8]
+ignore = D203 W504
+max-line-length = 120
+exclude =
+    */migrations,
+    manage.py
+    .git,
+    .tox,
+    docs/conf.py,
+    build,
+    dist
+    env
+    appcreator
+    webpage

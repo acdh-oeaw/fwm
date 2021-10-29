@@ -1,0 +1,36 @@
+__pycache__/
+*.pyc
+
+# sqlite
+/*.sqlite3
+/*.sqlite3-journal
+
+# test coverage
+.coverage
+cover/
+htmlcov/
+
+cypress/
+cypress.json
+
+# IDE
+.idea
+.pip_cache
+
+# Ipython Notebook checkpoints
+.ipynb_checkpoints
+
+
+# documentation build files
+
+/docs/_*/*
+node_modules
+
+# virtual environments
+
+/myenv
+/env
+
+# other things
+.env
+*.ipynb
