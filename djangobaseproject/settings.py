@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'django_tables2',
+    'mptt',
     'webpage',
     'browsing',
     'infos',
+    'vocabs'
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -146,3 +148,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# vocabs specific settings
+
+VOCABS_DEFAULT_LANG = "eng"
