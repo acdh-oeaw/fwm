@@ -1,3 +1,6 @@
+[![Test](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml)
+[![flake8 Lint](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml)
+
 # Fingerprinting White Marbles
 
 Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](https://pf.fwf.ac.at/de/wissenschaft-konkret/project-finder/48544)
