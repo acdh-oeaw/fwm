@@ -1,5 +1,6 @@
 [![Test](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml)
 [![flake8 Lint](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml)
+[![codecov](https://codecov.io/gh/acdh-oeaw/fwm/branch/master/graph/badge.svg?token=KNMH134J0Q)](https://codecov.io/gh/acdh-oeaw/fwm)
 
 # Fingerprinting White Marbles
 
