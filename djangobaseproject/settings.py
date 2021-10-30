@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'browsing',
     'infos',
     'vocabs',
-    'django_extensions'
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
