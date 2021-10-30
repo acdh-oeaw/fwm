@@ -7,23 +7,6 @@ from mptt.models import MPTTModel, TreeForeignKey
 DEFAULT_LANG = getattr(settings, 'VOCABS_DEFAULT_LANG', 'eng')
 
 
-LABEL_TYPES = (
-    ('prefLabel', 'prefLabel'),
-    ('altLabel', 'altLabel'),
-    ('hiddenLabel', 'hiddenLabel'),
-)
-
-NOTE_TYPES = (
-    ('note', 'note'),
-    ('scopeNote', 'scopeNote'),
-    ('changeNote', 'changeNote'),
-    ('editorialNote', 'editorialNote'),
-    ('historyNote', 'historyNote'),
-    ('definition', 'definition'),
-    ('example', 'example'),
-)
-
-
 class SkosCollection(models.Model):
     """
     SKOS collections are labeled and/or ordered groups of SKOS concepts.
@@ -41,21 +24,22 @@ class SkosCollection(models.Model):
         verbose_name="skos:prefLabel",
         help_text="Collection label or name",
     )
-    label_lang = models.CharField(
-        max_length=3, blank=True,
-        default=DEFAULT_LANG,
-        verbose_name="skos:prefLabel language",
-        help_text="Language of preferred label given above"
-    )
-    description = models.TextField(
+    defintion = models.TextField(
         blank=True,
         null=True,
-        verbose_name="elaborate description of the collection",
-        help_text="Description"
+        verbose_name="elaborate defintion of the collection",
+        help_text="defintion"
+    )
+    source_uri = models.CharField(
+        null=True,
+        blank=True,
+        max_length=300,
+        verbose_name="source URI",
+        help_text="URI of the Resource"
     )
 
     def __str__(self):
-        return f"{self.pref_label}"
+        return f"{self.pref_label} <{self.source_uri}>"
 
 
 class SkosConcept(MPTTModel):
@@ -71,13 +55,12 @@ class SkosConcept(MPTTModel):
         verbose_name="skos:prefLabel",
         help_text="Preferred label for concept"
     )
-    pref_label_lang = models.CharField(
-        max_length=3, blank=True,
-        verbose_name="skos:prefLabel language",
-        help_text="Language of preferred label given above",
-        default=DEFAULT_LANG
+    defintion = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="elaborate defintion of the concept",
+        help_text="skos:definition"
     )
-    # relation to SkosConceptScheme to inherit all objects permissions
     collection = models.ForeignKey(
         'SkosCollection',
         null=True,
@@ -87,10 +70,6 @@ class SkosConcept(MPTTModel):
         related_name="has_members",
         on_delete=models.SET_NULL,
     )
-    top_concept = models.BooleanField(
-        null=True,
-        help_text="Is this concept a top concept of concept scheme?"
-    )
     broader_concept = TreeForeignKey(
         'self',
         verbose_name="skos:broader",
@@ -98,9 +77,16 @@ class SkosConcept(MPTTModel):
         related_name="narrower_concepts",
         help_text="Concept with a broader meaning that this concept inherits from"
     )
+    source_uri = models.CharField(
+        null=True,
+        blank=True,
+        max_length=300,
+        verbose_name="source URI",
+        help_text="URI of the Resource"
+    )
 
     class MPTTMeta:
         parent_attr = 'broader_concept'
 
     def __str__(self):
-        return f"{self.pref_label}"
+        return f"{self.pref_label} <{self.source_uri}>"

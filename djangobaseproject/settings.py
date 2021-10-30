@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,7 +53,8 @@ INSTALLED_APPS = [
     'webpage',
     'browsing',
     'infos',
-    'vocabs'
+    'vocabs',
+    'django_extensions'
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -152,4 +155,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # vocabs specific settings
 
-VOCABS_DEFAULT_LANG = "eng"
+VOCABS_DEFAULT_LANG = "en"
