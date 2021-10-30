@@ -16,11 +16,11 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_test.txt') }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_dev.txt') }}
 
     - name: Install dependencies
       run: |
-        pip install --upgrade --upgrade-strategy eager -r requirements_test.txt -e .
+        pip install --upgrade --upgrade-strategy eager -r requirements_dev.txt -e .
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
