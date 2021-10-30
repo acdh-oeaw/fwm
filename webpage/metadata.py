@@ -7,7 +7,7 @@ PROJECT_METADATA = {
     'subtitle': 'QUARRIES AND CITIES OF ROMAN THRACE, 1ST-3RD CENTURY AD',
     'description': 'lorem ipsum',
     'github': 'https://github.com/acdh-oeaw/fwm',
-    'version': '0.0.1',
+    'version': '0.0.2',
     'matomo_id': 'provide some',
     'matomo_url': '//matomo.acdh.oeaw.ac.at/',
     'imprint': '/imprint',
