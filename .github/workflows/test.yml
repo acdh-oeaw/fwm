@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install --upgrade --upgrade-strategy eager -r requirements_dev.txt .
+        pip install --upgrade --upgrade-strategy eager -r requirements_dev.txt -e
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
