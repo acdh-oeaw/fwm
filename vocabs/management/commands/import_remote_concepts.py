@@ -43,11 +43,11 @@ class Command(BaseCommand):
         if kwargs['collection_uri']:
             collection_uri = import_url
         else:
-            collection_uri = DEFAULT_IMPORT_URL
+            collection_uri = import_url
         if kwargs['label']:
             label = kwargs['label']
         else:
-            label = DEFAULT_IMPORT_URL
+            label = import_url
         g = Graph()
         g.parse(import_url)
         imported = import_concept_from_df(

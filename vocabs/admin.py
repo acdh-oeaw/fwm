@@ -17,6 +17,7 @@ class SkosConceptAdmin(DraggableMPTTAdmin):
     )
     list_per_page = VOCABS_LISTVIEW_PAGESIZE
     search_fields = ['pref_label']
+    autocomplete_fields = ['broader_concept']
 
 
 @admin.register(SkosCollection)
