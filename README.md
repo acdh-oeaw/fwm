@@ -8,9 +8,9 @@ Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](h
 
 ## install
 
-* clone the repo
+* clone the repo `git clone https://github.com/acdh-oeaw/fwm.git`
 * change into the project's root directory e.g. `cd fwm`
-* create a virtual environment e.g. `virutalenv env` and activate it `source env/bin/activate`
+* create a virtual environment e.g. `virtualenv env` and activate it `source env/bin/activate`
 * install required packages `pip install -r requirements.txt`
 * run migrations `python manage.py migrate`
 * start the dev sever `python manage.py runserver`
