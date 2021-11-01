@@ -1,9 +1,12 @@
 from django.apps import apps
+from django.core.management import call_command
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
 
+from vocabs.models import SkosCollection
 
-MODELS = list(apps.all_models['archiv'].values())
+IMPORT_URL = "https://vocabs.dariah.eu/rest/v1/arche_access_restrictions/data?format=application/rdf%2Bxml"
+MODELS = list(apps.all_models['vocabs'].values())
 
 client = Client()
 USER = {
@@ -19,7 +22,13 @@ class InfosTest(TestCase):
         self.client = Client()
         User.objects.create_user(**USER)
 
-    def test_001_str(self):
-        for x in MODELS:
-            item = x.objects.first()
-            self.assertTru('<' in f"{item}")
+    def test_import_cmd(self):
+
+        call_command('import_remote_concepts', import_url=IMPORT_URL)
+        new_collection = SkosCollection.objects.get(
+            source_uri=IMPORT_URL
+        )
+        self.assertEqual(
+            IMPORT_URL,
+            new_collection.source_uri
+        )
