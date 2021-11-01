@@ -89,4 +89,4 @@ class SkosConcept(MPTTModel):
         parent_attr = 'broader_concept'
 
     def __str__(self):
-        return f"{self.pref_label} <{self.source_uri}>"
+        return f"{self.pref_label}"
