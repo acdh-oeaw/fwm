@@ -155,3 +155,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # vocabs specific settings
 
 VOCABS_DEFAULT_LANG = "en"
+VOCABS_LISTVIEW_PAGESIZE = 50
