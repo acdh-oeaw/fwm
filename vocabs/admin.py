@@ -19,4 +19,13 @@ class SkosConceptAdmin(DraggableMPTTAdmin):
     search_fields = ['pref_label']
 
 
-admin.site.register(SkosCollection)
+@admin.register(SkosCollection)
+class SkosCollectionAdmin(admin.ModelAdmin):
+    model = SkosCollection
+    list_display = (
+        'pref_label',
+        'source_uri'
+    )
+    list_filter = (
+        'pref_label',
+    )
