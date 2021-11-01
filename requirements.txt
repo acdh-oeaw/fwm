@@ -1,6 +1,7 @@
 acdh-django-browsing==1.0.0
 Django>=3.2
 django-mptt>=0.13.4
+django-spaghetti-and-meatballs==0.4.2
 rdflib>=5.0
 requests>=2.25
 tqdm>=4.62

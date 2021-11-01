@@ -19,7 +19,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('archiv', include('archiv.urls', namespace='archiv')),
+    path('archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
+    path('infos/', include('infos.urls', namespace='infos')),
+    path('plate/', include('django_spaghetti.urls')),
     path('', include('webpage.urls', namespace='webpage')),
-    path('infos/', include('infos.urls', namespace='infos'))
+
 ]
 handler404 = 'webpage.views.handler404'

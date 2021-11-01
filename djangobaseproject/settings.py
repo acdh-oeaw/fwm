@@ -49,11 +49,16 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'django_tables2',
+    'dal_select2',
+    'dal',
     'mptt',
     'webpage',
     'browsing',
     'infos',
     'vocabs',
+    'django_spaghetti',
+    'appcreator',
+    'archiv',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -151,8 +156,16 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SHEET_ID = os.environ.get(
+    'SHEET_ID', "1C1nS4pPyqSouyfcfRZuXX7DGRGaRcg-NqtK2ioNJ63Y"
+)
+
 
 # vocabs specific settings
 
 VOCABS_DEFAULT_LANG = "en"
 VOCABS_LISTVIEW_PAGESIZE = 50
+SPAGHETTI_SAUCE = {
+    'apps': ['vocabs', 'infos', 'archiv'],
+    'show_fields': True,
+}
