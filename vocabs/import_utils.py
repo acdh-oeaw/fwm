@@ -13,9 +13,9 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 SELECT ?concept ?label ?definition ?broader WHERE
 {{
   ?concept a skos:Concept ;
-  skos:prefLabel ?label ;
-  skos:definition ?definition .
-  OPTIONAL {{ ?concept skos:broader ?broader }}
+  skos:prefLabel ?label .
+  OPTIONAL {{ ?concept skos:definition ?definition }} .
+  OPTIONAL {{ ?concept skos:broader ?broader }} .
   FILTER (LANG(?label)="{DEFAULT_LANG}")
   FILTER (LANG(?definition)="{DEFAULT_LANG}")
 }}
@@ -34,10 +34,16 @@ def concept_sparql_to_df(graph):
     return df
 
 
-def import_concept_from_df(df, collection_uri="https://some-default-collection"):
+def import_concept_from_df(
+        df,
+        collection_uri="https://some-default-collection",
+        collection_pref_label="default-collection"
+    ):
     collection, _ = SkosCollection.objects.get_or_create(
         source_uri=collection_uri
     )
+    collection.pref_label=collection_pref_label
+    collection.save()
     concepts = []
     for i, row in tqdm(df.iterrows(), total=(len(df))):
         concept, _ = SkosConcept.objects.get_or_create(

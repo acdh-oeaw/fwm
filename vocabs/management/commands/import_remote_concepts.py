@@ -14,18 +14,45 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "-u",
-            "--url",
+            "-i",
+            "--import-url",
             type=str,
-            help=f"The URL of the Concepts to import, defaults to {DEFAULT_IMPORT_URL}")
+            help=f"The URL of the Concepts to import, defaults to {DEFAULT_IMPORT_URL}"
+        )
+        parser.add_argument(
+            "-u",
+            "--collection-uri",
+            type=str,
+            help=f"An URI for a SkosCollection to group the imported SkosConcetps\
+                defaults to {DEFAULT_IMPORT_URL}"
+        )
+        parser.add_argument(
+            "-l",
+            "--label",
+            type=str,
+            help=f"A label for a SkosCollection to group the imported SkosConcetps\
+                defaults to {DEFAULT_IMPORT_URL}"
+        )
 
     def handle(self, *args, **kwargs):
 
-        if kwargs['url']:
-            url = kwargs['url']
+        if kwargs['import_url']:
+            import_url = kwargs['import_url']
         else:
-            url = DEFAULT_IMPORT_URL
+            import_url = DEFAULT_IMPORT_URL
+        if kwargs['collection_uri']:
+            collection_uri = import_url
+        else:
+            collection_uri = DEFAULT_IMPORT_URL
+        if kwargs['label']:
+            label = kwargs['label']
+        else:
+            label = DEFAULT_IMPORT_URL
         g = Graph()
-        g.parse(url)
-        imported = import_concept_from_df(concept_sparql_to_df(g))
+        g.parse(import_url)
+        imported = import_concept_from_df(
+            concept_sparql_to_df(g),
+            collection_uri=import_url,
+            collection_pref_label=label
+        )
         print(f"imported {len(imported)} SkosConcepts")

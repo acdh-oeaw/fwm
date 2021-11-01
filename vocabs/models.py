@@ -24,11 +24,11 @@ class SkosCollection(models.Model):
         verbose_name="skos:prefLabel",
         help_text="Collection label or name",
     )
-    defintion = models.TextField(
+    definition = models.TextField(
         blank=True,
         null=True,
-        verbose_name="elaborate defintion of the collection",
-        help_text="defintion"
+        verbose_name="elaborate definition of the collection",
+        help_text="definition"
     )
     source_uri = models.CharField(
         null=True,
@@ -55,10 +55,10 @@ class SkosConcept(MPTTModel):
         verbose_name="skos:prefLabel",
         help_text="Preferred label for concept"
     )
-    defintion = models.TextField(
+    definition = models.TextField(
         blank=True,
         null=True,
-        verbose_name="elaborate defintion of the concept",
+        verbose_name="elaborate definition of the concept",
         help_text="skos:definition"
     )
     collection = models.ForeignKey(
