@@ -52,7 +52,7 @@ class Command(BaseCommand):
         g.parse(import_url)
         imported = import_concept_from_df(
             concept_sparql_to_df(g),
-            collection_uri=import_url,
+            collection_uri=collection_uri,
             collection_pref_label=label
         )
         print(f"imported {len(imported)} SkosConcepts")

@@ -35,14 +35,14 @@ def concept_sparql_to_df(graph):
 
 
 def import_concept_from_df(
-        df,
-        collection_uri="https://some-default-collection",
-        collection_pref_label="default-collection"
-    ):
+    df,
+    collection_uri="https://some-default-collection",
+    collection_pref_label="default-collection"
+):
     collection, _ = SkosCollection.objects.get_or_create(
         source_uri=collection_uri
     )
-    collection.pref_label=collection_pref_label
+    collection.pref_label = collection_pref_label
     collection.save()
     concepts = []
     for i, row in tqdm(df.iterrows(), total=(len(df))):
