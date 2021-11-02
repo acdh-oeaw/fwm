@@ -39,6 +39,49 @@ class AnalyseFilterFormHelper(FormHelper):
                     'analyse_type',
                     'date',
                     'notes_thinsection',
+                    'mgco3',
+                    'fe',
+                    'mn',
+                    'sr',
+                    'ion_li',
+                    'ion_na',
+                    'ion_k',
+                    'ion_mg',
+                    'ion_ca',
+                    'ion_f',
+                    'ion_cl',
+                    'ion_br',
+                    'ion_j',
+                    'ion_no3',
+                    'ion_so4',
+                    'ion_li_na',
+                    'ion_k_na',
+                    'ion_cl_na',
+                    'ion_br_na',
+                    'ion_i_na',
+                    'ion_so4_na',
+                    'ion_f_na',
+                    'ion_no3_na',
+                    'iso_d18o',
+                    'iso_d13c',
+                    'icp_mg',
+                    'icp_mn',
+                    'icp_fe',
+                    'icp_sr',
+                    'icp_cr',
+                    'icp_cr_n2o',
+                    'icp_v',
+                    'icp_y',
+                    'icp_cd',
+                    'icp_ba',
+                    'icp_la',
+                    'icp_ce',
+                    'icp_pr',
+                    'icp_dy',
+                    'icp_ho',
+                    'icp_yb',
+                    'icp_pb',
+                    'icp_u',
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -158,14 +201,10 @@ class GeographyFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'contintent',
-                    'land',
-                    'province',
-                    'location',
                     'name',
                     'identifier',
                     'coordinates',
-                    'coordinates',
+                    'polygon',
                     'notes',
                     css_id="more"
                 ),
@@ -179,31 +218,6 @@ class GeographyFilterFormHelper(FormHelper):
 
 
 class GeographyForm(forms.ModelForm):
-    contintent = forms.ModelChoiceField(
-        required=False,
-        label="continent",
-        queryset=SkosConcept.objects.filter(collection__pref_label="contintent")
-    )
-    land = forms.ModelChoiceField(
-        required=False,
-        label="land",
-        queryset=SkosConcept.objects.filter(collection__pref_label="land")
-    )
-    province = forms.ModelChoiceField(
-        required=False,
-        label="province",
-        queryset=SkosConcept.objects.filter(collection__pref_label="province")
-    )
-    location = forms.ModelChoiceField(
-        required=False,
-        label="location",
-        queryset=SkosConcept.objects.filter(collection__pref_label="location")
-    )
-    name = forms.ModelChoiceField(
-        required=False,
-        label="name",
-        queryset=SkosConcept.objects.filter(collection__pref_label="name")
-    )
 
     class Meta:
         model = Geography
@@ -341,6 +355,7 @@ class QuarryFilterFormHelper(FormHelper):
                     'images',
                     'description',
                     'literature',
+                    'open_access',
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -440,6 +455,7 @@ class SampleFilterFormHelper(FormHelper):
                     'color_description',
                     'color_kodak',
                     'stdcolor',
+                    'weight',
                     'artefakt_id',
                     'quarry',
                     'quarry_group',
@@ -447,6 +463,7 @@ class SampleFilterFormHelper(FormHelper):
                     'sampling',
                     'literature',
                     'image',
+                    'open_access',
                     css_id="more"
                 ),
                 AccordionGroup(

@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.gis.db.models import MultiPolygonField, PointField
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
@@ -65,6 +66,393 @@ class Analyse(models.Model):
         blank=True, null=True,
         verbose_name="thinsection notes",
         help_text="helptext for notes_thinsection",
+    ).set_extra(
+        is_public=True,
+    )
+    mgco3 = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="MgCO3",
+        help_text="helptext for mgco3",
+    ).set_extra(
+        is_public=True,
+    )
+    fe = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Fe",
+        help_text="helptext for fe",
+    ).set_extra(
+        is_public=True,
+    )
+    mn = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Mn",
+        help_text="helptext for mn",
+    ).set_extra(
+        is_public=True,
+    )
+    sr = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Sr",
+        help_text="helptext for sr",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_li = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Li",
+        help_text="helptext for ion_li",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Na",
+        help_text="helptext for ion_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_k = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="K",
+        help_text="helptext for ion_k",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_mg = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="MgCO3",
+        help_text="helptext for ion_mg",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_ca = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Ca",
+        help_text="helptext for ion_ca",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_f = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Fe",
+        help_text="helptext for ion_f",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_cl = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Cl",
+        help_text="helptext for ion_cl",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_br = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Br",
+        help_text="helptext for ion_br",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_j = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="J",
+        help_text="helptext for ion_j",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_no3 = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="NO3",
+        help_text="helptext for ion_no3",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_so4 = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="SO4",
+        help_text="helptext for ion_so4",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_li_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Li/Na",
+        help_text="helptext for ion_li_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_k_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="K/Na",
+        help_text="helptext for ion_k_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_cl_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Cl/Na",
+        help_text="helptext for ion_cl_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_br_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Br/Na",
+        help_text="helptext for ion_br_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_i_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="I/Na",
+        help_text="helptext for ion_i_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_so4_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="SO4/Na",
+        help_text="helptext for ion_so4_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_f_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="F/Na",
+        help_text="helptext for ion_f_na",
+    ).set_extra(
+        is_public=True,
+    )
+    ion_no3_na = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="NO3/Na",
+        help_text="helptext for ion_no3_na",
+    ).set_extra(
+        is_public=True,
+    )
+    iso_d18o = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="d18O (PDB)",
+        help_text="helptext for iso_d18o",
+    ).set_extra(
+        is_public=True,
+    )
+    iso_d13c = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="D13c (PDB)",
+        help_text="helptext for iso_d13c",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_mg = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Mg",
+        help_text="helptext for icp_mg",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_mn = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Mn",
+        help_text="helptext for icp_mn",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_fe = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Fe",
+        help_text="helptext for icp_fe",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_sr = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Sr",
+        help_text="helptext for icp_sr",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_cr = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Cr",
+        help_text="helptext for icp_cr",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_cr_n2o = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Cr (N2O)",
+        help_text="helptext for icp_cr_n2o",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_v = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="V",
+        help_text="helptext for icp_v",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_y = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Y",
+        help_text="helptext for icp_y",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_cd = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Cd",
+        help_text="helptext for icp_cd",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_ba = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Ba",
+        help_text="helptext for icp_ba",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_la = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="La",
+        help_text="helptext for icp_la",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_ce = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Ce",
+        help_text="helptext for icp_ce",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_pr = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Pr",
+        help_text="helptext for icp_pr",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_dy = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Dy",
+        help_text="helptext for icp_dy",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_ho = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Ho",
+        help_text="helptext for icp_ho",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_yb = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Yb",
+        help_text="helptext for icp_yb",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_pb = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="Pb",
+        help_text="helptext for icp_pb",
+    ).set_extra(
+        is_public=True,
+    )
+    icp_u = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="U",
+        help_text="helptext for icp_u",
     ).set_extra(
         is_public=True,
     )
@@ -228,6 +616,7 @@ class Artifact(models.Model):
     images = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="images",
         help_text="images of the artefact",
     ).set_extra(
@@ -236,6 +625,7 @@ class Artifact(models.Model):
     literature = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="literature",
         help_text="literature",
     ).set_extra(
@@ -315,73 +705,35 @@ class Geography(models.Model):
         max_length=300, blank=True,
         verbose_name="Legacy ID"
     )
-    contintent = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geography_contintent_skosconcept',
-        on_delete=models.SET_NULL,
-        null=True,
+    name = models.CharField(
+        max_length=250,
         blank=True,
-        verbose_name="continent",
-        help_text="continent of the geographic location; controlled vocabulary",
-    ).set_extra(
-        is_public=True,
-    )
-    land = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geography_land_skosconcept',
-        on_delete=models.SET_NULL,
         null=True,
-        blank=True,
-        verbose_name="land",
-        help_text="land of the geographic location; controlled vocabulary",
-    ).set_extra(
-        is_public=True,
-    )
-    province = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geography_province_skosconcept',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="province",
-        help_text="province of the geographic location; controlled vocabulary",
-    ).set_extra(
-        is_public=True,
-    )
-    location = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geography_location_skosconcept',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="location",
-        help_text="location of the geographic location; controlled vocabulary",
-    ).set_extra(
-        is_public=True,
-    )
-    name = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geography_name_skosconcept',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
         verbose_name="name",
-        help_text="name of the geographic location; controlled vocabulary",
+        help_text="name of the geographic location",
     ).set_extra(
         is_public=True,
     )
     identifier = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="identifier",
         help_text="identifier of the geographic location; gazetteers",
     ).set_extra(
         is_public=True,
     )
-    coordinates = models.TextField(
+    coordinates = PointField(
         blank=True, null=True,
         verbose_name="coordinates",
-        help_text="coordinates of the geographic location",
+        help_text="coordinates of the geographic location (X, Y)",
+    ).set_extra(
+        is_public=True,
+    )
+    polygon = MultiPolygonField(
+        blank=True, null=True,
+        verbose_name="polygon",
+        help_text="MultiPolygonField to depict the area of the location",
     ).set_extra(
         is_public=True,
     )
@@ -469,6 +821,7 @@ class Institution(models.Model):
     name = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="name",
         help_text="name of the institution",
     ).set_extra(
@@ -477,6 +830,7 @@ class Institution(models.Model):
     identifier = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="identifier",
         help_text="identifier of the institution; gazetteers",
     ).set_extra(
@@ -570,6 +924,7 @@ class Number(models.Model):
     number = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="number",
         help_text="other number",
     ).set_extra(
@@ -681,6 +1036,7 @@ class Quarry(models.Model):
     name = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="name",
         help_text="name of the quarry",
     ).set_extra(
@@ -700,6 +1056,7 @@ class Quarry(models.Model):
     images = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="images",
         help_text="images",
     ).set_extra(
@@ -715,8 +1072,17 @@ class Quarry(models.Model):
     literature = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="literature",
         help_text="literature",
+    ).set_extra(
+        is_public=True,
+    )
+    open_access = models.BooleanField(
+        default=False,
+        blank=True, null=True,
+        verbose_name="open access",
+        help_text="open access",
     ).set_extra(
         is_public=True,
     )
@@ -797,6 +1163,7 @@ class QuarryGroup(models.Model):
     name = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="name",
         help_text="name of the quarry group",
     ).set_extra(
@@ -886,6 +1253,7 @@ class Sample(models.Model):
     oeai_inventory_number = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="OeAI inventory number",
         help_text="OeAI inventory number; unique",
     ).set_extra(
@@ -956,6 +1324,7 @@ class Sample(models.Model):
     color_kodak = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="color kodak",
         help_text="more detailed information about the kodak color",
     ).set_extra(
@@ -964,8 +1333,18 @@ class Sample(models.Model):
     stdcolor = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="color stdcolor",
         help_text="more detailed information about the kodak color",
+    ).set_extra(
+        is_public=True,
+    )
+    weight = models.DecimalField(
+        max_digits=19,
+        decimal_places=10,
+        blank=True, null=True,
+        verbose_name="weight",
+        help_text="weight of the sample",
     ).set_extra(
         is_public=True,
     )
@@ -1012,6 +1391,7 @@ class Sample(models.Model):
     sampling = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="sampling",
         help_text="information about the sampling",
     ).set_extra(
@@ -1020,6 +1400,7 @@ class Sample(models.Model):
     literature = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="literature",
         help_text="literature",
     ).set_extra(
@@ -1028,8 +1409,17 @@ class Sample(models.Model):
     image = models.CharField(
         max_length=250,
         blank=True,
+        null=True,
         verbose_name="images",
         help_text="images",
+    ).set_extra(
+        is_public=True,
+    )
+    open_access = models.BooleanField(
+        default=False,
+        blank=True, null=True,
+        verbose_name="open access",
+        help_text="open access",
     ).set_extra(
         is_public=True,
     )

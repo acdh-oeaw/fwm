@@ -63,11 +63,6 @@ class AnalyseListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'oeai_inventory_number',
-            'institute',
-            'analyse_type',
-            'date',
-            'notes_thinsection',
         ]
 
 
@@ -171,17 +166,6 @@ class ArtifactListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'artefact_type',
-            'description',
-            'find_spot',
-            'find_spot_extra',
-            'storage_place',
-            'material',
-            'measurement',
-            'preservation',
-            'dating',
-            'images',
-            'literature',
         ]
 
 
@@ -191,90 +175,15 @@ class GeographyListFilter(django_filters.FilterSet):
         help_text=Geography._meta.get_field('legacy_id').help_text,
         label=Geography._meta.get_field('legacy_id').verbose_name
     )
-    contintent = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__pref_label="contintent"
-        ),
-        help_text=Geography._meta.get_field('contintent').help_text,
-        label=Geography._meta.get_field('contintent').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/contintent",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-            },
-        )
-    )
-    land = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__pref_label="land"
-        ),
-        help_text=Geography._meta.get_field('land').help_text,
-        label=Geography._meta.get_field('land').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/land",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-            },
-        )
-    )
-    province = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__pref_label="province"
-        ),
-        help_text=Geography._meta.get_field('province').help_text,
-        label=Geography._meta.get_field('province').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/province",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-            },
-        )
-    )
-    location = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__pref_label="location"
-        ),
-        help_text=Geography._meta.get_field('location').help_text,
-        label=Geography._meta.get_field('location').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/location",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-            },
-        )
-    )
-    name = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__pref_label="name"
-        ),
+    name = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Geography._meta.get_field('name').help_text,
-        label=Geography._meta.get_field('name').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/name",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-            },
-        )
+        label=Geography._meta.get_field('name').verbose_name
     )
     identifier = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Geography._meta.get_field('identifier').help_text,
         label=Geography._meta.get_field('identifier').verbose_name
-    )
-    coordinates = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Geography._meta.get_field('coordinates').help_text,
-        label=Geography._meta.get_field('coordinates').verbose_name
-    )
-    coordinates = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Geography._meta.get_field('coordinates').help_text,
-        label=Geography._meta.get_field('coordinates').verbose_name
     )
     notes = django_filters.CharFilter(
         lookup_expr='icontains',
@@ -287,15 +196,6 @@ class GeographyListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'contintent',
-            'land',
-            'province',
-            'location',
-            'name',
-            'identifier',
-            'coordinates',
-            'coordinates',
-            'notes',
         ]
 
 
@@ -321,8 +221,6 @@ class InstitutionListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'name',
-            'identifier',
         ]
 
 
@@ -378,11 +276,6 @@ class NumberListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'oeai_inventory_number',
-            'number',
-            'number_type',
-            'institute',
-            'notes',
         ]
 
 
@@ -426,11 +319,6 @@ class QuarryListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'name',
-            'geography',
-            'images',
-            'description',
-            'literature',
         ]
 
 
@@ -456,8 +344,6 @@ class QuarryGroupListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'name',
-            'description',
         ]
 
 
@@ -607,22 +493,6 @@ class SampleListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
-            'oeai_inventory_number',
-            'smell',
-            'grain_size_min',
-            'grain_size_max',
-            'material',
-            'color',
-            'color_description',
-            'color_kodak',
-            'stdcolor',
-            'artefakt_id',
-            'quarry',
-            'quarry_group',
-            'notes',
-            'sampling',
-            'literature',
-            'image',
         ]
 
 
