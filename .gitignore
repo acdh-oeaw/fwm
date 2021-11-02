@@ -34,3 +34,4 @@ node_modules
 # other things
 .env
 *.ipynb
+archiv/data/FWM_Daten.xlsx
