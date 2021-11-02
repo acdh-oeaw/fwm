@@ -211,7 +211,7 @@ def df_to_classdicts(df):
                         field['choices'] = ast.literal_eval(row['choices'])
                     field['field_type'] = "CharField"
                 else:
-                    continue
+                    field['field_type'] = row['field type']
                 if isinstance(row['verbose field name'], str):
                     field['field_verbose_name'] = row['verbose field name'].replace('\n', '')
                 else:
