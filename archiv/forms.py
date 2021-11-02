@@ -82,6 +82,7 @@ class AnalyseFilterFormHelper(FormHelper):
                     'icp_yb',
                     'icp_pb',
                     'icp_u',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -142,6 +143,7 @@ class ArtifactFilterFormHelper(FormHelper):
                     'dating',
                     'images',
                     'literature',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -203,9 +205,11 @@ class GeographyFilterFormHelper(FormHelper):
                     'Advanced search',
                     'name',
                     'identifier',
-                    'coordinates',
-                    'polygon',
+                    
+                    
+                    
                     'notes',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -252,6 +256,7 @@ class InstitutionFilterFormHelper(FormHelper):
                     'Advanced search',
                     'name',
                     'identifier',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -301,6 +306,7 @@ class NumberFilterFormHelper(FormHelper):
                     'number_type',
                     'institute',
                     'notes',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -356,6 +362,7 @@ class QuarryFilterFormHelper(FormHelper):
                     'description',
                     'literature',
                     'open_access',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -402,6 +409,7 @@ class QuarryGroupFilterFormHelper(FormHelper):
                     'Advanced search',
                     'name',
                     'description',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -464,6 +472,7 @@ class SampleFilterFormHelper(FormHelper):
                     'literature',
                     'image',
                     'open_access',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(

@@ -16,7 +16,7 @@ from . models import (
     Sample
 )
 
-DATE_LOOKUP_CHOICES = [
+NUMBER_LOOKUP_CHOICES = [
     ('exact', 'Equals'),
     ('gt', 'Greater than'),
     ('lt', 'Less than')
@@ -73,259 +73,259 @@ class AnalyseListFilter(django_filters.FilterSet):
     )
     mgco3 = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('mgco3').help_text,
         label=Analyse._meta.get_field('mgco3').verbose_name
     )
     fe = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('fe').help_text,
         label=Analyse._meta.get_field('fe').verbose_name
     )
     mn = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('mn').help_text,
         label=Analyse._meta.get_field('mn').verbose_name
     )
     sr = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('sr').help_text,
         label=Analyse._meta.get_field('sr').verbose_name
     )
     ion_li = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_li').help_text,
         label=Analyse._meta.get_field('ion_li').verbose_name
     )
     ion_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_na').help_text,
         label=Analyse._meta.get_field('ion_na').verbose_name
     )
     ion_k = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_k').help_text,
         label=Analyse._meta.get_field('ion_k').verbose_name
     )
     ion_mg = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_mg').help_text,
         label=Analyse._meta.get_field('ion_mg').verbose_name
     )
     ion_ca = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_ca').help_text,
         label=Analyse._meta.get_field('ion_ca').verbose_name
     )
     ion_f = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_f').help_text,
         label=Analyse._meta.get_field('ion_f').verbose_name
     )
     ion_cl = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_cl').help_text,
         label=Analyse._meta.get_field('ion_cl').verbose_name
     )
     ion_br = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_br').help_text,
         label=Analyse._meta.get_field('ion_br').verbose_name
     )
     ion_j = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_j').help_text,
         label=Analyse._meta.get_field('ion_j').verbose_name
     )
     ion_no3 = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_no3').help_text,
         label=Analyse._meta.get_field('ion_no3').verbose_name
     )
     ion_so4 = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_so4').help_text,
         label=Analyse._meta.get_field('ion_so4').verbose_name
     )
     ion_li_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_li_na').help_text,
         label=Analyse._meta.get_field('ion_li_na').verbose_name
     )
     ion_k_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_k_na').help_text,
         label=Analyse._meta.get_field('ion_k_na').verbose_name
     )
     ion_cl_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_cl_na').help_text,
         label=Analyse._meta.get_field('ion_cl_na').verbose_name
     )
     ion_br_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_br_na').help_text,
         label=Analyse._meta.get_field('ion_br_na').verbose_name
     )
     ion_i_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_i_na').help_text,
         label=Analyse._meta.get_field('ion_i_na').verbose_name
     )
     ion_so4_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_so4_na').help_text,
         label=Analyse._meta.get_field('ion_so4_na').verbose_name
     )
     ion_f_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_f_na').help_text,
         label=Analyse._meta.get_field('ion_f_na').verbose_name
     )
     ion_no3_na = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('ion_no3_na').help_text,
         label=Analyse._meta.get_field('ion_no3_na').verbose_name
     )
     iso_d18o = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('iso_d18o').help_text,
         label=Analyse._meta.get_field('iso_d18o').verbose_name
     )
     iso_d13c = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('iso_d13c').help_text,
         label=Analyse._meta.get_field('iso_d13c').verbose_name
     )
     icp_mg = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_mg').help_text,
         label=Analyse._meta.get_field('icp_mg').verbose_name
     )
     icp_mn = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_mn').help_text,
         label=Analyse._meta.get_field('icp_mn').verbose_name
     )
     icp_fe = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_fe').help_text,
         label=Analyse._meta.get_field('icp_fe').verbose_name
     )
     icp_sr = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_sr').help_text,
         label=Analyse._meta.get_field('icp_sr').verbose_name
     )
     icp_cr = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_cr').help_text,
         label=Analyse._meta.get_field('icp_cr').verbose_name
     )
     icp_cr_n2o = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_cr_n2o').help_text,
         label=Analyse._meta.get_field('icp_cr_n2o').verbose_name
     )
     icp_v = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_v').help_text,
         label=Analyse._meta.get_field('icp_v').verbose_name
     )
     icp_y = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_y').help_text,
         label=Analyse._meta.get_field('icp_y').verbose_name
     )
     icp_cd = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_cd').help_text,
         label=Analyse._meta.get_field('icp_cd').verbose_name
     )
     icp_ba = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_ba').help_text,
         label=Analyse._meta.get_field('icp_ba').verbose_name
     )
     icp_la = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_la').help_text,
         label=Analyse._meta.get_field('icp_la').verbose_name
     )
     icp_ce = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_ce').help_text,
         label=Analyse._meta.get_field('icp_ce').verbose_name
     )
     icp_pr = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_pr').help_text,
         label=Analyse._meta.get_field('icp_pr').verbose_name
     )
     icp_dy = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_dy').help_text,
         label=Analyse._meta.get_field('icp_dy').verbose_name
     )
     icp_ho = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_ho').help_text,
         label=Analyse._meta.get_field('icp_ho').verbose_name
     )
     icp_yb = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_yb').help_text,
         label=Analyse._meta.get_field('icp_yb').verbose_name
     )
     icp_pb = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_pb').help_text,
         label=Analyse._meta.get_field('icp_pb').verbose_name
     )
     icp_u = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Analyse._meta.get_field('icp_u').help_text,
         label=Analyse._meta.get_field('icp_u').verbose_name
     )
@@ -335,6 +335,55 @@ class AnalyseListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'oeai_inventory_number',
+            'institute',
+            'analyse_type',
+            'date',
+            'notes_thinsection',
+            'mgco3',
+            'fe',
+            'mn',
+            'sr',
+            'ion_li',
+            'ion_na',
+            'ion_k',
+            'ion_mg',
+            'ion_ca',
+            'ion_f',
+            'ion_cl',
+            'ion_br',
+            'ion_j',
+            'ion_no3',
+            'ion_so4',
+            'ion_li_na',
+            'ion_k_na',
+            'ion_cl_na',
+            'ion_br_na',
+            'ion_i_na',
+            'ion_so4_na',
+            'ion_f_na',
+            'ion_no3_na',
+            'iso_d18o',
+            'iso_d13c',
+            'icp_mg',
+            'icp_mn',
+            'icp_fe',
+            'icp_sr',
+            'icp_cr',
+            'icp_cr_n2o',
+            'icp_v',
+            'icp_y',
+            'icp_cd',
+            'icp_ba',
+            'icp_la',
+            'icp_ce',
+            'icp_pr',
+            'icp_dy',
+            'icp_ho',
+            'icp_yb',
+            'icp_pb',
+            'icp_u',
+            
         ]
 
 
@@ -438,6 +487,18 @@ class ArtifactListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'artefact_type',
+            'description',
+            'find_spot',
+            'find_spot_extra',
+            'storage_place',
+            'material',
+            'measurement',
+            'preservation',
+            'dating',
+            'images',
+            'literature',
+            
         ]
 
 
@@ -468,6 +529,13 @@ class GeographyListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'name',
+            'identifier',
+            
+            
+            
+            'notes',
+            
         ]
 
 
@@ -493,6 +561,9 @@ class InstitutionListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'name',
+            'identifier',
+            
         ]
 
 
@@ -548,6 +619,12 @@ class NumberListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'oeai_inventory_number',
+            'number',
+            'number_type',
+            'institute',
+            'notes',
+            
         ]
 
 
@@ -591,6 +668,13 @@ class QuarryListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'name',
+            'geography',
+            'images',
+            'description',
+            'literature',
+            'open_access',
+            
         ]
 
 
@@ -616,6 +700,9 @@ class QuarryGroupListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'name',
+            'description',
+            
         ]
 
 
@@ -717,7 +804,7 @@ class SampleListFilter(django_filters.FilterSet):
     )
     weight = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text=Sample._meta.get_field('weight').help_text,
         label=Sample._meta.get_field('weight').verbose_name
     )
@@ -771,6 +858,25 @@ class SampleListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'oeai_inventory_number',
+            'smell',
+            'grain_size_min',
+            'grain_size_max',
+            'material',
+            'color',
+            'color_description',
+            'color_kodak',
+            'stdcolor',
+            'weight',
+            'artefakt_id',
+            'quarry',
+            'quarry_group',
+            'notes',
+            'sampling',
+            'literature',
+            'image',
+            'open_access',
+            
         ]
 
 

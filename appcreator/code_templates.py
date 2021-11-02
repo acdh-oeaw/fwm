@@ -104,7 +104,7 @@ from . models import (
 {%- endfor %}
 )
 
-DATE_LOOKUP_CHOICES = [
+NUMBER_LOOKUP_CHOICES = [
     ('exact', 'Equals'),
     ('gt', 'Greater than'),
     ('lt', 'Less than')
@@ -142,7 +142,7 @@ class {{ x.model_name }}ListFilter(django_filters.FilterSet):
         {%- if y.field_type == 'DecimalField' %}
     {{y.field_name}} = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
-        lookup_choices=CHAR_LOOKUP_CHOICES,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
         help_text={{ x.model_name}}._meta.get_field('{{y.field_name}}').help_text,
         label={{ x.model_name}}._meta.get_field('{{y.field_name}}').verbose_name
     )
@@ -188,6 +188,13 @@ class {{ x.model_name }}ListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            {% for y in x.model_fields %}
+            {%- if y.field_type == 'DateRangeField' %}
+            {%- elif y.field_type == 'PointField' %}
+            {%- elif y.field_type == 'MultiPolygonField' %}
+            {% else %}'{{ y.field_name }}',
+            {%- endif %}
+            {% endfor %}
         ]
 
 {% endfor %}"""
@@ -222,11 +229,14 @@ class {{ x.model_name }}FilterFormHelper(FormHelper):
             ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',{% for y in x.model_fields %}
-                    {% if y.field_type == 'DateRangeField' or y.field_type == 'id' %}
+                    'Advanced search',
+                    {% for y in x.model_fields %}
+                    {%- if y.field_type == 'DateRangeField' or y.field_type == 'id' %}
+                    {%- elif y.field_type == 'PointField' %}
+                    {%- elif y.field_type == 'MultiPolygonField' %}
                     {% else %}'{{ y.field_name }}',
                     {%- endif %}
-                    {%- endfor %}
+                    {% endfor %}
                     css_id="more"
                 ),
                 AccordionGroup(
