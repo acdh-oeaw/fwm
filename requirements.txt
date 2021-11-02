@@ -1,4 +1,4 @@
-acdh-django-browsing==1.0.0
+acdh-django-browsing==1.1.0
 Django>=3.2
 django-mptt>=0.13.4
 django-spaghetti-and-meatballs==0.4.2
