@@ -63,13 +63,14 @@ class AnalyseListView(GenericListView):
 class AnalyseDetailView(BaseDetailView):
 
     model = Analyse
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class AnalyseCreate(BaseCreateView):
 
     model = Analyse
     form_class = AnalyseForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -80,6 +81,7 @@ class AnalyseUpdate(BaseUpdateView):
 
     model = Analyse
     form_class = AnalyseForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -111,13 +113,14 @@ class ArtifactListView(GenericListView):
 class ArtifactDetailView(BaseDetailView):
 
     model = Artifact
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class ArtifactCreate(BaseCreateView):
 
     model = Artifact
     form_class = ArtifactForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -128,6 +131,7 @@ class ArtifactUpdate(BaseUpdateView):
 
     model = Artifact
     form_class = ArtifactForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -159,13 +163,14 @@ class GeographyListView(GenericListView):
 class GeographyDetailView(BaseDetailView):
 
     model = Geography
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class GeographyCreate(BaseCreateView):
 
     model = Geography
     form_class = GeographyForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -176,6 +181,7 @@ class GeographyUpdate(BaseUpdateView):
 
     model = Geography
     form_class = GeographyForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -207,13 +213,14 @@ class InstitutionListView(GenericListView):
 class InstitutionDetailView(BaseDetailView):
 
     model = Institution
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class InstitutionCreate(BaseCreateView):
 
     model = Institution
     form_class = InstitutionForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -224,6 +231,7 @@ class InstitutionUpdate(BaseUpdateView):
 
     model = Institution
     form_class = InstitutionForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -255,13 +263,14 @@ class NumberListView(GenericListView):
 class NumberDetailView(BaseDetailView):
 
     model = Number
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class NumberCreate(BaseCreateView):
 
     model = Number
     form_class = NumberForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -272,6 +281,7 @@ class NumberUpdate(BaseUpdateView):
 
     model = Number
     form_class = NumberForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -303,13 +313,14 @@ class QuarryListView(GenericListView):
 class QuarryDetailView(BaseDetailView):
 
     model = Quarry
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class QuarryCreate(BaseCreateView):
 
     model = Quarry
     form_class = QuarryForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -320,6 +331,7 @@ class QuarryUpdate(BaseUpdateView):
 
     model = Quarry
     form_class = QuarryForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -351,13 +363,14 @@ class QuarryGroupListView(GenericListView):
 class QuarryGroupDetailView(BaseDetailView):
 
     model = QuarryGroup
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class QuarryGroupCreate(BaseCreateView):
 
     model = QuarryGroup
     form_class = QuarryGroupForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -368,6 +381,7 @@ class QuarryGroupUpdate(BaseUpdateView):
 
     model = QuarryGroup
     form_class = QuarryGroupForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -399,13 +413,14 @@ class SampleListView(GenericListView):
 class SampleDetailView(BaseDetailView):
 
     model = Sample
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class SampleCreate(BaseCreateView):
 
     model = Sample
     form_class = SampleForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -416,6 +431,7 @@ class SampleUpdate(BaseUpdateView):
 
     model = Sample
     form_class = SampleForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

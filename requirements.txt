@@ -1,5 +1,6 @@
 acdh-django-browsing==1.1.0
 Django>=3.2
+django-leaflet>=0.28
 django-mptt>=0.13.4
 django-spaghetti-and-meatballs==0.4.2
 psycopg2-binary>=2.9.0
