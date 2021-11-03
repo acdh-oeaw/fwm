@@ -22,6 +22,14 @@ class Analyse(models.Model):
         max_length=300, blank=True,
         verbose_name="Legacy ID"
     )
+    legacy_pk = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="alt id",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="id",
+    )
     oeai_inventory_number = models.ForeignKey(
         "Sample",
         related_name='rvn_analyse_oeai_inventory_number_sample',
@@ -32,6 +40,7 @@ class Analyse(models.Model):
         help_text="OeAI inventory number; unique",
     ).set_extra(
         is_public=True,
+        data_lookup="oeai_inventarnummer",
     )
     institute = models.ForeignKey(
         "Institution",
@@ -43,6 +52,7 @@ class Analyse(models.Model):
         help_text="institute where the analysis took place",
     ).set_extra(
         is_public=True,
+        data_lookup="labor",
     )
     analyse_type = models.ForeignKey(
         SkosConcept,
@@ -54,6 +64,7 @@ class Analyse(models.Model):
         help_text="analyse typ",
     ).set_extra(
         is_public=True,
+        data_lookup="analyse_type",
     )
     date = models.DateField(
         blank=True, null=True,
@@ -61,6 +72,7 @@ class Analyse(models.Model):
         help_text="analyse date",
     ).set_extra(
         is_public=True,
+        data_lookup="date",
     )
     notes_thinsection = models.TextField(
         blank=True, null=True,
@@ -68,393 +80,437 @@ class Analyse(models.Model):
         help_text="helptext for notes_thinsection",
     ).set_extra(
         is_public=True,
+        data_lookup="notes_thinsection",
     )
     mgco3 = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="MgCO3",
         help_text="helptext for mgco3",
     ).set_extra(
         is_public=True,
+        data_lookup="MgCO3",
     )
     fe = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Fe",
         help_text="helptext for fe",
     ).set_extra(
         is_public=True,
+        data_lookup="Fe [ppm]",
     )
     mn = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Mn",
         help_text="helptext for mn",
     ).set_extra(
         is_public=True,
+        data_lookup="Mn [ppm]",
     )
     sr = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Sr",
         help_text="helptext for sr",
     ).set_extra(
         is_public=True,
+        data_lookup="Sr [ppm]",
     )
     ion_li = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Li",
         help_text="helptext for ion_li",
     ).set_extra(
         is_public=True,
+        data_lookup="Li [ppb]",
     )
     ion_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Na",
         help_text="helptext for ion_na",
     ).set_extra(
         is_public=True,
+        data_lookup="Na [ppb]",
     )
     ion_k = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="K",
         help_text="helptext for ion_k",
     ).set_extra(
         is_public=True,
+        data_lookup="K [ppb]",
     )
     ion_mg = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="MgCO3",
         help_text="helptext for ion_mg",
     ).set_extra(
         is_public=True,
+        data_lookup="Mg [ppb]",
     )
     ion_ca = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Ca",
         help_text="helptext for ion_ca",
     ).set_extra(
         is_public=True,
+        data_lookup="Ca [ppb]",
     )
     ion_f = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Fe",
         help_text="helptext for ion_f",
     ).set_extra(
         is_public=True,
+        data_lookup="F [ppb]",
     )
     ion_cl = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Cl",
         help_text="helptext for ion_cl",
     ).set_extra(
         is_public=True,
+        data_lookup="Cl [ppb]",
     )
     ion_br = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Br",
         help_text="helptext for ion_br",
     ).set_extra(
         is_public=True,
+        data_lookup="Br [ppb]",
     )
     ion_j = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="J",
         help_text="helptext for ion_j",
     ).set_extra(
         is_public=True,
+        data_lookup="J [ppb]",
     )
     ion_no3 = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="NO3",
         help_text="helptext for ion_no3",
     ).set_extra(
         is_public=True,
+        data_lookup="NO3 [ppb]",
     )
     ion_so4 = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="SO4",
         help_text="helptext for ion_so4",
     ).set_extra(
         is_public=True,
+        data_lookup="SO4 [ppb]",
     )
     ion_li_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Li/Na",
         help_text="helptext for ion_li_na",
     ).set_extra(
         is_public=True,
+        data_lookup="Li/Na",
     )
     ion_k_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="K/Na",
         help_text="helptext for ion_k_na",
     ).set_extra(
         is_public=True,
+        data_lookup="K/Na",
     )
     ion_cl_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Cl/Na",
         help_text="helptext for ion_cl_na",
     ).set_extra(
         is_public=True,
+        data_lookup="Cl/Na",
     )
     ion_br_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Br/Na",
         help_text="helptext for ion_br_na",
     ).set_extra(
         is_public=True,
+        data_lookup="Br/Na",
     )
     ion_i_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="I/Na",
         help_text="helptext for ion_i_na",
     ).set_extra(
         is_public=True,
+        data_lookup="I/Na",
     )
     ion_so4_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="SO4/Na",
         help_text="helptext for ion_so4_na",
     ).set_extra(
         is_public=True,
+        data_lookup="SO4/Na",
     )
     ion_f_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="F/Na",
         help_text="helptext for ion_f_na",
     ).set_extra(
         is_public=True,
+        data_lookup="F/Na",
     )
     ion_no3_na = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="NO3/Na",
         help_text="helptext for ion_no3_na",
     ).set_extra(
         is_public=True,
+        data_lookup="NO3/Na",
     )
     iso_d18o = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="d18O (PDB)",
         help_text="helptext for iso_d18o",
     ).set_extra(
         is_public=True,
+        data_lookup="D18O (PDB)",
     )
     iso_d13c = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="D13c (PDB)",
         help_text="helptext for iso_d13c",
     ).set_extra(
         is_public=True,
+        data_lookup="D13c (PDB)",
     )
     icp_mg = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Mg",
         help_text="helptext for icp_mg",
     ).set_extra(
         is_public=True,
+        data_lookup="Mg [%]",
     )
     icp_mn = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Mn",
         help_text="helptext for icp_mn",
     ).set_extra(
         is_public=True,
+        data_lookup="Mn [ppm] (ICP)",
     )
     icp_fe = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Fe",
         help_text="helptext for icp_fe",
     ).set_extra(
         is_public=True,
+        data_lookup="Fe [ppm]",
     )
     icp_sr = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Sr",
         help_text="helptext for icp_sr",
     ).set_extra(
         is_public=True,
+        data_lookup="Sr [ppm] (ICP)",
     )
     icp_cr = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Cr",
         help_text="helptext for icp_cr",
     ).set_extra(
         is_public=True,
+        data_lookup="Cr [No Gas] [ppm]",
     )
     icp_cr_n2o = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Cr (N2O)",
         help_text="helptext for icp_cr_n2o",
     ).set_extra(
         is_public=True,
+        data_lookup="Cr [ N2O ] [ppm]",
     )
     icp_v = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="V",
         help_text="helptext for icp_v",
     ).set_extra(
         is_public=True,
+        data_lookup="V [ppm]",
     )
     icp_y = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Y",
         help_text="helptext for icp_y",
     ).set_extra(
         is_public=True,
+        data_lookup="Y [ppm]",
     )
     icp_cd = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Cd",
         help_text="helptext for icp_cd",
     ).set_extra(
         is_public=True,
+        data_lookup="Cd [ppm]",
     )
     icp_ba = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Ba",
         help_text="helptext for icp_ba",
     ).set_extra(
         is_public=True,
+        data_lookup="Ba [ppm]",
     )
     icp_la = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="La",
         help_text="helptext for icp_la",
     ).set_extra(
         is_public=True,
+        data_lookup="La [ppm]",
     )
     icp_ce = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Ce",
         help_text="helptext for icp_ce",
     ).set_extra(
         is_public=True,
+        data_lookup="Ce [ppm]",
     )
     icp_pr = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Pr",
         help_text="helptext for icp_pr",
     ).set_extra(
         is_public=True,
+        data_lookup="Pr [ppm]",
     )
     icp_dy = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Dy",
         help_text="helptext for icp_dy",
     ).set_extra(
         is_public=True,
+        data_lookup="Dy [ppm]",
     )
     icp_ho = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Ho",
         help_text="helptext for icp_ho",
     ).set_extra(
         is_public=True,
+        data_lookup="Ho [ppm]",
     )
     icp_yb = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Yb",
         help_text="helptext for icp_yb",
     ).set_extra(
         is_public=True,
+        data_lookup="Yb [ppm]",
     )
     icp_pb = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="Pb",
         help_text="helptext for icp_pb",
     ).set_extra(
         is_public=True,
+        data_lookup="Pb [ppm]",
     )
     icp_u = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="U",
         help_text="helptext for icp_u",
     ).set_extra(
         is_public=True,
+        data_lookup="U [ppm]",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -486,11 +542,11 @@ class Analyse(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Analysis.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "legacy_pk"
 
     @classmethod
     def get_createview_url(self):
@@ -530,6 +586,14 @@ class Artifact(models.Model):
         max_length=300, blank=True,
         verbose_name="Legacy ID"
     )
+    legacy_pk = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="alt id",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="id",
+    )
     artefact_type = models.ForeignKey(
         SkosConcept,
         related_name='rvn_artifact_artefact_type_skosconcept',
@@ -540,6 +604,7 @@ class Artifact(models.Model):
         help_text="type of the artefact; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="artefact_type",
     )
     description = models.TextField(
         blank=True, null=True,
@@ -547,6 +612,7 @@ class Artifact(models.Model):
         help_text="description of the artefact",
     ).set_extra(
         is_public=True,
+        data_lookup="description",
     )
     find_spot = models.ForeignKey(
         "Geography",
@@ -558,6 +624,7 @@ class Artifact(models.Model):
         help_text="find spot of the artefact ",
     ).set_extra(
         is_public=True,
+        data_lookup="find_spot",
     )
     find_spot_extra = models.TextField(
         blank=True, null=True,
@@ -565,6 +632,7 @@ class Artifact(models.Model):
         help_text="additional notes of the find spot",
     ).set_extra(
         is_public=True,
+        data_lookup="find_spot_extra",
     )
     storage_place = models.ForeignKey(
         "Institution",
@@ -576,6 +644,7 @@ class Artifact(models.Model):
         help_text="storage institution",
     ).set_extra(
         is_public=True,
+        data_lookup="storage_place",
     )
     material = models.ForeignKey(
         SkosConcept,
@@ -587,6 +656,7 @@ class Artifact(models.Model):
         help_text="the artefacts material; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="material",
     )
     measurement = models.TextField(
         blank=True, null=True,
@@ -594,6 +664,7 @@ class Artifact(models.Model):
         help_text="measurement information of the artefact",
     ).set_extra(
         is_public=True,
+        data_lookup="measurement",
     )
     preservation = models.TextField(
         blank=True, null=True,
@@ -601,6 +672,7 @@ class Artifact(models.Model):
         help_text="preservation information",
     ).set_extra(
         is_public=True,
+        data_lookup="preservation",
     )
     dating = models.ForeignKey(
         SkosConcept,
@@ -612,6 +684,7 @@ class Artifact(models.Model):
         help_text="dating information; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="dating",
     )
     images = models.CharField(
         max_length=250,
@@ -621,6 +694,7 @@ class Artifact(models.Model):
         help_text="images of the artefact",
     ).set_extra(
         is_public=True,
+        data_lookup="images",
     )
     literature = models.CharField(
         max_length=250,
@@ -630,6 +704,7 @@ class Artifact(models.Model):
         help_text="literature",
     ).set_extra(
         is_public=True,
+        data_lookup="literature",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -661,11 +736,11 @@ class Artifact(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Artifact.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "legacy_pk"
 
     @classmethod
     def get_createview_url(self):
@@ -713,6 +788,7 @@ class Geography(models.Model):
         help_text="name of the geographic location",
     ).set_extra(
         is_public=True,
+        data_lookup="name",
     )
     identifier = models.CharField(
         max_length=250,
@@ -722,6 +798,7 @@ class Geography(models.Model):
         help_text="identifier of the geographic location; gazetteers",
     ).set_extra(
         is_public=True,
+        data_lookup="identifier",
     )
     coordinates = PointField(
         blank=True, null=True,
@@ -729,6 +806,7 @@ class Geography(models.Model):
         help_text="coordinates of the geographic location (X, Y)",
     ).set_extra(
         is_public=True,
+        data_lookup="coordinates",
     )
     polygon = MultiPolygonField(
         blank=True, null=True,
@@ -743,6 +821,7 @@ class Geography(models.Model):
         help_text="additional notes",
     ).set_extra(
         is_public=True,
+        data_lookup="notes",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -755,13 +834,13 @@ class Geography(models.Model):
     class Meta:
 
         ordering = [
-            'id',
+            'name',
         ]
         verbose_name = "Geography"
 
     def __str__(self):
-        if self.id:
-            return "{}".format(self.id)
+        if self.name:
+            return "{}".format(self.name)
         else:
             return "{}".format(self.legacy_id)
 
@@ -774,11 +853,11 @@ class Geography(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Geography.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "name"
 
     @classmethod
     def get_createview_url(self):
@@ -826,6 +905,7 @@ class Institution(models.Model):
         help_text="name of the institution",
     ).set_extra(
         is_public=True,
+        data_lookup="name",
     )
     identifier = models.CharField(
         max_length=250,
@@ -835,6 +915,7 @@ class Institution(models.Model):
         help_text="identifier of the institution; gazetteers",
     ).set_extra(
         is_public=True,
+        data_lookup="identifier",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -847,13 +928,13 @@ class Institution(models.Model):
     class Meta:
 
         ordering = [
-            'id',
+            'name',
         ]
         verbose_name = "Insititution"
 
     def __str__(self):
-        if self.id:
-            return "{}".format(self.id)
+        if self.name:
+            return "{}".format(self.name)
         else:
             return "{}".format(self.legacy_id)
 
@@ -866,11 +947,11 @@ class Institution(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Insititution.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "name"
 
     @classmethod
     def get_createview_url(self):
@@ -910,6 +991,14 @@ class Number(models.Model):
         max_length=300, blank=True,
         verbose_name="Legacy ID"
     )
+    legacy_pk = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="alt id",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="id",
+    )
     oeai_inventory_number = models.ForeignKey(
         "Sample",
         related_name='rvn_number_oeai_inventory_number_sample',
@@ -920,6 +1009,7 @@ class Number(models.Model):
         help_text="OeAI inventory number",
     ).set_extra(
         is_public=True,
+        data_lookup="oeai_inventory_number",
     )
     number = models.CharField(
         max_length=250,
@@ -929,6 +1019,7 @@ class Number(models.Model):
         help_text="other number",
     ).set_extra(
         is_public=True,
+        data_lookup="number",
     )
     number_type = models.ForeignKey(
         SkosConcept,
@@ -940,6 +1031,7 @@ class Number(models.Model):
         help_text="type of the number; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="number_type",
     )
     institute = models.ForeignKey(
         "Institution",
@@ -951,6 +1043,7 @@ class Number(models.Model):
         help_text="institute that assigned then number",
     ).set_extra(
         is_public=True,
+        data_lookup="institute",
     )
     notes = models.TextField(
         blank=True, null=True,
@@ -958,6 +1051,7 @@ class Number(models.Model):
         help_text="additional notes",
     ).set_extra(
         is_public=True,
+        data_lookup="notes",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -989,11 +1083,11 @@ class Number(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Artifact.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "legacy_pk"
 
     @classmethod
     def get_createview_url(self):
@@ -1041,6 +1135,7 @@ class Quarry(models.Model):
         help_text="name of the quarry",
     ).set_extra(
         is_public=True,
+        data_lookup="name",
     )
     geography = models.ForeignKey(
         "Geography",
@@ -1052,6 +1147,7 @@ class Quarry(models.Model):
         help_text="geographical location of the quarry",
     ).set_extra(
         is_public=True,
+        data_lookup="geography",
     )
     images = models.CharField(
         max_length=250,
@@ -1061,6 +1157,7 @@ class Quarry(models.Model):
         help_text="images",
     ).set_extra(
         is_public=True,
+        data_lookup="images",
     )
     description = models.TextField(
         blank=True, null=True,
@@ -1068,6 +1165,7 @@ class Quarry(models.Model):
         help_text="description of the quarry",
     ).set_extra(
         is_public=True,
+        data_lookup="description",
     )
     literature = models.CharField(
         max_length=250,
@@ -1077,6 +1175,7 @@ class Quarry(models.Model):
         help_text="literature",
     ).set_extra(
         is_public=True,
+        data_lookup="literature",
     )
     open_access = models.BooleanField(
         default=False,
@@ -1085,6 +1184,7 @@ class Quarry(models.Model):
         help_text="open access",
     ).set_extra(
         is_public=True,
+        data_lookup="open_access",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -1097,13 +1197,13 @@ class Quarry(models.Model):
     class Meta:
 
         ordering = [
-            'id',
+            'name',
         ]
         verbose_name = "Quarry"
 
     def __str__(self):
-        if self.id:
-            return "{}".format(self.id)
+        if self.name:
+            return "{}".format(self.name)
         else:
             return "{}".format(self.legacy_id)
 
@@ -1116,11 +1216,11 @@ class Quarry(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Quarry.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "name"
 
     @classmethod
     def get_createview_url(self):
@@ -1168,6 +1268,7 @@ class QuarryGroup(models.Model):
         help_text="name of the quarry group",
     ).set_extra(
         is_public=True,
+        data_lookup="name",
     )
     description = models.TextField(
         blank=True, null=True,
@@ -1175,6 +1276,7 @@ class QuarryGroup(models.Model):
         help_text="description of the quarry group",
     ).set_extra(
         is_public=True,
+        data_lookup="description",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -1187,13 +1289,13 @@ class QuarryGroup(models.Model):
     class Meta:
 
         ordering = [
-            'id',
+            'name',
         ]
         verbose_name = "QuarryGroup"
 
     def __str__(self):
-        if self.id:
-            return "{}".format(self.id)
+        if self.name:
+            return "{}".format(self.name)
         else:
             return "{}".format(self.legacy_id)
 
@@ -1206,11 +1308,11 @@ class QuarryGroup(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Quarry_group.csv"
 
     @classmethod
     def get_natural_primary_key(self):
-        return "id"
+        return "name"
 
     @classmethod
     def get_createview_url(self):
@@ -1258,6 +1360,7 @@ class Sample(models.Model):
         help_text="OeAI inventory number; unique",
     ).set_extra(
         is_public=True,
+        data_lookup="oeai_inventory_number",
     )
     smell = models.ForeignKey(
         SkosConcept,
@@ -1269,6 +1372,7 @@ class Sample(models.Model):
         help_text="smell of the sample; entries from 0 to 4",
     ).set_extra(
         is_public=True,
+        data_lookup="smell",
     )
     grain_size_min = models.ForeignKey(
         SkosConcept,
@@ -1280,6 +1384,7 @@ class Sample(models.Model):
         help_text="minimum grain size; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="grain_size_min",
     )
     grain_size_max = models.ForeignKey(
         SkosConcept,
@@ -1291,6 +1396,7 @@ class Sample(models.Model):
         help_text="maximum grain size; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="grain_size_max",
     )
     material = models.ForeignKey(
         SkosConcept,
@@ -1302,6 +1408,7 @@ class Sample(models.Model):
         help_text="material of the sample; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="material",
     )
     color = models.ForeignKey(
         SkosConcept,
@@ -1313,6 +1420,7 @@ class Sample(models.Model):
         help_text="color of the sample; controlled vocabulary",
     ).set_extra(
         is_public=True,
+        data_lookup="color",
     )
     color_description = models.TextField(
         blank=True, null=True,
@@ -1320,6 +1428,7 @@ class Sample(models.Model):
         help_text="precise description of the color",
     ).set_extra(
         is_public=True,
+        data_lookup="color_description",
     )
     color_kodak = models.CharField(
         max_length=250,
@@ -1329,6 +1438,7 @@ class Sample(models.Model):
         help_text="more detailed information about the kodak color",
     ).set_extra(
         is_public=True,
+        data_lookup="color_kodak",
     )
     stdcolor = models.CharField(
         max_length=250,
@@ -1338,15 +1448,17 @@ class Sample(models.Model):
         help_text="more detailed information about the kodak color",
     ).set_extra(
         is_public=True,
+        data_lookup="stdcolor_kodak",
     )
     weight = models.DecimalField(
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         blank=True, null=True,
         verbose_name="weight",
         help_text="weight of the sample",
     ).set_extra(
         is_public=True,
+        data_lookup="weight",
     )
     artefakt_id = models.ForeignKey(
         "Artifact",
@@ -1358,6 +1470,7 @@ class Sample(models.Model):
         help_text="sampled artefact",
     ).set_extra(
         is_public=True,
+        data_lookup="artefakt_id",
     )
     quarry = models.ForeignKey(
         "Quarry",
@@ -1369,6 +1482,7 @@ class Sample(models.Model):
         help_text="sampled quarry",
     ).set_extra(
         is_public=True,
+        data_lookup="quarry",
     )
     quarry_group = models.ForeignKey(
         "QuarryGroup",
@@ -1380,6 +1494,7 @@ class Sample(models.Model):
         help_text="quarry group",
     ).set_extra(
         is_public=True,
+        data_lookup="quarry_group",
     )
     notes = models.TextField(
         blank=True, null=True,
@@ -1387,6 +1502,7 @@ class Sample(models.Model):
         help_text="notes",
     ).set_extra(
         is_public=True,
+        data_lookup="notes",
     )
     sampling = models.CharField(
         max_length=250,
@@ -1396,6 +1512,7 @@ class Sample(models.Model):
         help_text="information about the sampling",
     ).set_extra(
         is_public=True,
+        data_lookup="sampling",
     )
     literature = models.CharField(
         max_length=250,
@@ -1405,6 +1522,7 @@ class Sample(models.Model):
         help_text="literature",
     ).set_extra(
         is_public=True,
+        data_lookup="literature",
     )
     image = models.CharField(
         max_length=250,
@@ -1414,6 +1532,7 @@ class Sample(models.Model):
         help_text="images",
     ).set_extra(
         is_public=True,
+        data_lookup="images",
     )
     open_access = models.BooleanField(
         default=False,
@@ -1422,6 +1541,7 @@ class Sample(models.Model):
         help_text="open access",
     ).set_extra(
         is_public=True,
+        data_lookup="open_access",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -1453,7 +1573,7 @@ class Sample(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return None
+        return "./archiv/data/Sample.csv"
 
     @classmethod
     def get_natural_primary_key(self):

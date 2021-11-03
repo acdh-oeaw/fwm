@@ -44,7 +44,7 @@ class GeographyAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(id__icontains=self.q)
+                Q(name__icontains=self.q)
             )
         return qs
 
@@ -56,7 +56,7 @@ class InstitutionAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(id__icontains=self.q)
+                Q(name__icontains=self.q)
             )
         return qs
 
@@ -80,7 +80,7 @@ class QuarryAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(id__icontains=self.q)
+                Q(name__icontains=self.q)
             )
         return qs
 
@@ -92,7 +92,7 @@ class QuarryGroupAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(id__icontains=self.q)
+                Q(name__icontains=self.q)
             )
         return qs
 

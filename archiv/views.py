@@ -57,7 +57,7 @@ class AnalyseListView(GenericListView):
     init_columns = [
         'id', 'id',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class AnalyseDetailView(BaseDetailView):
@@ -107,7 +107,7 @@ class ArtifactListView(GenericListView):
     init_columns = [
         'id', 'id',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class ArtifactDetailView(BaseDetailView):
@@ -155,9 +155,9 @@ class GeographyListView(GenericListView):
     formhelper_class = GeographyFilterFormHelper
     table_class = GeographyTable
     init_columns = [
-        'id', 'id',
+        'id', 'name',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class GeographyDetailView(BaseDetailView):
@@ -205,9 +205,9 @@ class InstitutionListView(GenericListView):
     formhelper_class = InstitutionFilterFormHelper
     table_class = InstitutionTable
     init_columns = [
-        'id', 'id',
+        'id', 'name',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class InstitutionDetailView(BaseDetailView):
@@ -257,7 +257,7 @@ class NumberListView(GenericListView):
     init_columns = [
         'id', 'id',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class NumberDetailView(BaseDetailView):
@@ -305,9 +305,9 @@ class QuarryListView(GenericListView):
     formhelper_class = QuarryFilterFormHelper
     table_class = QuarryTable
     init_columns = [
-        'id', 'id',
+        'id', 'name',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class QuarryDetailView(BaseDetailView):
@@ -355,9 +355,9 @@ class QuarryGroupListView(GenericListView):
     formhelper_class = QuarryGroupFilterFormHelper
     table_class = QuarryGroupTable
     init_columns = [
-        'id', 'id',
+        'id', 'name',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class QuarryGroupDetailView(BaseDetailView):
@@ -407,7 +407,7 @@ class SampleListView(GenericListView):
     init_columns = [
         'id', 'oeai_inventory_number',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class SampleDetailView(BaseDetailView):

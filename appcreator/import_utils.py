@@ -124,7 +124,7 @@ def run_import(
             legacy_id_source_field = field_mapping_inverse_dict[legacy_id_field]
             if limit:
                 df_data = df_data.head(limit)
-            for i, row in tqdm(df_data.iterrows(), total=len(df_data)):
+            for i, row in tqdm(df_data.head(25).iterrows(), total=25):
                 try:
                     temp_item, _ = current_class.objects.get_or_create(
                         legacy_id=f"{float(row[legacy_id_source_field])}".strip()
@@ -163,27 +163,10 @@ def run_import(
                         
                         elif "{}".format(cur_attr_type) == "FloatField":
                             pop_float_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
-
-                        elif "{}".format(cur_attr_type) == "ForeignKey" and isinstance(
-                            f"{row[source_attr_name]}", str
-                        ):
-                            pop_fk_field(
-                                current_class, temp_item,
-                                row, cur_attr, fd=field_mapping_inverse_dict,
-                                source_name=source_name
-                            )
-                        elif "{}".format(cur_attr_type) == "ManyToManyField" and isinstance(
-                            row[source_attr_name], str
-                        ):
-                            pop_m2m_field(
-                                current_class, temp_item, row, cur_attr,
-                                sep=m2m_sep, fd=field_mapping_inverse_dict,
-                                source_name=source_name
-                            )
-
+                        elif "{}".format(cur_attr_type) == "DecimalField":
+                            pop_float_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
                         elif "{}".format(cur_attr_type) == "DateField":
                             pop_date_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
-
                         elif "{}".format(cur_attr_type) == "DateRangeField":
                             pop_date_range_field(
                                 temp_item,
@@ -192,6 +175,22 @@ def run_import(
                                 sep=date_range_sep,
                                 fd=field_mapping_inverse_dict
                             )
+                        # elif "{}".format(cur_attr_type) == "ForeignKey" and isinstance(
+                        #     f"{row[source_attr_name]}", str
+                        # ):
+                        #     pop_fk_field(
+                        #         current_class, temp_item,
+                        #         row, cur_attr, fd=field_mapping_inverse_dict,
+                        #         source_name=source_name
+                        #     )
+                        # elif "{}".format(cur_attr_type) == "ManyToManyField" and isinstance(
+                        #     row[source_attr_name], str
+                        # ):
+                        #     pop_m2m_field(
+                        #         current_class, temp_item, row, cur_attr,
+                        #         sep=m2m_sep, fd=field_mapping_inverse_dict,
+                        #         source_name=source_name
+                        #     )
                         else:
                             pass
                     # else:

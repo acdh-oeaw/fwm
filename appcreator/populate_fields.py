@@ -1,6 +1,9 @@
 import datetime
 from dateutil.parser import parse
 from pandas import pandas as pd
+import math
+
+from vocabs.models import SkosCollection
 
 
 def pop_char_field(temp_item, row, cur_attr, max_length=249, fd=None):
@@ -65,9 +68,13 @@ def pop_float_field(temp_item, row, cur_attr, fd=None):
     try:
         lookup_val = fd.get(cur_attr, cur_attr)
         my_val = float(row[lookup_val])
-        setattr(temp_item, cur_attr, my_val)
+        
     except ValueError:
-        pass
+        return temp_item
+    if math.isnan(my_val):
+        return(temp_item)
+    else:
+        setattr(temp_item, cur_attr, my_val)
     return temp_item
 
 
@@ -97,8 +104,7 @@ def pop_fk_field(
         legacy_id = f"{my_val}".strip()
     if rel_model_name == 'skosconcept':
         temp_rel_obj, _ = fk.related_model.objects.get_or_create(
-            legacy_id=legacy_id,
-            scheme=DEFAULT_SCHEME
+            pref_label=legacy_id,
         )
     else:
         temp_rel_obj, _ = fk.related_model.objects.get_or_create(
@@ -107,10 +113,9 @@ def pop_fk_field(
     if rel_model_name == 'skosconcept':
         temp_rel_obj.pref_label = f"{row[lookup_val]}".strip().lower()
         col, _ = SkosCollection.objects.get_or_create(
-            name=f"{cur_attr}",
-            scheme=DEFAULT_SCHEME
+            pref_label=f"{cur_attr}",
         )
-        temp_rel_obj.collection.add(col)
+        temp_rel_obj.collection = col
         temp_rel_obj.save()
     setattr(temp_item, cur_attr, temp_rel_obj)
     return temp_item
@@ -140,13 +145,11 @@ def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, sou
     if rel_model_name == 'skosconcept':
         col, _ = SkosCollection.objects.get_or_create(
             name=f"{cur_attr}",
-            scheme=DEFAULT_SCHEME
         )
         rel_things = []
         for x in row[lookup_val].split(sep):
             temp_rel_obj, _ = fk.related_model.objects.get_or_create(
                 legacy_id=legacy_id,
-                scheme=DEFAULT_SCHEME
             )
             temp_rel_obj.pref_label = f"{row[lookup_val]}".strip().lower()
             temp_rel_obj.collection.add(col)

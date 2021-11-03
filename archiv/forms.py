@@ -34,6 +34,7 @@ class AnalyseFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
+                    'legacy_pk',
                     'oeai_inventory_number',
                     'institute',
                     'analyse_type',
@@ -132,6 +133,7 @@ class ArtifactFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
+                    'legacy_pk',
                     'artefact_type',
                     'description',
                     'find_spot',
@@ -301,6 +303,7 @@ class NumberFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
+                    'legacy_pk',
                     'oeai_inventory_number',
                     'number',
                     'number_type',

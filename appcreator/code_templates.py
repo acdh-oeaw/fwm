@@ -348,7 +348,7 @@ class {{ x.model_name }}ListView(GenericListView):
     init_columns = [
         'id', {%- if x.model_representation != 'nan' %} '{{ x.model_representation }}', {%- endif %}
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class {{ x.model_name }}DetailView(BaseDetailView):
@@ -427,7 +427,7 @@ class {{ x.model_name }}(models.Model):
     {%- endif %}
         {%- if y.field_type == 'DecimalField' %}
         max_digits=19,
-        decimal_places=10,
+        decimal_places=2,
         {%- endif %}
         {%- if y.field_type == 'BooleanField' %}
         default=False,

@@ -335,6 +335,7 @@ class AnalyseListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'legacy_pk',
             'oeai_inventory_number',
             'institute',
             'analyse_type',
@@ -487,6 +488,7 @@ class ArtifactListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'legacy_pk',
             'artefact_type',
             'description',
             'find_spot',
@@ -619,6 +621,7 @@ class NumberListFilter(django_filters.FilterSet):
         fields = [
             'id',
             'legacy_id',
+            'legacy_pk',
             'oeai_inventory_number',
             'number',
             'number_type',
