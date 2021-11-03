@@ -63,7 +63,7 @@ class AnalyseListView(GenericListView):
 class AnalyseDetailView(BaseDetailView):
 
     model = Analyse
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class AnalyseCreate(BaseCreateView):
@@ -113,7 +113,7 @@ class ArtifactListView(GenericListView):
 class ArtifactDetailView(BaseDetailView):
 
     model = Artifact
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class ArtifactCreate(BaseCreateView):
@@ -163,7 +163,7 @@ class GeographyListView(GenericListView):
 class GeographyDetailView(BaseDetailView):
 
     model = Geography
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class GeographyCreate(BaseCreateView):
@@ -213,7 +213,7 @@ class InstitutionListView(GenericListView):
 class InstitutionDetailView(BaseDetailView):
 
     model = Institution
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class InstitutionCreate(BaseCreateView):
@@ -263,7 +263,7 @@ class NumberListView(GenericListView):
 class NumberDetailView(BaseDetailView):
 
     model = Number
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class NumberCreate(BaseCreateView):
@@ -313,7 +313,7 @@ class QuarryListView(GenericListView):
 class QuarryDetailView(BaseDetailView):
 
     model = Quarry
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class QuarryCreate(BaseCreateView):
@@ -363,7 +363,7 @@ class QuarryGroupListView(GenericListView):
 class QuarryGroupDetailView(BaseDetailView):
 
     model = QuarryGroup
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class QuarryGroupCreate(BaseCreateView):
@@ -413,7 +413,7 @@ class SampleListView(GenericListView):
 class SampleDetailView(BaseDetailView):
 
     model = Sample
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class SampleCreate(BaseCreateView):

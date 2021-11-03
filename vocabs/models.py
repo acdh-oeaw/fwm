@@ -40,7 +40,7 @@ class SkosCollection(models.Model):
 
     def __str__(self):
         return f"{self.pref_label} <{self.source_uri}>"
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "pref_label"
@@ -94,7 +94,7 @@ class SkosConcept(MPTTModel):
 
     def __str__(self):
         return f"{self.pref_label}"
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "pref_label"

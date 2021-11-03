@@ -354,7 +354,7 @@ class {{ x.model_name }}ListView(GenericListView):
 class {{ x.model_name }}DetailView(BaseDetailView):
 
     model = {{ x.model_name }}
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class {{ x.model_name }}Create(BaseCreateView):

@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'django_spaghetti',
     'appcreator',
     'archiv',
-    'django_extensions'
+    'netvis',
+    'django_extensions',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
