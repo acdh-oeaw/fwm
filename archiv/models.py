@@ -1083,7 +1083,7 @@ class Number(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return "./archiv/data/Artifact.csv"
+        return "./archiv/data/Number.csv"
 
     @classmethod
     def get_natural_primary_key(self):

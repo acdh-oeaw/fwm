@@ -122,17 +122,13 @@ def run_import(
             nr_cols = len(df_keys)
             legacy_id_field = current_class.get_natural_primary_key()
             legacy_id_source_field = field_mapping_inverse_dict[legacy_id_field]
-            if limit:
-                df_data = df_data.head(limit)
             for i, row in tqdm(df_data.head(25).iterrows(), total=25):
-                try:
-                    temp_item, _ = current_class.objects.get_or_create(
-                        legacy_id=f"{float(row[legacy_id_source_field])}".strip()
-                    )
-                except ValueError:
-                    temp_item, _ = current_class.objects.get_or_create(
-                        legacy_id=f"{row[legacy_id_source_field]}".strip()
-                    )
+                create_dict = {
+                    legacy_id_field: row[legacy_id_source_field]
+                }
+                temp_item, _ = current_class.objects.get_or_create(
+                    **create_dict
+                )
                 row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
                 temp_item.orig_data_csv = row_data
                 col_counter = 0
@@ -148,7 +144,9 @@ def run_import(
                         cur_attr_type = None
                     if cur_attr_type is not None:
                         # print("{}".format(cur_attr_type))
-                        if "{}".format(cur_attr_type) == "CharField":
+                        if "{}".format(cur_attr_type) == "CharField" and isinstance(
+                            row[source_attr_name], str
+                        ):
                             pop_char_field(
                                 temp_item, row, cur_attr, max_length=249, fd=field_mapping_inverse_dict
                             )
@@ -167,7 +165,7 @@ def run_import(
                             pop_float_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
                         elif "{}".format(cur_attr_type) == "DateField":
                             pop_date_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
-                        elif "{}".format(cur_attr_type) == "DateRangeField":
+                        if "{}".format(cur_attr_type) == "DateRangeField":
                             pop_date_range_field(
                                 temp_item,
                                 row,
@@ -175,14 +173,12 @@ def run_import(
                                 sep=date_range_sep,
                                 fd=field_mapping_inverse_dict
                             )
-                        # elif "{}".format(cur_attr_type) == "ForeignKey" and isinstance(
-                        #     f"{row[source_attr_name]}", str
-                        # ):
-                        #     pop_fk_field(
-                        #         current_class, temp_item,
-                        #         row, cur_attr, fd=field_mapping_inverse_dict,
-                        #         source_name=source_name
-                        #     )
+                        elif "{}".format(cur_attr_type) == "ForeignKey":
+                            pop_fk_field(
+                                current_class, temp_item,
+                                row, cur_attr, fd=field_mapping_inverse_dict,
+                                source_name=source_name
+                            )
                         # elif "{}".format(cur_attr_type) == "ManyToManyField" and isinstance(
                         #     row[source_attr_name], str
                         # ):

@@ -14,12 +14,12 @@ def pop_char_field(temp_item, row, cur_attr, max_length=249, fd=None):
         :param max_length: The max_length of the current CharField of the object
         :return: The temp_item
     """
+    lookup_val = fd.get(cur_attr, cur_attr)
     try:
-        lookup_val = fd.get(cur_attr, cur_attr)
-        my_val = f"{(row[lookup_val])[:max_length]}"
-        setattr(temp_item, cur_attr, my_val)
+        my_val = f"{str((row[lookup_val]))[:max_length]}"
     except TypeError:
-        pass
+        return temp_item
+    setattr(temp_item, cur_attr, f"{my_val}")
     return temp_item
 
 
@@ -92,32 +92,19 @@ def pop_fk_field(
         :return: The temp_item
     """
     lookup_val = fd.get(cur_attr, cur_attr)
-    fk = current_class._meta.get_field(cur_attr)
-    rel_model_name = fk.related_model._meta.model_name
-    try:
-        my_val = float(row[lookup_val])
-    except (ValueError, TypeError):
+    rel_model_field = current_class._meta.get_field(cur_attr)
+    rel_model = rel_model_field.related_model
+    rel_model_npk_field = rel_model.get_natural_primary_key()
+    
+    if isinstance(row[lookup_val], str):
         my_val = row[lookup_val]
-    if rel_model_name == 'skosconcept':
-        legacy_id = f"{cur_attr}__{my_val}".strip().lower()
+        get_create_dict = {
+            rel_model_npk_field: my_val
+        }
+        rel_obj, _ = rel_model.objects.get_or_create(**get_create_dict)
+        setattr(temp_item, cur_attr, rel_obj)
     else:
-        legacy_id = f"{my_val}".strip()
-    if rel_model_name == 'skosconcept':
-        temp_rel_obj, _ = fk.related_model.objects.get_or_create(
-            pref_label=legacy_id,
-        )
-    else:
-        temp_rel_obj, _ = fk.related_model.objects.get_or_create(
-            legacy_id=legacy_id
-        )
-    if rel_model_name == 'skosconcept':
-        temp_rel_obj.pref_label = f"{row[lookup_val]}".strip().lower()
-        col, _ = SkosCollection.objects.get_or_create(
-            pref_label=f"{cur_attr}",
-        )
-        temp_rel_obj.collection = col
-        temp_rel_obj.save()
-    setattr(temp_item, cur_attr, temp_rel_obj)
+        return temp_item
     return temp_item
 
 
