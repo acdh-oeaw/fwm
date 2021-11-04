@@ -165,7 +165,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SHEET_ID = os.environ.get(
-    'SHEET_ID', "1C1nS4pPyqSouyfcfRZuXX7DGRGaRcg-NqtK2ioNJ63Y"
+    'SHEET_ID', "1C1nS4pPyqSouyfcfRZuXX7DGRGaRcg-NqtK2ioNJ63Y asdf"
 )
 
 
