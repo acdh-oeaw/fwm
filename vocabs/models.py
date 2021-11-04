@@ -7,6 +7,20 @@ from mptt.models import MPTTModel, TreeForeignKey
 DEFAULT_LANG = getattr(settings, 'VOCABS_DEFAULT_LANG', 'eng')
 
 
+class SkosTechnicalCollection(models.Model):
+    """
+    Class to link SkosConcepts to properties where they are used in.
+    Needed for e.g. autocompletes, showing only Concepts matching the current property
+    """
+    pref_label = models.CharField(
+        blank=True,
+        null=True,
+        max_length=300,
+        verbose_name="Model and property name",
+        help_text="e.g. 'Artifact__artefact_type",
+    )
+
+
 class SkosCollection(models.Model):
     """
     SKOS collections are labeled and/or ordered groups of SKOS concepts.
@@ -87,6 +101,13 @@ class SkosConcept(MPTTModel):
         max_length=300,
         verbose_name="source URI",
         help_text="URI of the Resource"
+    )
+    collection = models.ManyToManyField(
+        'SkosTechnicalCollection',
+        blank=True,
+        verbose_name="member of skos:Collection",
+        help_text="Collection that this concept is a member of",
+        related_name="has_members",
     )
 
     class MPTTMeta:
