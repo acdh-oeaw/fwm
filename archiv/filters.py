@@ -384,7 +384,6 @@ class AnalyseListFilter(django_filters.FilterSet):
             'icp_yb',
             'icp_pb',
             'icp_u',
-            
         ]
 
 
@@ -500,7 +499,6 @@ class ArtifactListFilter(django_filters.FilterSet):
             'dating',
             'images',
             'literature',
-            
         ]
 
 
@@ -533,11 +531,7 @@ class GeographyListFilter(django_filters.FilterSet):
             'legacy_id',
             'name',
             'identifier',
-            
-            
-            
             'notes',
-            
         ]
 
 
@@ -565,7 +559,6 @@ class InstitutionListFilter(django_filters.FilterSet):
             'legacy_id',
             'name',
             'identifier',
-            
         ]
 
 
@@ -627,7 +620,6 @@ class NumberListFilter(django_filters.FilterSet):
             'number_type',
             'institute',
             'notes',
-            
         ]
 
 
@@ -677,7 +669,6 @@ class QuarryListFilter(django_filters.FilterSet):
             'description',
             'literature',
             'open_access',
-            
         ]
 
 
@@ -705,7 +696,6 @@ class QuarryGroupListFilter(django_filters.FilterSet):
             'legacy_id',
             'name',
             'description',
-            
         ]
 
 
@@ -879,7 +869,4 @@ class SampleListFilter(django_filters.FilterSet):
             'literature',
             'image',
             'open_access',
-            
         ]
-
-
