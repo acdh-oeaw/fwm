@@ -3,7 +3,11 @@ from dateutil.parser import parse
 from pandas import pandas as pd
 import math
 
-from vocabs.models import SkosCollection
+from vocabs.models import (
+    SkosCollection,
+    SkosConcept,
+    SkosTechnicalCollection
+)
 
 
 def pop_char_field(temp_item, row, cur_attr, max_length=249, fd=None):
@@ -105,6 +109,12 @@ def pop_fk_field(
         setattr(temp_item, cur_attr, rel_obj)
     else:
         return temp_item
+    if isinstance(rel_obj, SkosConcept):
+        tech_class_pref_label = f"{temp_item._meta.model_name}__{cur_attr}"
+        tech_col, _ = SkosTechnicalCollection.objects.get_or_create(
+            pref_label=tech_class_pref_label
+        )
+        rel_obj.tech_collection.add(tech_col)
     return temp_item
 
 

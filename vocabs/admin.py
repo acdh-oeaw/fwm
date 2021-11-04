@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin, TreeRelatedFieldListFilter
-from vocabs.models import SkosCollection, SkosConcept
+from vocabs.models import SkosCollection, SkosConcept, SkosTechnicalCollection
 
 
 VOCABS_LISTVIEW_PAGESIZE = getattr(settings, 'VOCABS_LISTVIEW_PAGESIZE', 50)
@@ -12,8 +12,9 @@ class SkosConceptAdmin(DraggableMPTTAdmin):
     model = SkosConcept
 
     list_filter = (
+        ('tech_collection', admin.RelatedOnlyFieldListFilter),
         ('collection'),
-        ('broader_concept', TreeRelatedFieldListFilter),
+        ('broader_concept', admin.RelatedOnlyFieldListFilter),
     )
     list_per_page = VOCABS_LISTVIEW_PAGESIZE
     search_fields = ['pref_label']
@@ -30,3 +31,8 @@ class SkosCollectionAdmin(admin.ModelAdmin):
     list_filter = (
         'pref_label',
     )
+
+
+@admin.register(SkosTechnicalCollection)
+class SkosTechnicalCollectionAdmin(admin.ModelAdmin):
+    pass

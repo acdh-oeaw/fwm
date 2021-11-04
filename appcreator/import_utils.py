@@ -81,7 +81,7 @@ def get_class_sources_map(app_name):
 
 def run_import(
     app_name, m2m_sep="|", date_range_sep="/", limit=False,
-    file_class_map_dict=False, filter_query=False, data_source='SQL'
+    file_class_map_dict=False
 ):
     """ runs data import from a collection of excel-files matching the model class of the
         passed in applications
@@ -122,7 +122,11 @@ def run_import(
             nr_cols = len(df_keys)
             legacy_id_field = current_class.get_natural_primary_key()
             legacy_id_source_field = field_mapping_inverse_dict[legacy_id_field]
-            for i, row in tqdm(df_data.iterrows(), total=len(df_data)):
+            if limit:
+                import_df = df_data.head(limit)
+            else:
+                import_df = df_data
+            for i, row in tqdm(import_df.iterrows(), total=len(import_df)):
                 create_dict = {
                     legacy_id_field: row[legacy_id_source_field]
                 }

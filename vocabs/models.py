@@ -20,6 +20,9 @@ class SkosTechnicalCollection(models.Model):
         help_text="e.g. 'Artifact__artefact_type",
     )
 
+    def __str__(self):
+        return f"{self.pref_label}"
+
 
 class SkosCollection(models.Model):
     """
@@ -102,7 +105,7 @@ class SkosConcept(MPTTModel):
         verbose_name="source URI",
         help_text="URI of the Resource"
     )
-    collection = models.ManyToManyField(
+    tech_collection = models.ManyToManyField(
         'SkosTechnicalCollection',
         blank=True,
         verbose_name="member of skos:Collection",
