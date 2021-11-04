@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
-from mptt.admin import DraggableMPTTAdmin, TreeRelatedFieldListFilter
+from mptt.admin import DraggableMPTTAdmin
 from vocabs.models import SkosCollection, SkosConcept, SkosTechnicalCollection
 
 

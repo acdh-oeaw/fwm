@@ -99,7 +99,9 @@ class AnalyseForm(forms.ModelForm):
     analyse_type = forms.ModelChoiceField(
         required=False,
         label="analyse typ",
-        queryset=SkosConcept.objects.filter(collection__pref_label="analyse_type")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="analyse__analyse_type"
+        )
     )
 
     class Meta:
@@ -161,17 +163,23 @@ class ArtifactForm(forms.ModelForm):
     artefact_type = forms.ModelChoiceField(
         required=False,
         label="artefact type",
-        queryset=SkosConcept.objects.filter(collection__pref_label="artefact_type")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="artifact__artefact_type"
+        )
     )
     material = forms.ModelChoiceField(
         required=False,
         label="material",
-        queryset=SkosConcept.objects.filter(collection__pref_label="material")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="artifact__material"
+        )
     )
     dating = forms.ModelChoiceField(
         required=False,
         label="dating",
-        queryset=SkosConcept.objects.filter(collection__pref_label="dating")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="artifact__dating"
+        )
     )
 
     class Meta:
@@ -325,7 +333,9 @@ class NumberForm(forms.ModelForm):
     number_type = forms.ModelChoiceField(
         required=False,
         label="number type",
-        queryset=SkosConcept.objects.filter(collection__pref_label="number_type")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="number__number_type"
+        )
     )
 
     class Meta:
@@ -491,27 +501,37 @@ class SampleForm(forms.ModelForm):
     smell = forms.ModelChoiceField(
         required=False,
         label="smell",
-        queryset=SkosConcept.objects.filter(collection__pref_label="smell")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="sample__smell"
+        )
     )
     grain_size_min = forms.ModelChoiceField(
         required=False,
         label="grain size min",
-        queryset=SkosConcept.objects.filter(collection__pref_label="grain_size_min")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="sample__grain_size_min"
+        )
     )
     grain_size_max = forms.ModelChoiceField(
         required=False,
         label="grain size max",
-        queryset=SkosConcept.objects.filter(collection__pref_label="grain_size_max")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="sample__grain_size_max"
+        )
     )
     material = forms.ModelChoiceField(
         required=False,
         label="material",
-        queryset=SkosConcept.objects.filter(collection__pref_label="material")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="sample__material"
+        )
     )
     color = forms.ModelChoiceField(
         required=False,
         label="color",
-        queryset=SkosConcept.objects.filter(collection__pref_label="color")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="sample__color"
+        )
     )
 
     class Meta:

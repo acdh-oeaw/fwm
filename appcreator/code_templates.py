@@ -255,13 +255,17 @@ class {{ x.model_name }}Form(forms.ModelForm):
     {{y.field_name}} = forms.ModelChoiceField(
         required=False,
         label="{{y.field_verbose_name}}",
-        queryset=SkosConcept.objects.filter(collection__pref_label="{{y.field_name}}")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="{{x.model_name|lower}}__{{y.field_name}}"
+        )
     )
 {%- elif y.related_class == 'SkosConcept' and y.field_type == 'ManyToManyField'%}
     {{y.field_name}} = forms.ModelMultipleChoiceField(
         required=False,
         label="{{y.field_verbose_name}}",
-        queryset=SkosConcept.objects.filter(collection__pref_label="{{y.field_name}}")
+        queryset=SkosConcept.objects.filter(
+            tech_collection__pref_label="{{x.model_name|lower}}__{{y.field_name}}"
+        )
     )
 {%- endif -%}
 {% endfor %}
