@@ -54,12 +54,12 @@ class AnalyseListFilter(django_filters.FilterSet):
     )
     analyse_type = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="analyse_type"
+            tech_collection__pref_label="analyse__analyse_type"
         ),
         help_text=Analyse._meta.get_field('analyse_type').help_text,
         label=Analyse._meta.get_field('analyse_type').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/analyse_type",
+            url="/vocabs-ac/concept/analyse__analyse_type",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -396,12 +396,12 @@ class ArtifactListFilter(django_filters.FilterSet):
     )
     artefact_type = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="artefact_type"
+            tech_collection__pref_label="artifact__artefact_type"
         ),
         help_text=Artifact._meta.get_field('artefact_type').help_text,
         label=Artifact._meta.get_field('artefact_type').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/artefact_type",
+            url="/vocabs-ac/concept/artifact__artefact_type",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -436,12 +436,12 @@ class ArtifactListFilter(django_filters.FilterSet):
     )
     material = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="material"
+            tech_collection__pref_label="artifact__material"
         ),
         help_text=Artifact._meta.get_field('material').help_text,
         label=Artifact._meta.get_field('material').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/material",
+            url="/vocabs-ac/concept/artifact__material",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -460,12 +460,12 @@ class ArtifactListFilter(django_filters.FilterSet):
     )
     dating = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="dating"
+            tech_collection__pref_label="artifact__dating"
         ),
         help_text=Artifact._meta.get_field('dating').help_text,
         label=Artifact._meta.get_field('dating').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/dating",
+            url="/vocabs-ac/concept/artifact__dating",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -590,12 +590,12 @@ class NumberListFilter(django_filters.FilterSet):
     )
     number_type = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="number_type"
+            tech_collection__pref_label="number__number_type"
         ),
         help_text=Number._meta.get_field('number_type').help_text,
         label=Number._meta.get_field('number_type').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/number_type",
+            url="/vocabs-ac/concept/number__number_type",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -722,12 +722,12 @@ class SampleListFilter(django_filters.FilterSet):
     )
     smell = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="smell"
+            tech_collection__pref_label="sample__smell"
         ),
         help_text=Sample._meta.get_field('smell').help_text,
         label=Sample._meta.get_field('smell').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/smell",
+            url="/vocabs-ac/concept/sample__smell",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -736,12 +736,12 @@ class SampleListFilter(django_filters.FilterSet):
     )
     grain_size_min = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="grain_size_min"
+            tech_collection__pref_label="sample__grain_size_min"
         ),
         help_text=Sample._meta.get_field('grain_size_min').help_text,
         label=Sample._meta.get_field('grain_size_min').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/grain_size_min",
+            url="/vocabs-ac/concept/sample__grain_size_min",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -750,12 +750,12 @@ class SampleListFilter(django_filters.FilterSet):
     )
     grain_size_max = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="grain_size_max"
+            tech_collection__pref_label="sample__grain_size_max"
         ),
         help_text=Sample._meta.get_field('grain_size_max').help_text,
         label=Sample._meta.get_field('grain_size_max').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/grain_size_max",
+            url="/vocabs-ac/concept/sample__grain_size_max",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -764,12 +764,12 @@ class SampleListFilter(django_filters.FilterSet):
     )
     material = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="material"
+            tech_collection__pref_label="sample__material"
         ),
         help_text=Sample._meta.get_field('material').help_text,
         label=Sample._meta.get_field('material').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/material",
+            url="/vocabs-ac/concept/sample__material",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -778,12 +778,12 @@ class SampleListFilter(django_filters.FilterSet):
     )
     color = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="color"
+            tech_collection__pref_label="sample__color"
         ),
         help_text=Sample._meta.get_field('color').help_text,
         label=Sample._meta.get_field('color').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/color",
+            url="/vocabs-ac/concept/sample__color",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,

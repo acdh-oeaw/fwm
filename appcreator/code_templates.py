@@ -150,12 +150,12 @@ class {{ x.model_name }}ListFilter(django_filters.FilterSet):
     {%- if y.related_class == 'SkosConcept' %}
     {{y.field_name}} = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__pref_label="{{y.field_name}}"
+            tech_collection__pref_label="{{x.model_name|lower}}__{{y.field_name}}"
         ),
         help_text={{x.model_name}}._meta.get_field('{{y.field_name}}').help_text,
         label={{x.model_name}}._meta.get_field('{{y.field_name}}').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/{{y.field_name}}",
+            url="/vocabs-ac/concept/{{x.model_name|lower}}__{{y.field_name}}",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
