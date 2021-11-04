@@ -122,7 +122,7 @@ def run_import(
             nr_cols = len(df_keys)
             legacy_id_field = current_class.get_natural_primary_key()
             legacy_id_source_field = field_mapping_inverse_dict[legacy_id_field]
-            for i, row in tqdm(df_data.head(25).iterrows(), total=25):
+            for i, row in tqdm(df_data.iterrows(), total=len(df_data)):
                 create_dict = {
                     legacy_id_field: row[legacy_id_source_field]
                 }

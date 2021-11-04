@@ -12,6 +12,10 @@ class Command(BaseCommand):
     help = "Import Data"
 
     def handle(self, *args, **kwargs):
+        file_class_map_dict = {
+            'Sample': './archiv/data/Sample.csv'
+        }
+        
         run_import(
             'archiv',
             file_class_map_dict=None,

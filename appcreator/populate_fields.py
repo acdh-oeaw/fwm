@@ -96,7 +96,7 @@ def pop_fk_field(
     rel_model = rel_model_field.related_model
     rel_model_npk_field = rel_model.get_natural_primary_key()
     
-    if isinstance(row[lookup_val], str):
+    if isinstance(row[lookup_val], str) and not row[lookup_val] == 'x':
         my_val = row[lookup_val]
         get_create_dict = {
             rel_model_npk_field: my_val
