@@ -35,6 +35,6 @@ node_modules
 .env
 *.ipynb
 archiv/data/*.csv
-archiv/data/*.xlsx
+# archiv/data/*.xlsx
 env.secret
 archiv/data/.~lock.*
