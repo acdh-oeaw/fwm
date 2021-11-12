@@ -100,3 +100,4 @@ class SampleTable(tables.Table):
         model = Sample
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
+

@@ -17,7 +17,7 @@ models.Field.set_extra = set_extra
 
 
 class Analyse(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -512,6 +512,186 @@ class Analyse(models.Model):
         is_public=True,
         data_lookup="U [ppm]",
     )
+    epr_spectrometer = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="Gain of the Spectrometer",
+        help_text="helptext for epr_spectrometer",
+    ).set_extra(
+        is_public=True,
+        data_lookup="Gain of the Spectrometer",
+    )
+    epr_spectral_height = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="Spectral height",
+        help_text="helptext for epr_spectral_height",
+    ).set_extra(
+        is_public=True,
+        data_lookup="Spectral height",
+    )
+    epr_dolom = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="DOLOM",
+        help_text="Dolomitic Mn2+ DOLOM",
+    ).set_extra(
+        is_public=True,
+        data_lookup="DOLOM",
+    )
+    epr_tot6 = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="TOT6",
+        help_text="Extension of doublet D6",
+    ).set_extra(
+        is_public=True,
+        data_lookup="TOT6",
+    )
+    epr_spli = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="SPLI",
+        help_text="Line separation of doublet D6",
+    ).set_extra(
+        is_public=True,
+        data_lookup="SPLI",
+    )
+    epr_int = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="INT",
+        help_text="Integral of the spectrum",
+    ).set_extra(
+        is_public=True,
+        data_lookup="INT",
+    )
+    epr_spread = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="SPREAD",
+        help_text="Extension of the spectrum",
+    ).set_extra(
+        is_public=True,
+        data_lookup="SPREAD",
+    )
+    epr_w = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="W",
+        help_text="Average spectral width",
+    ).set_extra(
+        is_public=True,
+        data_lookup="W",
+    )
+    epr_stdintens = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="STDINTENS",
+        help_text="Value of the standard variable",
+    ).set_extra(
+        is_public=True,
+        data_lookup="STDINTENS",
+    )
+    epr_stdintegr = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="STDINTEGR",
+        help_text="Value of the standard variable",
+    ).set_extra(
+        is_public=True,
+        data_lookup="STDINTEGR",
+    )
+    epr_stdw = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="STDW",
+        help_text="Value of the standard variable",
+    ).set_extra(
+        is_public=True,
+        data_lookup="STDW",
+    )
+    epr_stdspli = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="STDSPLI",
+        help_text="Value of the standard variable",
+    ).set_extra(
+        is_public=True,
+        data_lookup="STDSPLI",
+    )
+    epr_stdspread = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="STDSPREAD",
+        help_text="Value of the standard variable",
+    ).set_extra(
+        is_public=True,
+        data_lookup="STDSPREAD",
+    )
+    epr_intens = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="INTENS",
+        help_text="Standardised value of variables",
+    ).set_extra(
+        is_public=True,
+        data_lookup="INTENS",
+    )
+    epr_integr = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="INTEGR",
+        help_text="Standardised value of variables",
+    ).set_extra(
+        is_public=True,
+        data_lookup="INTEGR",
+    )
+    epr_spli = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="SPLI",
+        help_text="Standardised value of variables",
+    ).set_extra(
+        is_public=True,
+        data_lookup="SPLI",
+    )
+    epr_w_standardised = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="W Standardised",
+        help_text="Standardised value of variables",
+    ).set_extra(
+        is_public=True,
+        data_lookup="W_Standardised",
+    )
+    epr_spread_standardised = models.DecimalField(
+        max_digits=19,
+        decimal_places=2,
+        blank=True, null=True,
+        verbose_name="SPREAD Standardised",
+        help_text="Standardised value of variables",
+    ).set_extra(
+        is_public=True,
+        data_lookup="SPREAD_Standardised",
+    )
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
@@ -581,7 +761,7 @@ class Analyse(models.Model):
 
 
 class Artifact(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -775,7 +955,7 @@ class Artifact(models.Model):
 
 
 class Geography(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -892,7 +1072,7 @@ class Geography(models.Model):
 
 
 class Institution(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -986,7 +1166,7 @@ class Institution(models.Model):
 
 
 class Number(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1122,7 +1302,7 @@ class Number(models.Model):
 
 
 class Quarry(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1255,7 +1435,7 @@ class Quarry(models.Model):
 
 
 class QuarryGroup(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1347,7 +1527,7 @@ class QuarryGroup(models.Model):
 
 
 class Sample(models.Model):
-    """provide some description of this class please"""
+    ### nan ###
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1609,3 +1789,5 @@ class Sample(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+
+

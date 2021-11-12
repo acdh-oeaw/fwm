@@ -83,6 +83,25 @@ class AnalyseFilterFormHelper(FormHelper):
                     'icp_yb',
                     'icp_pb',
                     'icp_u',
+                    'epr_spectrometer',
+                    'epr_spectral_height',
+                    'epr_dolom',
+                    'epr_tot6',
+                    'epr_spli',
+                    'epr_int',
+                    'epr_spread',
+                    'epr_w',
+                    'epr_stdintens',
+                    'epr_stdintegr',
+                    'epr_stdw',
+                    'epr_stdspli',
+                    'epr_stdspread',
+                    'epr_intens',
+                    'epr_integr',
+                    'epr_spli',
+                    'epr_w_standardised',
+                    'epr_spread_standardised',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -146,6 +165,7 @@ class ArtifactFilterFormHelper(FormHelper):
                     'dating',
                     'images',
                     'literature',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -213,7 +233,11 @@ class GeographyFilterFormHelper(FormHelper):
                     'Advanced search',
                     'name',
                     'identifier',
+                    
+                    
+                    
                     'notes',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -260,6 +284,7 @@ class InstitutionFilterFormHelper(FormHelper):
                     'Advanced search',
                     'name',
                     'identifier',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -310,6 +335,7 @@ class NumberFilterFormHelper(FormHelper):
                     'number_type',
                     'institute',
                     'notes',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -367,6 +393,7 @@ class QuarryFilterFormHelper(FormHelper):
                     'description',
                     'literature',
                     'open_access',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -413,6 +440,7 @@ class QuarryGroupFilterFormHelper(FormHelper):
                     'Advanced search',
                     'name',
                     'description',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -475,6 +503,7 @@ class SampleFilterFormHelper(FormHelper):
                     'literature',
                     'image',
                     'open_access',
+                    
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -535,3 +564,5 @@ class SampleForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
+
+

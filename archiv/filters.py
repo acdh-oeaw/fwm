@@ -329,6 +329,114 @@ class AnalyseListFilter(django_filters.FilterSet):
         help_text=Analyse._meta.get_field('icp_u').help_text,
         label=Analyse._meta.get_field('icp_u').verbose_name
     )
+    epr_spectrometer = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_spectrometer').help_text,
+        label=Analyse._meta.get_field('epr_spectrometer').verbose_name
+    )
+    epr_spectral_height = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_spectral_height').help_text,
+        label=Analyse._meta.get_field('epr_spectral_height').verbose_name
+    )
+    epr_dolom = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_dolom').help_text,
+        label=Analyse._meta.get_field('epr_dolom').verbose_name
+    )
+    epr_tot6 = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_tot6').help_text,
+        label=Analyse._meta.get_field('epr_tot6').verbose_name
+    )
+    epr_spli = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_spli').help_text,
+        label=Analyse._meta.get_field('epr_spli').verbose_name
+    )
+    epr_int = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_int').help_text,
+        label=Analyse._meta.get_field('epr_int').verbose_name
+    )
+    epr_spread = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_spread').help_text,
+        label=Analyse._meta.get_field('epr_spread').verbose_name
+    )
+    epr_w = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_w').help_text,
+        label=Analyse._meta.get_field('epr_w').verbose_name
+    )
+    epr_stdintens = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_stdintens').help_text,
+        label=Analyse._meta.get_field('epr_stdintens').verbose_name
+    )
+    epr_stdintegr = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_stdintegr').help_text,
+        label=Analyse._meta.get_field('epr_stdintegr').verbose_name
+    )
+    epr_stdw = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_stdw').help_text,
+        label=Analyse._meta.get_field('epr_stdw').verbose_name
+    )
+    epr_stdspli = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_stdspli').help_text,
+        label=Analyse._meta.get_field('epr_stdspli').verbose_name
+    )
+    epr_stdspread = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_stdspread').help_text,
+        label=Analyse._meta.get_field('epr_stdspread').verbose_name
+    )
+    epr_intens = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_intens').help_text,
+        label=Analyse._meta.get_field('epr_intens').verbose_name
+    )
+    epr_integr = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_integr').help_text,
+        label=Analyse._meta.get_field('epr_integr').verbose_name
+    )
+    epr_spli = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_spli').help_text,
+        label=Analyse._meta.get_field('epr_spli').verbose_name
+    )
+    epr_w_standardised = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_w_standardised').help_text,
+        label=Analyse._meta.get_field('epr_w_standardised').verbose_name
+    )
+    epr_spread_standardised = django_filters.LookupChoiceFilter(
+        field_class=forms.DecimalField,
+        lookup_choices=NUMBER_LOOKUP_CHOICES,
+        help_text=Analyse._meta.get_field('epr_spread_standardised').help_text,
+        label=Analyse._meta.get_field('epr_spread_standardised').verbose_name
+    )
 
     class Meta:
         model = Analyse
@@ -384,6 +492,25 @@ class AnalyseListFilter(django_filters.FilterSet):
             'icp_yb',
             'icp_pb',
             'icp_u',
+            'epr_spectrometer',
+            'epr_spectral_height',
+            'epr_dolom',
+            'epr_tot6',
+            'epr_spli',
+            'epr_int',
+            'epr_spread',
+            'epr_w',
+            'epr_stdintens',
+            'epr_stdintegr',
+            'epr_stdw',
+            'epr_stdspli',
+            'epr_stdspread',
+            'epr_intens',
+            'epr_integr',
+            'epr_spli',
+            'epr_w_standardised',
+            'epr_spread_standardised',
+            
         ]
 
 
@@ -499,6 +626,7 @@ class ArtifactListFilter(django_filters.FilterSet):
             'dating',
             'images',
             'literature',
+            
         ]
 
 
@@ -531,7 +659,11 @@ class GeographyListFilter(django_filters.FilterSet):
             'legacy_id',
             'name',
             'identifier',
+            
+            
+            
             'notes',
+            
         ]
 
 
@@ -559,6 +691,7 @@ class InstitutionListFilter(django_filters.FilterSet):
             'legacy_id',
             'name',
             'identifier',
+            
         ]
 
 
@@ -620,6 +753,7 @@ class NumberListFilter(django_filters.FilterSet):
             'number_type',
             'institute',
             'notes',
+            
         ]
 
 
@@ -669,6 +803,7 @@ class QuarryListFilter(django_filters.FilterSet):
             'description',
             'literature',
             'open_access',
+            
         ]
 
 
@@ -696,6 +831,7 @@ class QuarryGroupListFilter(django_filters.FilterSet):
             'legacy_id',
             'name',
             'description',
+            
         ]
 
 
@@ -869,4 +1005,7 @@ class SampleListFilter(django_filters.FilterSet):
             'literature',
             'image',
             'open_access',
+            
         ]
+
+

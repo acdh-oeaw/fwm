@@ -107,3 +107,5 @@ class SampleAC(autocomplete.Select2QuerySetView):
                 Q(oeai_inventory_number__icontains=self.q)
             )
         return qs
+
+
