@@ -37,3 +37,4 @@ node_modules
 archiv/data/*.csv
 archiv/data/*.xlsx
 env.secret
+archiv/data/.~lock.*
