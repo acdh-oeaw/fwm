@@ -17,7 +17,7 @@ models.Field.set_extra = set_extra
 
 
 class Analyse(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -761,7 +761,7 @@ class Analyse(models.Model):
 
 
 class Artifact(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -955,7 +955,7 @@ class Artifact(models.Model):
 
 
 class Geography(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1072,7 +1072,7 @@ class Geography(models.Model):
 
 
 class Institution(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1166,7 +1166,7 @@ class Institution(models.Model):
 
 
 class Number(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1302,7 +1302,7 @@ class Number(models.Model):
 
 
 class Quarry(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1435,7 +1435,7 @@ class Quarry(models.Model):
 
 
 class QuarryGroup(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1527,7 +1527,7 @@ class QuarryGroup(models.Model):
 
 
 class Sample(models.Model):
-    ### nan ###
+    """ nan """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -1789,5 +1789,3 @@ class Sample(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
-
-
