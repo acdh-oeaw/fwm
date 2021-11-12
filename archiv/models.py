@@ -642,35 +642,35 @@ class Analyse(models.Model):
         is_public=True,
         data_lookup="STDSPREAD",
     )
-    epr_intens = models.DecimalField(
+    epr_intens_standardised = models.DecimalField(
         max_digits=19,
         decimal_places=2,
         blank=True, null=True,
-        verbose_name="INTENS",
+        verbose_name="INTENS Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
         is_public=True,
-        data_lookup="INTENS",
+        data_lookup="INTENS_Standardised",
     )
-    epr_integr = models.DecimalField(
+    epr_integr_standardised = models.DecimalField(
         max_digits=19,
         decimal_places=2,
         blank=True, null=True,
-        verbose_name="INTEGR",
+        verbose_name="INTEGR Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
         is_public=True,
-        data_lookup="INTEGR",
+        data_lookup="INTEGR_Standardised",
     )
-    epr_spli = models.DecimalField(
+    epr_spli_standardised = models.DecimalField(
         max_digits=19,
         decimal_places=2,
         blank=True, null=True,
-        verbose_name="SPLI",
+        verbose_name="SPLI Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
         is_public=True,
-        data_lookup="SPLI",
+        data_lookup="SPLI_Standardised",
     )
     epr_w_standardised = models.DecimalField(
         max_digits=19,

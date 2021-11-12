@@ -407,23 +407,23 @@ class AnalyseListFilter(django_filters.FilterSet):
         help_text=Analyse._meta.get_field('epr_stdspread').help_text,
         label=Analyse._meta.get_field('epr_stdspread').verbose_name
     )
-    epr_intens = django_filters.LookupChoiceFilter(
+    epr_intens_standardised = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
         lookup_choices=NUMBER_LOOKUP_CHOICES,
-        help_text=Analyse._meta.get_field('epr_intens').help_text,
-        label=Analyse._meta.get_field('epr_intens').verbose_name
+        help_text=Analyse._meta.get_field('epr_intens_standardised').help_text,
+        label=Analyse._meta.get_field('epr_intens_standardised').verbose_name
     )
-    epr_integr = django_filters.LookupChoiceFilter(
+    epr_integr_standardised = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
         lookup_choices=NUMBER_LOOKUP_CHOICES,
-        help_text=Analyse._meta.get_field('epr_integr').help_text,
-        label=Analyse._meta.get_field('epr_integr').verbose_name
+        help_text=Analyse._meta.get_field('epr_integr_standardised').help_text,
+        label=Analyse._meta.get_field('epr_integr_standardised').verbose_name
     )
-    epr_spli = django_filters.LookupChoiceFilter(
+    epr_spli_standardised = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
         lookup_choices=NUMBER_LOOKUP_CHOICES,
-        help_text=Analyse._meta.get_field('epr_spli').help_text,
-        label=Analyse._meta.get_field('epr_spli').verbose_name
+        help_text=Analyse._meta.get_field('epr_spli_standardised').help_text,
+        label=Analyse._meta.get_field('epr_spli_standardised').verbose_name
     )
     epr_w_standardised = django_filters.LookupChoiceFilter(
         field_class=forms.DecimalField,
@@ -505,9 +505,9 @@ class AnalyseListFilter(django_filters.FilterSet):
             'epr_stdw',
             'epr_stdspli',
             'epr_stdspread',
-            'epr_intens',
-            'epr_integr',
-            'epr_spli',
+            'epr_intens_standardised',
+            'epr_integr_standardised',
+            'epr_spli_standardised',
             'epr_w_standardised',
             'epr_spread_standardised',
             

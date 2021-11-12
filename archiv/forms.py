@@ -96,9 +96,9 @@ class AnalyseFilterFormHelper(FormHelper):
                     'epr_stdw',
                     'epr_stdspli',
                     'epr_stdspread',
-                    'epr_intens',
-                    'epr_integr',
-                    'epr_spli',
+                    'epr_intens_standardised',
+                    'epr_integr_standardised',
+                    'epr_spli_standardised',
                     'epr_w_standardised',
                     'epr_spread_standardised',
                     
