@@ -11,7 +11,7 @@ class ZoteroItemBase(models.Model):
             return f"{self.zotero_title} || {self.zotero_key}"
         else:
             f"{self.zotero_key}"
-    
+
     class Meta:
         abstract = True
 

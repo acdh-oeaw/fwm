@@ -4,6 +4,7 @@ from django.conf import settings
 
 ZOTERO_URL = getattr(settings, 'ZOTERO_URL')
 
+
 def search_zotero(query_string, url=ZOTERO_URL):
     query_params = {
         'q': query_string

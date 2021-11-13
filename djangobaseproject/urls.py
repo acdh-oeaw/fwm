@@ -26,6 +26,7 @@ urlpatterns = [
     path('infos/', include('infos.urls', namespace='infos')),
     path('plate/', include('django_spaghetti.urls')),
     path('vocabs-ac/', include('vocabs.dal_urls', namespace='vocabs-ac')),
+    path('zotero-ac/', include('zotero_ac.dal_urls', namespace='zotero-ac')),
     path('', include('webpage.urls', namespace='webpage')),
 ]
 handler404 = 'webpage.views.handler404'
