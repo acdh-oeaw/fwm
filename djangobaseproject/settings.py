@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'archiv',
     'netvis',
     'django_extensions',
+    'zotero_ac',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -183,3 +184,5 @@ SPAGHETTI_SAUCE = {
     'apps': ['vocabs', 'infos', 'archiv'],
     'show_fields': True,
 }
+
+ZOTERO_URL = f"https://api.zotero.org/groups/2770745/items"
