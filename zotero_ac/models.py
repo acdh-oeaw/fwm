@@ -10,7 +10,7 @@ class ZoteroItemBase(models.Model):
 
     class Meta:
         abstract = True
-    
+
     def save(self, *args, **kwargs):
         if self.zotero_key and not self.zotero_data:
             zotero_object = get_zotero_item(self.zotero_key)
@@ -22,6 +22,7 @@ class ZoteroItemBase(models.Model):
         if self.zotero_title:
             return f"{self.zotero_title} || {self.zotero_key}"
         return f"{self.zotero_key}"
+
 
 class ZoteroItem(ZoteroItemBase):
     pass

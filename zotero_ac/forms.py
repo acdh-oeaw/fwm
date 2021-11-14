@@ -3,8 +3,8 @@ from crispy_forms.layout import Submit
 from dal import autocomplete
 from django import forms
 
-
 from zotero_ac.models import ZoteroItem
+
 
 class ZoteroItemForm(forms.ModelForm):
     zotero_key = forms.CharField(
@@ -14,7 +14,7 @@ class ZoteroItemForm(forms.ModelForm):
     class Meta:
         model = ZoteroItem
         fields = ('__all__')
-    
+
     def __init__(self, *args, **kwargs):
         super(ZoteroItemForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
