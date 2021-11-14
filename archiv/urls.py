@@ -195,5 +195,6 @@ urlpatterns = [
     url(
         r'^sample/delete/(?P<pk>[0-9]+)$',
         views.SampleDelete.as_view(),
-        name='sample_delete'),
+        name='sample_delete'
+    ),
 ]

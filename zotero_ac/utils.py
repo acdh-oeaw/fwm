@@ -25,3 +25,14 @@ def search_zotero(query_string, url=ZOTERO_URL):
             } for x in r.json()
         ]
         return result
+
+
+def get_zotero_item(zotero_key):
+    url = f"{ZOTERO_URL}/{zotero_key}"
+    r = requests.get(url)
+    data = r.json()
+    return {
+        "zotero_key": zotero_key,
+        "zotero_title": data['data'].get('title', "no title provided"),
+        "zotero_data": data['data']
+    }

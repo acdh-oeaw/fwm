@@ -17,7 +17,8 @@ class ZoteroAc(autocomplete.Select2ListView):
             choices = [
                 {
                     "id": x['zotero_key'],
-                    "text": x['zotero_title']
+                    "text": x['zotero_title'],
+                    "data": x['zotero_data']['data']
                 } for x in search_zotero(q)
             ]
             return JsonResponse({"results": choices})
