@@ -6,6 +6,8 @@ from zotero_ac.utils import get_zotero_item
 class ZoteroItemBase(models.Model):
     zotero_key = models.CharField(max_length=20)
     zotero_title = models.TextField(blank=True, null=True)
+    zotero_creator = models.CharField(blank=True, null=True, max_length=250)
+    zotero_date = models.DateField(blank=True, null=True)
     zotero_data = models.JSONField(blank=True, null=True)
 
     class Meta:

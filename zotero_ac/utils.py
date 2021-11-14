@@ -21,6 +21,8 @@ def search_zotero(query_string, url=ZOTERO_URL):
             {
                 "zotero_key": x['data'].get('key', 'NOKEY'),
                 "zotero_title": x['data'].get('title', "no title provided"),
+                "zotero_date": x['meta'].get('parsedDate'),
+                "zotero_creator": x['meta'].get('creatorSummary', "NN"),
                 "zotero_data": x
             } for x in r.json()
         ]
@@ -34,5 +36,7 @@ def get_zotero_item(zotero_key):
     return {
         "zotero_key": zotero_key,
         "zotero_title": data['data'].get('title', "no title provided"),
-        "zotero_data": data['data']
+        "zotero_data": data['data'],
+        "zotero_date": data['meta'].get('parsedDate'),
+        "zotero_creator": data['meta'].get('creatorSummary', "NN"),
     }
