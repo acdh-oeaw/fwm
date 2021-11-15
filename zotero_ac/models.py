@@ -22,8 +22,13 @@ class ZoteroItemBase(models.Model):
 
     def __str__(self):
         if self.zotero_title:
-            return f"{self.zotero_title} || {self.zotero_key}"
-        return f"{self.zotero_key}"
+            if self.zotero_date:
+                my_str = f"{self.zotero_creator}, {self.zotero_title}, {self.zotero_date.year} || {self.zotero_key}"
+            else:
+                my_str = f"{self.zotero_creator}, {self.zotero_title} || {self.zotero_key}"
+            return my_str
+        else:
+            return f"{self.zotero_key}"
 
 
 class ZoteroItem(ZoteroItemBase):

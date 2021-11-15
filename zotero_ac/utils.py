@@ -1,6 +1,7 @@
 import requests
-from requests.exceptions import ConnectionError, MissingSchema
 from django.conf import settings
+from dateutil.parser import isoparse
+from requests.exceptions import ConnectionError, MissingSchema
 
 ZOTERO_URL = getattr(settings, 'ZOTERO_URL')
 
@@ -29,14 +30,18 @@ def search_zotero(query_string, url=ZOTERO_URL):
         return result
 
 
-def get_zotero_item(zotero_key):
-    url = f"{ZOTERO_URL}/{zotero_key}"
+def get_zotero_item(zotero_key, base_url=ZOTERO_URL):
+    url = f"{base_url}/{zotero_key}"
     r = requests.get(url)
     data = r.json()
+    try:
+        zotero_date = isoparse(data['meta'].get('parsedDate'))
+    except TypeError:
+        zotero_date = None
     return {
         "zotero_key": zotero_key,
         "zotero_title": data['data'].get('title', "no title provided"),
         "zotero_data": data['data'],
-        "zotero_date": data['meta'].get('parsedDate'),
+        "zotero_date": zotero_date,
         "zotero_creator": data['meta'].get('creatorSummary', "NN"),
     }
