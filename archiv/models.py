@@ -6,6 +6,7 @@ from django.contrib.gis.db.models import MultiPolygonField, PointField
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
+from zotero_ac.models import ZoteroReference
 
 
 def set_extra(self, **kwargs):
@@ -886,6 +887,13 @@ class Artifact(models.Model):
         is_public=True,
         data_lookup="literature",
     )
+    reference = models.ManyToManyField(
+        ZoteroReference,
+        blank=True,
+        verbose_name="Literatur",
+        help_text="please provide some",
+        related_name="reference_for_artefact"
+    )
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
@@ -1357,6 +1365,13 @@ class Quarry(models.Model):
         is_public=True,
         data_lookup="literature",
     )
+    reference = models.ManyToManyField(
+        ZoteroReference,
+        blank=True,
+        verbose_name="Literatur",
+        help_text="please provide some",
+        related_name="reference_for_quarry"
+    )
     open_access = models.BooleanField(
         default=False,
         blank=True, null=True,
@@ -1703,6 +1718,13 @@ class Sample(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="literature",
+    )
+    reference = models.ManyToManyField(
+        ZoteroReference,
+        blank=True,
+        verbose_name="Literatur",
+        help_text="please provide some",
+        related_name="reference_for_sample"
     )
     image = models.CharField(
         max_length=250,

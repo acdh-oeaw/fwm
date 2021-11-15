@@ -181,8 +181,8 @@ SHEET_ID = os.environ.get(
 VOCABS_DEFAULT_LANG = "en"
 VOCABS_LISTVIEW_PAGESIZE = 50
 SPAGHETTI_SAUCE = {
-    'apps': ['vocabs', 'infos', 'archiv'],
-    'show_fields': True,
+    'apps': ['vocabs', 'infos', 'archiv', 'zotero_ac'],
+    'show_fields': False,
 }
 
 ZOTERO_URL = "https://api.zotero.org/groups/2770745/items"
