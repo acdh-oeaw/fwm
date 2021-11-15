@@ -1,4 +1,5 @@
 from django.test import TestCase, Client, override_settings
+from django.urls import reverse
 
 from zotero_ac.utils import search_zotero, get_zotero_item
 from zotero_ac.models import ZoteroReference, ZoteroItem
@@ -46,7 +47,18 @@ class ZoteroAcTest(TestCase):
         url = item.get_ac_url()
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
+        response = client.get(url, {"q": "Schlüssel"})
+        self.assertEqual(response.status_code, 200)
         item = ZoteroReference.objects.first()
         url = item.get_ac_url()
         response = client.get(url)
+        self.assertEqual(response.status_code, 200)
+        response = client.get(url, {"q": "Schlüssel"})
+        self.assertEqual(response.status_code, 200)
+
+    def test_007_search_zotero_ac(self):
+        url = reverse('zotero-ac:zotero-ac')
+        response = client.get(url, {"q": "Schlüssel"})
+        self.assertEqual(response.status_code, 200)
+        response = client.get(url, {"q": "a"})
         self.assertEqual(response.status_code, 200)
