@@ -32,7 +32,7 @@ class ZoteroAcTest(TestCase):
             ZOTERO_ITEM, base_url=ZOTERO_URL
         )
         self.assertTrue(result['zotero_key'], ZOTERO_ITEM)
-    
+
     def test_005_save_object(self):
         item = ZoteroReference.objects.create(
             zotero_key=ZOTERO_ITEM,
@@ -40,7 +40,6 @@ class ZoteroAcTest(TestCase):
         )
         self.assertEqual(item.zotero_key, ZOTERO_ITEM)
         self.assertTrue(item.location in item.__str__())
-    
 
     def test_006_ac_endpoint(self):
         item = ZoteroItem.objects.first()
@@ -51,4 +50,3 @@ class ZoteroAcTest(TestCase):
         url = item.get_ac_url()
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
-

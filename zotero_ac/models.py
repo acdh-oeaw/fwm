@@ -18,7 +18,7 @@ class ZoteroItemBase(models.Model):
         ordering = [
             'zotero_creator', 'id'
         ]
-    
+
     @classmethod
     def cur_zotero_url(cls):
         zotero = getattr(settings, 'ZOTERO_URL')
@@ -59,13 +59,13 @@ class ZoteroReference(ZoteroItemBase):
     def __str__(self):
         if self.zotero_title:
             if self.zotero_date:
-                my_str = f"{self.zotero_creator}, {self.zotero_title}, {self.zotero_date.year}, {self.location} || {self.zotero_key}"
+                my_str = f"{self.zotero_creator}, {self.zotero_title}, {self.zotero_date.year}, {self.location} || {self.zotero_key}"  # noqa: E501
             else:
                 my_str = f"{self.zotero_creator}, {self.zotero_title}, {self.location} || {self.zotero_key}"
             return my_str
         else:
             return f"{self.zotero_key}"
-    
+
     @classmethod
     def get_ac_url(self):
         return reverse('zotero-ac:zotero-reference')
