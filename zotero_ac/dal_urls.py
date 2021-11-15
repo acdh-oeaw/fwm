@@ -10,4 +10,14 @@ urlpatterns = [
         dal_views.ZoteroAc.as_view(),
         name='zotero-ac'
     ),
+    path(
+        'zotero-item',
+        dal_views.ZoteroItemAC.as_view(),
+        name='zotero-item'
+    ),
+    path(
+        'zotero-reference',
+        dal_views.ZoteroReferenceAC.as_view(),
+        name='zotero-reference'
+    ),
 ]

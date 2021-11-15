@@ -1,7 +1,11 @@
+from django.db.models import Q
 from django.http import JsonResponse
 
 from dal import autocomplete
 from zotero_ac.utils import search_zotero
+from . models import (
+    ZoteroItem, ZoteroReference
+)
 
 
 class ZoteroAc(autocomplete.Select2ListView):
@@ -22,3 +26,30 @@ class ZoteroAc(autocomplete.Select2ListView):
                 } for x in search_zotero(q)
             ]
             return JsonResponse({"results": choices})
+
+
+class ZoteroReferenceAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = ZoteroReference.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(zotero_key__icontains=self.q) |
+                Q(zotero_title__icontains=self.q) |
+                Q(zotero_creator__icontains=self.q) |
+                Q(location__icontains=self.q)
+            )
+        return qs
+
+
+class ZoteroItemAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = ZoteroItem.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(zotero_key__icontains=self.q) |
+                Q(zotero_title__icontains=self.q) |
+                Q(zotero_creator__icontains=self.q)
+            )
+        return qs

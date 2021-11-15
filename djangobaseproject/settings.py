@@ -185,4 +185,4 @@ SPAGHETTI_SAUCE = {
     'show_fields': False,
 }
 
-ZOTERO_URL = "https://api.zotero.org/groups/2770745/items"
+ZOTERO_URL = "https://api.zotero.org/groups/440857/items"

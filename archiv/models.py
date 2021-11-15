@@ -1118,7 +1118,7 @@ class Institution(models.Model):
         ordering = [
             'name',
         ]
-        verbose_name = "Insititution"
+        verbose_name = "Institution"
 
     def __str__(self):
         if self.name:

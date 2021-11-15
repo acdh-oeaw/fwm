@@ -3,6 +3,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset
 from crispy_forms.bootstrap import Accordion, AccordionGroup
+from dal import autocomplete
 
 from vocabs.models import SkosConcept
 from . models import (
@@ -124,6 +125,11 @@ class AnalyseForm(forms.ModelForm):
     class Meta:
         model = Analyse
         fields = "__all__"
+        widgets = {
+            'oeai_inventory_number': autocomplete.ModelSelect2(
+                url='archiv-ac:sample-autocomplete'
+            )
+        }
 
     def __init__(self, *args, **kwargs):
         super(AnalyseForm, self).__init__(*args, **kwargs)
