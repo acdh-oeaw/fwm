@@ -38,3 +38,6 @@ archiv/data/*.csv
 # archiv/data/*.xlsx
 env.secret
 archiv/data/.~lock.*
+staticfiles/
+media/archiv
+*.xlsx

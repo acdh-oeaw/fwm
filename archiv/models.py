@@ -8,6 +8,8 @@ from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
 from zotero_ac.models import ZoteroReference
 
+from archiv.storage import OverwriteStorage
+
 
 def set_extra(self, **kwargs):
     self.extra = kwargs
@@ -15,6 +17,14 @@ def set_extra(self, **kwargs):
 
 
 models.Field.set_extra = set_extra
+
+
+class DataSheet(models.Model):
+    upload = models.FileField(
+        blank=True, null=True,
+        upload_to='archiv/data',
+        storage=OverwriteStorage()
+    )
 
 
 class Analyse(models.Model):

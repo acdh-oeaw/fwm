@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from tqdm import tqdm
 import pandas as pd
 
-SOURCE_FILE = './archiv/data/FWM_Daten.xlsx'
+SOURCE_FILE = './media/archiv/data/FWM_Daten.xlsx'
 OUT_DIR = './archiv/data/'
 
 
