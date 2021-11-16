@@ -407,6 +407,11 @@ class QuarryForm(forms.ModelForm):
     class Meta:
         model = Quarry
         fields = "__all__"
+        widgets = {
+            'reference': autocomplete.ModelSelect2Multiple(
+                url='zotero-ac:zotero-reference'
+            )
+        }
 
     def __init__(self, *args, **kwargs):
         super(QuarryForm, self).__init__(*args, **kwargs)

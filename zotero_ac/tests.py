@@ -62,3 +62,11 @@ class ZoteroAcTest(TestCase):
         self.assertEqual(response.status_code, 200)
         response = client.get(url, {"q": "a"})
         self.assertEqual(response.status_code, 200)
+
+    def test_008_save_non_exsting_item(self):
+        item = ZoteroReference.objects.create(
+            zotero_key="ZOTERO_ITEM",
+            location="p. 10-12"
+        )
+        self.assertEqual(item.zotero_key, "ZOTERO_ITEM")
+        self.assertTrue("No item with key" in item.__str__())

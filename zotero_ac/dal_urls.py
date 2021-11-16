@@ -12,12 +12,12 @@ urlpatterns = [
     ),
     path(
         'zotero-item',
-        dal_views.ZoteroItemAC.as_view(),
+        dal_views.ZoteroItemAC.as_view(create_field='zotero_key'),
         name='zotero-item'
     ),
     path(
         'zotero-reference',
-        dal_views.ZoteroReferenceAC.as_view(),
+        dal_views.ZoteroReferenceAC.as_view(create_field='zotero_key'),
         name='zotero-reference'
     ),
 ]

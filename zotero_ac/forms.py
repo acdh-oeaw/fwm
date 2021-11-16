@@ -17,6 +17,14 @@ class ZoteroItemForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ZoteroItemForm, self).__init__(*args, **kwargs)
+        try:
+            object = kwargs['instance']
+        except KeyError:
+            object = False
+        if object:
+            self.fields['zotero_key'] = forms.CharField(
+                initial=object.zotero_key
+            )
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = 'form-horizontal'
@@ -36,6 +44,14 @@ class ZoteroReferenceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ZoteroReferenceForm, self).__init__(*args, **kwargs)
+        try:
+            object = kwargs['instance']
+        except KeyError:
+            object = False
+        if object:
+            self.fields['zotero_key'] = forms.CharField(
+                initial=object.zotero_key
+            )
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = 'form-horizontal'

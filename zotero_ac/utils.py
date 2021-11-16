@@ -1,4 +1,5 @@
 import requests
+from json.decoder import JSONDecodeError
 from django.conf import settings
 from dateutil.parser import isoparse
 from requests.exceptions import ConnectionError, MissingSchema
@@ -33,7 +34,18 @@ def search_zotero(query_string, url=ZOTERO_URL):
 def get_zotero_item(zotero_key, base_url=ZOTERO_URL):
     url = f"{base_url}/{zotero_key}"
     r = requests.get(url)
-    data = r.json()
+    try:
+        data = r.json()
+    except JSONDecodeError:
+        return {
+            "zotero_key": zotero_key,
+            "zotero_title": f"No item with key '{zotero_key}' found in '{base_url}'",
+            "zotero_data": {
+                "zotero_key": zotero_key
+            },
+            "zotero_date": None,
+            "zotero_creator": None,
+        }
     try:
         zotero_date = isoparse(data['meta'].get('parsedDate'))
     except TypeError:
