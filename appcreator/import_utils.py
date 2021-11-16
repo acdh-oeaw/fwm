@@ -74,8 +74,11 @@ def get_class_sources_map(app_name):
     """
     file_class_map = {}
     for x in fetch_models(app_name):
-        if x.get_source_table() is not None:
-            file_class_map[x.__name__] = x.get_source_table()
+        try:
+            if x.get_source_table() is not None:
+                file_class_map[x.__name__] = x.get_source_table()
+        except AttributeError:
+            continue
     return file_class_map
 
 
