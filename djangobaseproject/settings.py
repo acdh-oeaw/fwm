@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'crispy_forms',
+    'django_celery_results',
     'django_filters',
     'django_tables2',
     'dal_select2',
@@ -186,3 +187,6 @@ SPAGHETTI_SAUCE = {
 }
 
 ZOTERO_URL = "https://api.zotero.org/groups/440857/items"
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_URL = os.environ.get('amqp://')

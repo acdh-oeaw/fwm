@@ -47,6 +47,8 @@ from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
 
+from archiv.tasks import count_geography
+
 
 class AnalyseListView(GenericListView):
 
@@ -448,4 +450,7 @@ class SampleDelete(DeleteView):
         return super(SampleDelete, self).dispatch(*args, **kwargs)
 
 
-# end of automatic created code
+def count_geo(request):
+    count_geography.delay(5)
+    return HttpResponse("Hey there!")
+
