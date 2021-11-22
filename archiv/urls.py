@@ -5,6 +5,11 @@ from . import views
 app_name = 'archiv'
 urlpatterns = [
     url(
+        r'^test/$',
+        views.count_geo,
+        name='test'
+    ),
+    url(
         r'^analyse/$',
         views.AnalyseListView.as_view(),
         name='analyse_browse'
