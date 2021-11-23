@@ -1161,7 +1161,7 @@ class Institution(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return "./archiv/data/Insititution.csv"
+        return "./archiv/data/Institution.csv"
 
     @classmethod
     def get_natural_primary_key(self):
