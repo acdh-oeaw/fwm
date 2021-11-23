@@ -17,6 +17,11 @@ Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](h
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
 
+## running async tasks
+
+In order to run async task, you'll need to start a celery worker e.g. with
+* `celery -A djangobaseproject worker -l INFO`
+
 
 ## Docker
 
