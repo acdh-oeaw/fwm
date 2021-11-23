@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('celery/', include('django_celery_results.urls')),
     path('browsing/', include('browsing.urls', namespace='browsing')),
     path('netvis/', include('netvis.urls', namespace="netvis")),
     path('archiv/', include('archiv.urls', namespace='archiv')),

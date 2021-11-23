@@ -1,0 +1,47 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} Task Overview {% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Task Overview</h1>
+        </div>
+        <div class="card-body">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Task-ID</th>
+                        <th>Status</th>
+                        <th>Started</th>
+                        <th>Ended</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in objects %}
+                    <tr>
+                        <td>{{ x.task_id }}</td>
+                        <td>{{ x.status }}</td>
+                        <td>{{ x.date_created }}</td>
+                        <td>{{ x.date_done }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable(
+                {
+                    responsive: true,
+                    order: [[ 2, "desc" ]]
+                }
+            );
+        } );
+    </script>
+</div>
+{% endblock %}

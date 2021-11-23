@@ -1,7 +1,10 @@
-from django import forms
-from django.views.generic.edit import FormView
 import glob
 import os
+from django import forms
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+
+
 from archiv.models import OUT_DIR
 
 
@@ -19,7 +22,7 @@ class SelectSheeForm(forms.Form):
 class ContactFormView(FormView):
     template_name = 'archiv/ingest.html'
     form_class = SelectSheeForm
-    success_url = '/'
+    success_url = reverse_lazy('archiv:task_overview')
 
     # def form_valid(self, form):
     #     # This method is called when valid form data has been POSTed.

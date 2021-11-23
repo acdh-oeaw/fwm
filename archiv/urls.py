@@ -16,6 +16,11 @@ urlpatterns = [
         name='ingest'
     ),
     url(
+        r'^task-overview/$',
+        views.TaskOveriewView.as_view(),
+        name='task_overview'
+    ),
+    url(
         r'^analyse/$',
         views.AnalyseListView.as_view(),
         name='analyse_browse'

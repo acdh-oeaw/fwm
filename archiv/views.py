@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
+from django.views.generic import TemplateView
+from django_celery_results.models import TaskResult
 from . filters import (
     AnalyseListFilter,
     ArtifactListFilter,
@@ -452,5 +454,14 @@ class SampleDelete(DeleteView):
 
 
 def count_geo(request):
-    current_task = count_geography.delay(15)
+    current_task = count_geography.delay(1)
     return HttpResponse(f"Hey there! TASK-ID: {current_task.id}")
+
+
+class TaskOveriewView(TemplateView):
+    template_name = "archiv/task_overview.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['objects'] = TaskResult.objects.all()
+        return context
