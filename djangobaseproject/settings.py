@@ -190,3 +190,4 @@ ZOTERO_URL = "https://api.zotero.org/groups/440857/items"
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = os.environ.get('amqp://')
+CELERY_TASK_TRACK_STARTED = True

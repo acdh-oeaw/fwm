@@ -4,8 +4,8 @@ from django import forms
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
-
 from archiv.models import OUT_DIR
+from archiv.tasks import ingest_data
 
 
 def get_sheet_list():
@@ -24,7 +24,6 @@ class ContactFormView(FormView):
     form_class = SelectSheeForm
     success_url = reverse_lazy('archiv:task_overview')
 
-    # def form_valid(self, form):
-    #     # This method is called when valid form data has been POSTed.
-    #     # It should return an HttpResponse.
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        ingest_data.delay()
+        return super().form_valid(form)
