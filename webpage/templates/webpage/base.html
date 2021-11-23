@@ -85,13 +85,28 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Curation
                                     <span class="caret"/>
                                     </a>
-                                        <div class="dropdown-menu">
-                                            {% nav_menu app='archiv' as links %}
-                                            {% for x in links %}
-                                                <a class="dropdown-item" href="{{ x.link }}">{{ x.name }}</a>
-                                            {% endfor %}
-                                        </div>
-                                    </li>
+                                    <div class="dropdown-menu">
+                                        {% nav_menu app='archiv' as links %}
+                                        {% for x in links %}
+                                            <a class="dropdown-item" href="{{ x.link }}">{{ x.name }}</a>
+                                        {% endfor %}
+                                        {% if request.user.is_superuser %}
+                                        <a class="dropdown-item" href="{% url 'archiv:ingest' %}">Data Import </a>
+                                        <a class="dropdown-item" href="{% url 'archiv:task_overview' %}">Task Overview</a>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                {% if request.user.is_superuser %}
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Curation
+                                    <span class="caret"/>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'archiv:ingest' %}">Data Import </a>
+                                        <a class="dropdown-item" href="{% url 'archiv:task_overview' %}">Task Overview</a>  
+                                    </div>
+                                </li>
+                                {% endif %}
                             </ul>
                             <ul class="navbar-nav justify-content-end">
                                 {% if user.is_authenticated %}

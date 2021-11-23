@@ -1,4 +1,5 @@
 import time
+from django.apps import apps
 from celery import shared_task
 
 from archiv.models import Geography
@@ -12,13 +13,14 @@ def count_geography(sleeping_seconds):
 
 
 @shared_task
-def ingest_data():
+def ingest_data(model_name):
+    model = apps.get_model('archiv', model_name)
     file_class_map_dict = {
-        'Sample': './archiv/data/Sample.csv'
+        model.__name__: model.get_source_table()
     }
     run_import(
         'archiv',
         file_class_map_dict=file_class_map_dict,
-        limit=1000,
+        limit=False,
     )
     return file_class_map_dict
