@@ -4,11 +4,16 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.gis.db.models import MultiPolygonField, PointField
 
+from tqdm import tqdm
+import pandas as pd
+
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
 from zotero_ac.models import ZoteroReference
 
 from archiv.storage import OverwriteStorage
+
+OUT_DIR = './archiv/data/'
 
 
 def set_extra(self, **kwargs):
@@ -25,6 +30,17 @@ class DataSheet(models.Model):
         upload_to='archiv/data',
         storage=OverwriteStorage()
     )
+
+    def __str__(self):
+        return f"{self.upload.name}"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cur_file = self.upload.path
+        excel = pd.ExcelFile(cur_file)
+        for x in tqdm(excel.sheet_names, total=len(excel.sheet_names)):
+            df = pd.read_excel(cur_file, sheet_name=x)
+            df.to_csv(f'{OUT_DIR}/{x}.csv', index=False)
 
 
 class Analyse(models.Model):
