@@ -186,7 +186,7 @@ SPAGHETTI_SAUCE = {
     'show_fields': False,
 }
 
-ZOTERO_URL = "https://api.zotero.org/groups/440857/items"
+ZOTERO_URL = "https://api.zotero.org/groups/2745880/items"
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = os.environ.get('amqp://')
