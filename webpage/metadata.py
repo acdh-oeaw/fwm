@@ -8,7 +8,7 @@ PROJECT_METADATA = {
     'description': 'lorem ipsum',
     'github': 'https://github.com/acdh-oeaw/fwm',
     'version': '0.0.2',
-    'matomo_id': 'provide some',
+    'matomo_id': '176',
     'matomo_url': '//matomo.acdh.oeaw.ac.at/',
     'imprint': '/imprint',
     'social_media': [
