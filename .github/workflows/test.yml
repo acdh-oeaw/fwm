@@ -1,14 +1,14 @@
 name: Test
-on:
+on: 
   push:
-    branches:
-      - master
+
 jobs:
   test:
     name: Test Application
     runs-on: ubuntu-latest
     env:
       POSTGRES_DB: github_actions
+      DB_NAME: github_actions
     services:
       postgres:
         image: postgis/postgis:12-master
@@ -21,15 +21,15 @@ jobs:
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.8
-    - uses: actions/cache@v2
+        python-version: "3.10"
+    - uses: actions/cache@v3
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ env.pythonLocation }}-${{ hashFiles('requirements_test.txt') }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
     - name: GDAL
       run: sudo apt-get install postgresql-common libpq-dev python3-gdal
     - name: Install dependencies
@@ -46,4 +46,4 @@ jobs:
       with:
         token: ${{secrets.CODECOV_TOKEN}}
         file: ./coverage.xml
-        fail_ci_if_error: true
+        fail_ci_if_error: false
