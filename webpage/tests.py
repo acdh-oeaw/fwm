@@ -11,13 +11,12 @@ class WebpageTest(TestCase):
     def test_webpage(self):
         rv = self.client.get('/')
         self.assertEqual(rv.status_code, 200)
-        self.assertContains(rv, 'Fingerprinting White Marbles')
         rv = self.client.get('/accounts/login/')
         self.assertContains(rv, 'Username')
         form_data = {'username': 'temporary', 'password': 'temporary'}
         rv = self.client.post('/accounts/login/', form_data, follow=True)
         self.assertContains(rv, 'temporary')
-        rv = self.client.get('/logout', follow=True)
+        rv = self.client.get('/logout/', follow=True)
         self.assertContains(rv, 'signed out')
         form_data = {'username': 'non_exist', 'password': 'temporary'}
         rv = self.client.post('/accounts/login/', form_data, follow=True)

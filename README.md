@@ -12,10 +12,14 @@ Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](h
 * clone the repo `git clone https://github.com/acdh-oeaw/fwm.git`
 * change into the project's root directory e.g. `cd fwm`
 * create a virtual environment e.g. `virtualenv env` and activate it `source env/bin/activate`
-* install required packages `pip install -r requirements.txt`
+* install required packages `pip install -r requirements_test.txt`
 * run migrations `python manage.py migrate`
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
+
+## DB-config
+
+configuration of database settings (and debug mode) is done via env variables, see `djangobaseproject/settings.py` which variables can be set
 
 ## running async tasks
 
