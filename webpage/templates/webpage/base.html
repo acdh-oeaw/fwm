@@ -63,7 +63,7 @@
                 <div class="container-fluid">
                     <!-- Your site title as branding in the menu -->
                     <a href="/" class="navbar-brand custom-logo-link" rel="home" itemprop="url">
-                        <img src="{{ PROJECT_LOGO }}" class="img-fluid" alt="{% projects_metadata 'title' %}" itemprop="{% projects_metadata 'title' %}"/>
+                        <img src="{% static 'webpage/img/fwm_logo.PNG' %}" class="img-fluid" alt="{% projects_metadata 'title' %}" itemprop="{% projects_metadata 'title' %}"/>
                     </a><!-- end custom logo -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"/>
@@ -81,20 +81,8 @@
                                         <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}">Imprint | Impressum</a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Curation
-                                    <span class="caret"/>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        {% nav_menu app='archiv' as links %}
-                                        {% for x in links %}
-                                            <a class="dropdown-item" href="{{ x.link }}">{{ x.name }}</a>
-                                        {% endfor %}
-                                        {% if request.user.is_superuser %}
-                                        <a class="dropdown-item" href="{% url 'archiv:ingest' %}">Data Import </a>
-                                        <a class="dropdown-item" href="{% url 'archiv:task_overview' %}">Task Overview</a>
-                                        {% endif %}
-                                    </div>
+                                <li class="nav-item ">
+                                    <a href="/explore/" class="nav-link" data-toggle="" role="button" aria-haspopup="true" aria-expanded="false">Explore Data
                                 </li>
                                 {% if request.user.is_superuser %}
                                 <li class="nav-item dropdown">
@@ -146,16 +134,12 @@
                     <div class="footer-separator">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
                             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                        </svg> KONTAKT
+                        </svg> 
+                        Vorname Nachname<br>
+                        Adresse<br>
+                        Email
                     </div>
                     <div class="row justify-content-md-center" style="text-align:center">
-                        <div class="col">
-                            <a href="https://www.oeaw.ac.at/acdh/" target="_blank" rel="noopener" aria-label="ACDH">
-                                <img src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" alt="ACDH" title="Austrian Centre for Digital Humanities (ACDH) of the Austrian Academy of Sciences"/>
-                            </a>
-                            <br />
-                            Austrian Centre for Digital Humanities (ACDH) of the Austrian Academy of Sciences
-                        </div>
                         {% project_insts as insts %}
                         {% for x in insts %}
                             <div class="col">

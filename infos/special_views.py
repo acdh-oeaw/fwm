@@ -9,8 +9,10 @@ class TeamView(TemplateView):
 
     def get_context_data(self, **kwargs):
         objects = TeamMember.objects.all()
+        project = AboutTheProject.objects.all()[0]
         context = super().get_context_data(**kwargs)
         context['objects'] = objects
+        context['project'] = project
         return context
 
 

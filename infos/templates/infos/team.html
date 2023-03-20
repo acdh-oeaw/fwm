@@ -3,45 +3,49 @@
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="card">
-            <div class="card-header" style="text-align: center">
-                <h1>Team</h1>
-            </div>
-            <div class="card-body">
+    
+<section class="light">
+    <div class="container py-2">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle">{{ project.title }}</div>
+        {% if project.subtitle %}
+        <div class="h3 text-center text-dark" id="pageHeaderUnderTitle">{{ project.subtitle}}</div>    
+        {% endif %}
+
+        <article class="postcard light red">
+            <div class="postcard__text t-dark">
+                <h1 class="postcard__title red"><a href="#">Team</a></h1>
+                <div class="postcard__subtitle small">
+                </div>
+                <div class="postcard__bar"></div>
                 {% if objects %}
-                    {% for object in objects %}
-                        <div>
-                            <h2>{{ object.name}}</h2>
-                            <h3>{{ object.role }}</h3>
-                            <p>
-                                {{ object.description }}
-                            </p>
-                            <p>
-                                <a href="{{ object.website}}">{{ object.website }}</a>
-                            </p>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>
-                        No TeamMemeber objects have been created yet.
-                        {% if user.is_authenticated %}
-                            <strong>
-                                go <a href="{% url 'infos:teammember_browse' %}">create</a> some
-                            </strong>
-                        {% endif %}
-                    </p>
-                {% endif %}
-            </div>
-            <div class="card-footer" style="text-align: center">
+                {% for object in objects %}
+                <div class="postcard__preview-txt">{{ object.name}}</div>
+                    <div>
+                        <h2>{{ object.name}}</h2>
+                        <h3>{{ object.role }}</h3>
+                        <p>
+                            {{ object.description }}
+                        </p>
+                        <p>
+                            <a href="{{ object.website}}">{{ object.website }}</a>
+                        </p>
+                    </div>
+                {% endfor %}
+            {% else %}
                 <p>
+                    No TeamMemeber objects have been created yet.
                     {% if user.is_authenticated %}
-                        <br />
-                        <small>Data is fetch from <a href="{% url 'infos:teammember_browse' %}">TeamMember</a> object</small>
+                        <strong>
+                            go <a href="{% url 'infos:teammember_browse' %}">create</a> some
+                        </strong>
                     {% endif %}
                 </p>
-            </div>
+            {% endif %}
+                
 
-        </div>
+            </div>
+        </article>
     </div>
+</section>
+
 {% endblock %}
