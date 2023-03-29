@@ -1099,6 +1099,14 @@ class Geography(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
+    def coords(self):
+        c = {
+            "lat": self.coordinates.coords[1],
+            "lon": self.coordinates.coords[0],
+        }
+        #return [coord for coord in self.coordinates]
+        return c
+
     @classmethod
     def get_listview_url(self):
         return reverse("archiv:geography_browse")

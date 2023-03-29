@@ -67,6 +67,8 @@ class GenericWebpageView(TemplateView):
             template_name = "webpage/index.html"
         return [template_name]
 
+def show_archiv(request):
+    return render(request, "webpage/explore.html")
 
 #################################################################
 #               views for login/logout                          #

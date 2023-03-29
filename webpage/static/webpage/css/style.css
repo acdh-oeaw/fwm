@@ -7,10 +7,30 @@ body {
     flex-direction: column;
     height: 100%;
     font-family: 'Libre Franklin', sans-serif;
+    color:black;
 }
 
+h4, h2 {
+  color:black; 
+}
+
+label {
+  color:black
+}
+
+table {
+  color:black
+}
+
+.odd {
+  background-color: rgb(255, 250, 237);
+}
 .navbar {
-	border-bottom: 5px solid #254aa5;;
+	border-bottom: 5px solid #fbbf18ff;;
+}
+
+#visualization {
+  color:black;
 }
 
 span.select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -48,7 +68,7 @@ span.select2-container--default .select2-selection--single .select2-selection__r
 }
 
 a {
-    color: #b4b226;
+    color: rgb(160, 122, 16);
 }
 
 header {

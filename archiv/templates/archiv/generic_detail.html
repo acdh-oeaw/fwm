@@ -1,9 +1,14 @@
 {% extends "webpage/base.html" %}
+{% load leaflet_tags %}
 {% load static %}
 {% load netvis_extras %}
 {% load webpage_extras %}
+
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
+{% leaflet_js %}
+{% leaflet_css %}
+
   <link rel="stylesheet" href="{% static 'netvis/css/netvis.css' %}" /> <!-- optional -->
   {% load_netvis_js %}
 {% endblock %}
@@ -55,7 +60,7 @@
         <div class="col-md-6">
             <table class="table table-responsive table-hover">
               {% for x in object.field_dict %}
-              {% if x.value %}
+              {% if x.value and x.value != "None" %}
               {% if user.is_authenticated %}
               <tr>
                 <th>
@@ -125,6 +130,22 @@
                     {% elif  x.f_type == 'SIMPLE' %}
                     {{ x.value|safe }}
                     {% endif %}
+
+                    {% if x.verbose_name == "coordinates" and object.coords %}
+               
+                    <script type="text/javascript">
+
+                      window.addEventListener("map:init", function (e) {
+                              var detail = e.detail;
+
+                              L.marker([{{object.coords.lat}}, {{object.coords.lon}}]).addTo(detail.map);
+
+                              detail.map.setView([{{object.coords.lat}},{{object.coords.lon}}], 15);
+                          }, false);
+                    
+                      
+                    </script>
+                    {% endif %}
                   </td>
                 </tr>
                 {% endif %}
@@ -134,8 +155,13 @@
             </table>
         </div>
         <div class="col-md-6">
+          {% if class_name == "Geography" %}
+            {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+          {% endif %}
           <div id="visualization"></div>
+
           <script src="{% static 'netvis/js/netvis.js' %}"></script>
+          
           <script type="text/javascript">
             showGraph("visualization", "{% url 'netvis:graph' app_name=app_name model_name=class_name|lower pk=object.id %}")
           </script>
