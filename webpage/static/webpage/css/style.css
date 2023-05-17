@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     color:black;
 }
 
@@ -268,7 +268,7 @@ a > .fa-2x {
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
 /* This pen */
 body {
-  font-family: "Baloo 2", cursive;
+  font-family: 'Helvetica', sans-serif;
   font-size: 16px;
   color: #ffffff;
   text-rendering: optimizeLegibility;

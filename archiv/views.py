@@ -61,8 +61,9 @@ class AnalyseListView(GenericListView):
     formhelper_class = AnalyseFilterFormHelper
     table_class = AnalyseTable
     init_columns = [
-        'id', 'id',
+        'id', 'oeai_inventory_number', 'analyse_type'
     ]
+    ordering=['oeai_inventory_number']
     enable_merge = False
 
 
@@ -111,7 +112,7 @@ class ArtifactListView(GenericListView):
     formhelper_class = ArtifactFilterFormHelper
     table_class = ArtifactTable
     init_columns = [
-        'id', 'id',
+        'id', 'id','artefact_type','material','find_spot'
     ]
     enable_merge = False
 
@@ -161,8 +162,9 @@ class GeographyListView(GenericListView):
     formhelper_class = GeographyFilterFormHelper
     table_class = GeographyTable
     init_columns = [
-        'id', 'name',
+        'id', 'name','identifier'
     ]
+    ordering=['id']
     enable_merge = False
 
 
@@ -212,8 +214,9 @@ class InstitutionListView(GenericListView):
     formhelper_class = InstitutionFilterFormHelper
     table_class = InstitutionTable
     init_columns = [
-        'id', 'name',
+        'id', 'name','identifier'
     ]
+    ordering=['name']
     enable_merge = False
 
 
@@ -262,7 +265,7 @@ class NumberListView(GenericListView):
     formhelper_class = NumberFilterFormHelper
     table_class = NumberTable
     init_columns = [
-        'id', 'id',
+        'id', 'id','number','number_type','oeai_inventory_number'
     ]
     enable_merge = False
 
@@ -312,7 +315,7 @@ class QuarryListView(GenericListView):
     formhelper_class = QuarryFilterFormHelper
     table_class = QuarryTable
     init_columns = [
-        'id', 'name',
+        'id', 'name','description'
     ]
     enable_merge = False
 
@@ -412,7 +415,7 @@ class SampleListView(GenericListView):
     formhelper_class = SampleFilterFormHelper
     table_class = SampleTable
     init_columns = [
-        'id', 'oeai_inventory_number',
+        'id', 'oeai_inventory_number','material', 'quarry_group'
     ]
     enable_merge = False
 

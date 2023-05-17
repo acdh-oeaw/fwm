@@ -14,6 +14,17 @@ from zotero_ac.models import ZoteroReference
 
 from archiv.storage import OverwriteStorage
 
+import requests
+from PIL import Image
+from PIL import ImageDraw
+from io import BytesIO
+import io
+
+from django.http import HttpResponse
+import base64
+
+
+
 OUT_DIR = "./archiv/data/"
 
 
@@ -57,7 +68,7 @@ class Analyse(models.Model):
     )
     oeai_inventory_number = models.ForeignKey(
         "Sample",
-        related_name="rvn_analyse_oeai_inventory_number_sample",
+        related_name="Samples_Analysis",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -69,7 +80,7 @@ class Analyse(models.Model):
     )
     institute = models.ForeignKey(
         "Institution",
-        related_name="rvn_analyse_institute_institution",
+        related_name="Institution_Analysis",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -792,7 +803,7 @@ class Analyse(models.Model):
 
     def __str__(self):
         if self.id:
-            return "{}".format(self.id)
+            return "{}".format(self.analyse_type)
         else:
             return "{}".format(self.legacy_id)
 
@@ -873,7 +884,7 @@ class Artifact(models.Model):
     )
     find_spot = models.ForeignKey(
         "Geography",
-        related_name="rvn_artifact_find_spot_geography",
+        related_name="Geography_Artefact_Findspot",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -894,7 +905,7 @@ class Artifact(models.Model):
     )
     storage_place = models.ForeignKey(
         "Institution",
-        related_name="rvn_artifact_storage_place_institution",
+        related_name="Institution_Artefact_Storage",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -985,7 +996,8 @@ class Artifact(models.Model):
 
     def __str__(self):
         if self.id:
-            return "{}".format(self.id)
+            return str(self.artefact_type)+" ("+str(self.id)+")"
+            #return "{}".format(self.artefact_type, self.id)
         else:
             return "{}".format(self.legacy_id)
 
@@ -1241,7 +1253,7 @@ class Number(models.Model):
     )
     oeai_inventory_number = models.ForeignKey(
         "Sample",
-        related_name="rvn_number_oeai_inventory_number_sample",
+        related_name="Sample_Other_Numbers",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -1301,12 +1313,14 @@ class Number(models.Model):
     class Meta:
         ordering = [
             "id",
+            "number",
         ]
         verbose_name = "Number"
 
     def __str__(self):
         if self.id:
-            return "{}".format(self.id)
+            return str(self.number)+" ("+str(self.institute)+")"
+            #return "{}".format(self.number)
         else:
             return "{}".format(self.legacy_id)
 
@@ -1367,7 +1381,7 @@ class Quarry(models.Model):
     )
     geography = models.ForeignKey(
         "Geography",
-        related_name="rvn_quarry_geography_geography",
+        related_name="Geography_Quarry",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -1593,7 +1607,7 @@ class Sample(models.Model):
         null=True,
         blank=True,
         verbose_name="grain size min",
-        help_text="minimum grain size; controlled vocabulary",
+        help_text="0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain",
     ).set_extra(
         is_public=True,
         data_lookup="grain_size_min",
@@ -1605,7 +1619,7 @@ class Sample(models.Model):
         null=True,
         blank=True,
         verbose_name="grain size max",
-        help_text="maximum grain size; controlled vocabulary",
+        help_text="0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain",
     ).set_extra(
         is_public=True,
         data_lookup="grain_size_max",
@@ -1676,7 +1690,7 @@ class Sample(models.Model):
     )
     artefakt_id = models.ForeignKey(
         "Artifact",
-        related_name="rvn_sample_artefakt_id_artifact",
+        related_name="artefact_samples",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -1688,7 +1702,7 @@ class Sample(models.Model):
     )
     quarry = models.ForeignKey(
         "Quarry",
-        related_name="rvn_sample_quarry_quarry",
+        related_name="Quarry_Samples",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -1700,7 +1714,7 @@ class Sample(models.Model):
     )
     quarry_group = models.ForeignKey(
         "QuarryGroup",
-        related_name="rvn_sample_quarry_group_quarrygroup",
+        related_name="QuarryGroup_Samples",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
