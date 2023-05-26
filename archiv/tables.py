@@ -10,7 +10,8 @@ from . models import (
     Number,
     Quarry,
     QuarryGroup,
-    Sample
+    Sample,
+    Project
 )
 
 
@@ -98,5 +99,15 @@ class SampleTable(tables.Table):
 
     class Meta:
         model = Sample
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+class ProjectTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+
+    class Meta:
+        model = Project
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}

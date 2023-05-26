@@ -9,7 +9,8 @@ from . models import (
     Number,
     Quarry,
     QuarryGroup,
-    Sample
+    Sample,
+    Project
 )
 
 
@@ -52,6 +53,17 @@ class GeographyAC(autocomplete.Select2QuerySetView):
 class InstitutionAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Institution.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(name__icontains=self.q)
+            )
+        return qs
+    
+class ProjectAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Project.objects.all()
 
         if self.q:
             qs = qs.filter(

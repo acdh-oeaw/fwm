@@ -160,4 +160,15 @@ urlpatterns = [
         views.SampleDelete.as_view(),
         name="sample_delete",
     ),
+        path(
+        "project/",
+        views.ProjectListView.as_view(),
+        name="project_browse",
+    ),
+    path(
+        "project/detail/<int:pk>",
+        views.ProjectDetailView.as_view(),
+        name="project_detail",
+    ),
+    path("project/create/", views.ProjectCreate.as_view(), name="project_create"),
 ]

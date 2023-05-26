@@ -15,7 +15,8 @@ from . filters import (
     NumberListFilter,
     QuarryListFilter,
     QuarryGroupListFilter,
-    SampleListFilter
+    SampleListFilter,
+    ProjectListFilter
 )
 from . forms import (
     AnalyseForm, AnalyseFilterFormHelper,
@@ -25,7 +26,8 @@ from . forms import (
     NumberForm, NumberFilterFormHelper,
     QuarryForm, QuarryFilterFormHelper,
     QuarryGroupForm, QuarryGroupFilterFormHelper,
-    SampleForm, SampleFilterFormHelper
+    SampleForm, SampleFilterFormHelper,
+    ProjectForm, ProjectFilterFormHelper
 )
 from . tables import (
     AnalyseTable,
@@ -35,7 +37,8 @@ from . tables import (
     NumberTable,
     QuarryTable,
     QuarryGroupTable,
-    SampleTable
+    SampleTable,
+    ProjectTable
 )
 from . models import (
     Analyse,
@@ -45,7 +48,8 @@ from . models import (
     Number,
     Quarry,
     QuarryGroup,
-    Sample
+    Sample,
+    Project
 )
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
@@ -61,7 +65,7 @@ class AnalyseListView(GenericListView):
     formhelper_class = AnalyseFilterFormHelper
     table_class = AnalyseTable
     init_columns = [
-        'id', 'oeai_inventory_number', 'analyse_type'
+        'id', 'oeai_inventory_number', 'analyse_type', 'project'
     ]
     ordering=['oeai_inventory_number']
     enable_merge = False
@@ -415,7 +419,7 @@ class SampleListView(GenericListView):
     formhelper_class = SampleFilterFormHelper
     table_class = SampleTable
     init_columns = [
-        'id', 'oeai_inventory_number','material', 'quarry_group'
+        'id', 'oeai_inventory_number','material', 'quarry_group','grain_size_max','grain_size_min'
     ]
     enable_merge = False
 
@@ -470,3 +474,29 @@ class TaskOveriewView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['objects'] = TaskResult.objects.all()
         return context
+
+
+class ProjectListView(GenericListView):
+
+    model = Project
+    filter_class = ProjectListFilter
+    formhelper_class = ProjectFilterFormHelper
+    table_class = ProjectTable
+    init_columns = [
+        'id','name'
+    ]
+    enable_merge = False
+
+class ProjectDetailView(BaseDetailView):
+    model = Project
+    template_name = 'archiv/generic_detail.html'
+
+class ProjectCreate(BaseCreateView):
+
+    model = Project
+    form_class = ProjectForm
+    template_name = 'archiv/generic_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProjectCreate, self).dispatch(*args, **kwargs)

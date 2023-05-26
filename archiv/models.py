@@ -794,6 +794,14 @@ class Analyse(models.Model):
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
+    project=models.ManyToManyField(
+        "Project",
+        related_name="Analyse_Project",
+        help_text="project analyse",
+    ).set_extra(
+        is_public=True,
+        data_lookup="project",
+    )
 
     class Meta:
         ordering = [
@@ -803,7 +811,8 @@ class Analyse(models.Model):
 
     def __str__(self):
         if self.id:
-            return "{}".format(self.analyse_type)
+            #return "{}".format(self.analyse_type)
+            return str(self.analyse_type)+" ("+str(self.date)+")"
         else:
             return "{}".format(self.legacy_id)
 
@@ -987,6 +996,14 @@ class Artifact(models.Model):
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
+    project=models.ManyToManyField(
+        "Project",
+        related_name="Artefact_Project",
+        help_text="project artefact",
+    ).set_extra(
+        is_public=True,
+        data_lookup="project",
+    )
 
     class Meta:
         ordering = [
@@ -1517,6 +1534,16 @@ class QuarryGroup(models.Model):
         is_public=True,
         data_lookup="description",
     )
+
+    quarry = models.ManyToManyField(
+    "Quarry",
+    related_name="Quarrygroup_Quarry",
+    help_text="Quarry Quarrygroup",
+    ).set_extra(
+        is_public=True,
+        data_lookup="quarry",
+    )
+
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
@@ -1783,7 +1810,14 @@ class Sample(models.Model):
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
-
+    project=models.ManyToManyField(
+        "Project",
+        related_name="Sample_Project",
+        help_text="project sample",
+    ).set_extra(
+        is_public=True,
+        data_lookup="project",
+    )
     class Meta:
         ordering = [
             "id",
@@ -1823,6 +1857,116 @@ class Sample(models.Model):
 
     def get_edit_url(self):
         return reverse("archiv:sample_edit", kwargs={"pk": self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return next.get_absolute_url()
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return prev.get_absolute_url()
+        return False
+
+
+
+class Project(models.Model):
+    """nan"""
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
+    name = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="name",
+        help_text="name of the project",
+    ).set_extra(
+        is_public=True,
+        data_lookup="name",
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="description",
+        help_text="description of the project",
+    ).set_extra(
+        is_public=True,
+        data_lookup="description",
+    )
+    url = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="url",
+        help_text="URL of the project",
+    ).set_extra(
+        is_public=True,
+        data_lookup="url",
+    )
+    contact_name = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="contact name",
+        help_text="contact name of the project",
+    ).set_extra(
+        is_public=True,
+        data_lookup="contact_name",
+    )
+    contact_email = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="contact email",
+        help_text="contact email of the project",
+    ).set_extra(
+        is_public=True,
+        data_lookup="contact_email",
+    )
+    orig_data_csv = models.TextField(
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
+
+    class Meta:
+        ordering = [
+            "name",
+        ]
+        verbose_name = "Project"
+
+    def __str__(self):
+        if self.name:
+            return "{}".format(self.name)
+        else:
+            return "{}".format(self.legacy_id)
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse("archiv:project_browse")
+
+    @classmethod
+    def get_source_table(self):
+        return "./archiv/data/Project.csv"
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "name"
+
+   # @classmethod
+   # def get_createview_url(self):
+   #     return reverse("archiv:project_create")
+
+    def get_absolute_url(self):
+        return reverse("archiv:project_detail", kwargs={"pk": self.id})
+
+    def get_delete_url(self):
+        return reverse("archiv:project_delete", kwargs={"pk": self.id})
+
+    def get_edit_url(self):
+        return reverse("archiv:project_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)

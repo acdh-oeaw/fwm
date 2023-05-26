@@ -9,7 +9,8 @@ from . models import (
     Quarry,
     QuarryGroup,
     Sample,
-    DataSheet
+    DataSheet,
+    Project
 )
 admin.site.register(Analyse)
 admin.site.register(Artifact)
@@ -20,3 +21,4 @@ admin.site.register(Quarry)
 admin.site.register(QuarryGroup)
 admin.site.register(Sample)
 admin.site.register(DataSheet)
+admin.site.register(Project)

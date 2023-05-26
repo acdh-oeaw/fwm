@@ -25,6 +25,11 @@ urlpatterns = [
         name="institution-autocomplete",
     ),
     path(
+        "project-autocomplete/",
+        dal_views.ProjectAC.as_view(),
+        name="project-autocomplete",
+    ),
+    path(
         "number-autocomplete/", dal_views.NumberAC.as_view(), name="number-autocomplete"
     ),
     path(

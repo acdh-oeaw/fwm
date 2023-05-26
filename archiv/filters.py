@@ -13,7 +13,8 @@ from . models import (
     Number,
     Quarry,
     QuarryGroup,
-    Sample
+    Sample,
+    Project
 )
 
 NUMBER_LOOKUP_CHOICES = [
@@ -50,6 +51,14 @@ class AnalyseListFilter(django_filters.FilterSet):
         label=Analyse._meta.get_field('institute').verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:institution-autocomplete",
+        )
+    )
+    project = django_filters.ModelMultipleChoiceFilter(
+        queryset=Project.objects.all(),
+        help_text=Analyse._meta.get_field('project').help_text,
+        label=Analyse._meta.get_field('project').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:project-autocomplete",
         )
     )
     analyse_type = django_filters.ModelMultipleChoiceFilter(
@@ -446,6 +455,7 @@ class AnalyseListFilter(django_filters.FilterSet):
             'legacy_pk',
             'oeai_inventory_number',
             'institute',
+            'project',
             'analyse_type',
             'date',
             'notes_thinsection',
@@ -607,6 +617,14 @@ class ArtifactListFilter(django_filters.FilterSet):
         help_text=Artifact._meta.get_field('literature').help_text,
         label=Artifact._meta.get_field('literature').verbose_name
     )
+    project = django_filters.ModelMultipleChoiceFilter(
+        queryset=Project.objects.all(),
+        help_text=Artifact._meta.get_field('project').help_text,
+        label=Artifact._meta.get_field('project').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:project-autocomplete",
+        )
+    )
 
     class Meta:
         model = Artifact
@@ -625,6 +643,7 @@ class ArtifactListFilter(django_filters.FilterSet):
             'dating',
             'images',
             'literature',
+            'project'
         ]
 
 
@@ -971,7 +990,14 @@ class SampleListFilter(django_filters.FilterSet):
         help_text=Sample._meta.get_field('image').help_text,
         label=Sample._meta.get_field('image').verbose_name
     )
-
+    project = django_filters.ModelMultipleChoiceFilter(
+        queryset=Project.objects.all(),
+        help_text=Sample._meta.get_field('project').help_text,
+        label=Sample._meta.get_field('project').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:project-autocomplete",
+        )
+    )
     class Meta:
         model = Sample
         fields = [
@@ -996,3 +1022,23 @@ class SampleListFilter(django_filters.FilterSet):
             'image',
             'open_access',
         ]
+    
+
+
+class ProjectListFilter(django_filters.FilterSet):
+    legacy_id = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Project._meta.get_field('legacy_id').help_text,
+        label=Project._meta.get_field('legacy_id').verbose_name
+    )
+    name = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=Project._meta.get_field('name').help_text,
+        label=Project._meta.get_field('name').verbose_name
+    )
+
+
+
+
+
+

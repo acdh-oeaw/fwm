@@ -2,6 +2,7 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 
 register = template.Library()
+from django.apps import apps
 
 
 @register.simple_tag
@@ -13,6 +14,7 @@ def create_object_count(app=None):
     if app:
         models = ContentType.objects.filter(app_label=app)
         result = []
+        print(models)
         for x in models:
             modelname = x.model
             try:

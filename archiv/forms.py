@@ -14,7 +14,8 @@ from . models import (
     Number,
     Quarry,
     QuarryGroup,
-    Sample
+    Sample,
+    Project
 )
 
 
@@ -27,16 +28,17 @@ class AnalyseFilterFormHelper(FormHelper):
         self.helper.form_tag = False
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                css_id="basic_search_fields"
-            ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'legacy_pk',
+                    'Basic search options',
+                    'id',
+                    'project',
                     'oeai_inventory_number',
+                ),
+                AccordionGroup(
+                    'advanced',
+                    'legacy_id',
+                    'legacy_pk',
                     'institute',
                     'analyse_type',
                     'date',
@@ -102,11 +104,7 @@ class AnalyseFilterFormHelper(FormHelper):
                     'epr_spli_standardised',
                     'epr_w_standardised',
                     'epr_spread_standardised',
-                    css_id="more"
-                ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
+                    
                     css_id="admin_search"
                 ),
             )
@@ -150,15 +148,14 @@ class ArtifactFilterFormHelper(FormHelper):
         self.helper.form_tag = False
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                css_id="basic_search_fields"
-            ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'legacy_pk',
+                    'Basic search options',
+                    'id',
+                    'project',
+                ),
+                AccordionGroup(
+                    'advanced',
                     'artefact_type',
                     'description',
                     'find_spot',
@@ -170,10 +167,6 @@ class ArtifactFilterFormHelper(FormHelper):
                     'dating',
                     'images',
                     'literature',
-                    css_id="more"
-                ),
-                AccordionGroup(
-                    'admin',
                     'legacy_id',
                     css_id="admin_search"
                 ),
@@ -481,6 +474,7 @@ class SampleFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'project',
                 css_id="basic_search_fields"
             ),
             Accordion(
@@ -552,12 +546,55 @@ class SampleForm(forms.ModelForm):
         )
     )
 
+class ProjectFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(ProjectFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = 'genericFilterForm'
+        self.form_method = 'GET'
+        self.helper.form_tag = False
+        self.add_input(Submit('Filter', 'Search'))
+        self.layout = Layout(
+            Fieldset(
+                'Basic search options',
+                'id',
+                css_id="basic_search_fields"
+            ),
+            Accordion(
+                AccordionGroup(
+                    'Advanced search',
+                    'name',
+                    css_id="more"
+                ),
+                AccordionGroup(
+                    'admin',
+                    'legacy_id',
+                    css_id="admin_search"
+                ),
+            )
+        )
+
+
+class ProjectForm(forms.ModelForm):
+
+    class Meta:
+        model = Project
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
     class Meta:
         model = Sample
         fields = "__all__"
 
     def __init__(self, *args, **kwargs):
-        super(SampleForm, self).__init__(*args, **kwargs)
+        super(ProjectForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = 'form-horizontal'
