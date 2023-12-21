@@ -18,13 +18,6 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-2">
-        {% if object.get_prev %}
-        <h2>
-          <a href="{{ object.get_prev }}" title="previous">
-            <i data-feather="chevron-left"></i>
-          </a>
-        </h2>
-        {% endif %}
       </div>
       <div class="col-md-8">
         <h2 style="text-align: center;">
@@ -43,25 +36,20 @@
         </h2>
       </div>
       <div class="col-md-2">
-        <h2>
-          {% if object.get_next %}
-          <a href="{{ object.get_next }}" style="float:right" title="next">
-            <i data-feather="chevron-right"></i>
-          </a>
-        </h2>
-        {% endif %}
+
       </div>
     </div>
   </div>
   <div class="card-body">
     {% block custom %}
-    <legend>Basic Information</legend>
+    <legend style="color:black">Basic Information</legend>
     <div class="row">
         <div class="col-md-6">
             <table class="table table-responsive table-hover">
               {% for x in object.field_dict %}
-              {% if x.value and x.value != "None" %}
-              {% if user.is_authenticated %}
+              {% if x.value and x.value != "None" %} <!-- Wenn keine Values zum Attribut vorhanden sind - nicht anzeigen-->
+              {% if x.verbose_name != "images" and x.verbose_name != "Images_Quarry" and x.verbose_name != "Images_Artefact" and x.verbose_name != "Legacy ID" and x.verbose_name != "ID" and x.verbose_name != "Analyse_Project" and x.verbose_name != "Artefact_Project" and x.verbose_name != "Sample_Project" %} <!-- Die einzelnen Einträge zu den Bildern nicht anzeigen-->
+              {% if user.is_authenticated or object.oa or not x.extra_fields or x.extra_fields.is_public %} <!-- User ist eingeloggt oder der Datensatz ist Open Access -->
               <tr>
                 <th>
                   {% if x.help_text %}
@@ -82,96 +70,91 @@
                   {% elif  x.f_type == 'FK' %}
                   <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
                   {% elif  x.f_type == 'REVRESE_RELATION' %}
+                  <details>
+                    <summary>click to expand</summary>
                   {% for y in x.value %}
                   <li>
                     <a href="{{ y.get_absolute_url }}">{{ y }}</a>
                   </li>
                   {% endfor %}
-
+                  </details>
                   {% elif  x.f_type == 'SIMPLE' %}
+                  {% if x.verbose_name == "literature" or x.verbose_name == "identifier" %}
+                  <a href="{{ x.value }}" target="_blank">{{ x.value }}</a>
+                  {% else %}
                   {{ x.value }}
+                  {% endif %}
+                  {% endif %}
+                  {% if x.verbose_name == "coordinates" and object.coords %}
+               
+                  <script type="text/javascript">
+
+                    window.addEventListener("map:init", function (e) {
+                            var detail = e.detail;
+
+                            L.marker([{{object.coords.lat}}, {{object.coords.lon}}]).addTo(detail.map);
+
+                            detail.map.setView([{{object.coords.lat}},{{object.coords.lon}}], 15);
+                        }, false);
+                  
+                    
+                  </script>
                   {% endif %}
                 </td>
               </tr>
-              {% elif not x.extra_fields or x.extra_fields.is_public %}
-                {% if x.verbose_name != "The original data" and x.verbose_name != "ID" and x.verbose_name != "Matches FileChecker Entry" %}
-                <tr>
-                  <th>
-                    {% if x.help_text %}
-                    <abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr>
-                    {% else %}
-                    {{ x.verbose_name }}
-                    {% endif %}
-                  </th>
-                  <td>
-                    {% if x.f_type == 'M2M' %}
-                    {% for y in x.value %}
-                    <li>
-                      <a href="{{ y.get_absolute_url }}">{{ y }}</a>
-                    </li>
-                    {% endfor %}
-                    {% elif  x.f_type == 'FK' %}
-                    <a href="{{ x.value.get_absolute_url }}">
-                      {% if x.verbose_name == "Copyright" %}
-                        {{ x.value|upper }}
-                      {% else %}
-                        {{ x.value }}
-                      {% endif %}
-                      </a>
-                    {% elif  x.f_type == 'FK' %}
-                    <a href="{{ x.value.get_absolute_url }}"></a>
-                    {% elif  x.f_type == 'REVRESE_RELATION' %}
-                    {% for y in x.value %}
-                    <li>
-                      <a href="{{ y.get_absolute_url }}">{{ y|upper }}</a>
-                    </li>
-                    {% endfor %}
-
-                    {% elif  x.f_type == 'SIMPLE' %}
-                    {{ x.value|safe }}
-                    {% endif %}
-
-                    {% if x.verbose_name == "coordinates" and object.coords %}
-               
-                    <script type="text/javascript">
-
-                      window.addEventListener("map:init", function (e) {
-                              var detail = e.detail;
-
-                              L.marker([{{object.coords.lat}}, {{object.coords.lon}}]).addTo(detail.map);
-
-                              detail.map.setView([{{object.coords.lat}},{{object.coords.lon}}], 15);
-                          }, false);
-                    
-                      
-                    </script>
-                    {% endif %}
-                  </td>
-                </tr>
+                {% endif %}
                 {% endif %}
               {% endif %}
-              {% endif %}
+
               {% endfor %}
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
           {% if class_name == "Geography" %}
             {% leaflet_map "yourmap" callback="window.map_init_basic" %}
           {% endif %}
 
+          <!-- Zeige Bilder an wenn User eingeloggt oder Opeen Access -->
+          {% if user.is_authenticated or object.oa %} 
+          {% if object.get_images %}
+          
+          <section class="slider">
+            <div class="flexslider">
+              <ul class="slides">
+                {% for x in object.get_images %}
+                <li>
+                  <img src="{{ x.stream }}" />
+                  <p class="flex-caption">{{ x.beschreibung}} </p>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </section>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+          <script defer src="{% static 'webpage/js/jquery.flexslider.js' %}"></script>
+          <script type="text/javascript">
+          $(window).load(function() {
+              $('.flexslider').flexslider({
+                animation: "slide"
+              });
+            });
+          </script>
 
-          {% if object.pictures %}
-            <img src="{{object.pictures}}">
           {% endif %}
+          
 
           {% if class_name == "Sample" %}
           <div id="visualization"></div>
-          {% endif %}
           <script src="{% static 'netvis/js/netvis.js' %}"></script>
-          
           <script type="text/javascript">
             showGraph("visualization", "{% url 'netvis:graph' app_name=app_name model_name=class_name|lower pk=object.id %}")
           </script>
+          {% endif %}
+          {% endif %}
+          
+          
+
       </div>
 
     </div>

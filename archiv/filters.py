@@ -30,6 +30,11 @@ CHAR_LOOKUP_CHOICES = [
     ('iendswith', 'Ends with')
 ]
 
+BOOL_LOOKUP_CHOICES = [
+    ('True', 'Yes'),
+    ('False', 'No')
+]
+
 
 class AnalyseListFilter(django_filters.FilterSet):
     legacy_id = django_filters.LookupChoiceFilter(
@@ -447,6 +452,7 @@ class AnalyseListFilter(django_filters.FilterSet):
         label=Analyse._meta.get_field('epr_spread_standardised').verbose_name
     )
 
+
     class Meta:
         model = Analyse
         fields = [
@@ -520,6 +526,7 @@ class AnalyseListFilter(django_filters.FilterSet):
             'epr_spli_standardised',
             'epr_w_standardised',
             'epr_spread_standardised',
+            'open_access'
         ]
 
 
@@ -643,7 +650,8 @@ class ArtifactListFilter(django_filters.FilterSet):
             'dating',
             'images',
             'literature',
-            'project'
+            'project',
+            'open_access'
         ]
 
 

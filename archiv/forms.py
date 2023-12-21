@@ -25,85 +25,23 @@ class AnalyseFilterFormHelper(FormHelper):
         self.helper = FormHelper()
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
-        self.helper.form_tag = False
+        self.helper.form_tag = True
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
             Accordion(
                 AccordionGroup(
                     'Basic search options',
                     'id',
-                    'project',
                     'oeai_inventory_number',
+                    'analyse_type',
+                    'open_access',
+                    'project',
+ 
                 ),
                 AccordionGroup(
-                    'advanced',
+                    'Advanced',
                     'legacy_id',
-                    'legacy_pk',
-                    'institute',
-                    'analyse_type',
-                    'date',
-                    'notes_thinsection',
-                    'mgco3',
-                    'fe',
-                    'mn',
-                    'sr',
-                    'ion_li',
-                    'ion_na',
-                    'ion_k',
-                    'ion_mg',
-                    'ion_ca',
-                    'ion_f',
-                    'ion_cl',
-                    'ion_br',
-                    'ion_j',
-                    'ion_no3',
-                    'ion_so4',
-                    'ion_li_na',
-                    'ion_k_na',
-                    'ion_cl_na',
-                    'ion_br_na',
-                    'ion_i_na',
-                    'ion_so4_na',
-                    'ion_f_na',
-                    'ion_no3_na',
-                    'iso_d18o',
-                    'iso_d13c',
-                    'icp_mg',
-                    'icp_mn',
-                    'icp_fe',
-                    'icp_sr',
-                    'icp_cr',
-                    'icp_cr_n2o',
-                    'icp_v',
-                    'icp_y',
-                    'icp_cd',
-                    'icp_ba',
-                    'icp_la',
-                    'icp_ce',
-                    'icp_pr',
-                    'icp_dy',
-                    'icp_ho',
-                    'icp_yb',
-                    'icp_pb',
-                    'icp_u',
-                    'epr_spectrometer',
-                    'epr_spectral_height',
-                    'epr_dolom',
-                    'epr_tot6',
-                    'epr_spli',
-                    'epr_int',
-                    'epr_spread',
-                    'epr_w',
-                    'epr_stdintens',
-                    'epr_stdintegr',
-                    'epr_stdw',
-                    'epr_stdspli',
-                    'epr_stdspread',
-                    'epr_intens_standardised',
-                    'epr_integr_standardised',
-                    'epr_spli_standardised',
-                    'epr_w_standardised',
-                    'epr_spread_standardised',
+
                     
                     css_id="admin_search"
                 ),
@@ -152,21 +90,16 @@ class ArtifactFilterFormHelper(FormHelper):
                 AccordionGroup(
                     'Basic search options',
                     'id',
+                    'artefact_type',
+                    'material',
+                    'find_spot',
+                    'storage_place',
                     'project',
+                    'open_access'
+                    
                 ),
                 AccordionGroup(
                     'advanced',
-                    'artefact_type',
-                    'description',
-                    'find_spot',
-                    'find_spot_extra',
-                    'storage_place',
-                    'material',
-                    'measurement',
-                    'preservation',
-                    'dating',
-                    'images',
-                    'literature',
                     'legacy_id',
                     css_id="admin_search"
                 ),
@@ -471,37 +404,17 @@ class SampleFilterFormHelper(FormHelper):
         self.helper.form_tag = False
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                'project',
-                css_id="basic_search_fields"
-            ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'oeai_inventory_number',
-                    'smell',
-                    'grain_size_min',
-                    'grain_size_max',
-                    'material',
-                    'color',
-                    'color_description',
-                    'color_kodak',
-                    'stdcolor',
-                    'weight',
-                    'artefakt_id',
-                    'quarry',
-                    'quarry_group',
-                    'notes',
-                    'sampling',
-                    'literature',
-                    'image',
-                    'open_access',
-                    css_id="more"
+                   'Basic search options',
+                'id',
+                'oeai_inventory_number',
+                'material',
+                'open_access',
+                'project',
                 ),
                 AccordionGroup(
-                    'admin',
+                    'Advanced',
                     'legacy_id',
                     css_id="admin_search"
                 ),
@@ -545,6 +458,18 @@ class SampleForm(forms.ModelForm):
             tech_collection__pref_label="sample__color"
         )
     )
+    class Meta:
+        model = Sample
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(SampleForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
 
 class ProjectFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
@@ -589,15 +514,4 @@ class ProjectForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
-    class Meta:
-        model = Sample
-        fields = "__all__"
 
-    def __init__(self, *args, **kwargs):
-        super(ProjectForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)

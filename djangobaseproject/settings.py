@@ -130,9 +130,9 @@ WSGI_APPLICATION = "djangobaseproject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": os.environ.get("POSTGRES_DB", "fwm"),
+        "NAME": os.environ.get("POSTGRES_DB", ""),
         "USER": os.environ.get("POSTGRES_USER", "postgres"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "fwm"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", ""),
         "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }

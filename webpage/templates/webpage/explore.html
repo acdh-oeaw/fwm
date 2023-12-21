@@ -17,7 +17,7 @@
             </div>
             {% create_object_count app='archiv' as models %}
             {% for x in models %}
-                {% if x.name != "Datasheet" %}
+                {% if x.name != "Datasheet" and x.name != "Images" %}
                     <div class="col-md-4  text-center">
                         <div class="card flex-md-row mb-4 box-shadow">
                             <div class="card-body">

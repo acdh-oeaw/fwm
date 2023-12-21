@@ -462,11 +462,10 @@ a, a:hover {
   }
 
   .postcard.dark .postcard__text:before {
-    background: #18151f;
+
   }
 
   .postcard.light .postcard__text:before {
-    background: #e1e5ea;
   }
 }
 /* COLORS */

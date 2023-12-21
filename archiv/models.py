@@ -87,7 +87,7 @@ class Analyse(models.Model):
         verbose_name="institute",
         help_text="institute where the analysis took place",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="labor",
     )
     analyse_type = models.ForeignKey(
@@ -108,7 +108,7 @@ class Analyse(models.Model):
         verbose_name="date",
         help_text="analyse date",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="date",
     )
     notes_thinsection = models.TextField(
@@ -117,7 +117,7 @@ class Analyse(models.Model):
         verbose_name="thinsection notes",
         help_text="helptext for notes_thinsection",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="notes_thinsection",
     )
     mgco3 = models.DecimalField(
@@ -128,7 +128,7 @@ class Analyse(models.Model):
         verbose_name="MgCO3",
         help_text="helptext for mgco3",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="MgCO3",
     )
     fe = models.DecimalField(
@@ -139,7 +139,7 @@ class Analyse(models.Model):
         verbose_name="Fe",
         help_text="helptext for fe",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Fe [ppm]",
     )
     mn = models.DecimalField(
@@ -150,7 +150,7 @@ class Analyse(models.Model):
         verbose_name="Mn",
         help_text="helptext for mn",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Mn [ppm]",
     )
     sr = models.DecimalField(
@@ -161,7 +161,7 @@ class Analyse(models.Model):
         verbose_name="Sr",
         help_text="helptext for sr",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Sr [ppm]",
     )
     ion_li = models.DecimalField(
@@ -172,7 +172,7 @@ class Analyse(models.Model):
         verbose_name="Li",
         help_text="helptext for ion_li",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Li [ppb]",
     )
     ion_na = models.DecimalField(
@@ -183,7 +183,7 @@ class Analyse(models.Model):
         verbose_name="Na",
         help_text="helptext for ion_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Na [ppb]",
     )
     ion_k = models.DecimalField(
@@ -194,7 +194,7 @@ class Analyse(models.Model):
         verbose_name="K",
         help_text="helptext for ion_k",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="K [ppb]",
     )
     ion_mg = models.DecimalField(
@@ -205,7 +205,7 @@ class Analyse(models.Model):
         verbose_name="MgCO3",
         help_text="helptext for ion_mg",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Mg [ppb]",
     )
     ion_ca = models.DecimalField(
@@ -216,7 +216,7 @@ class Analyse(models.Model):
         verbose_name="Ca",
         help_text="helptext for ion_ca",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Ca [ppb]",
     )
     ion_f = models.DecimalField(
@@ -227,7 +227,7 @@ class Analyse(models.Model):
         verbose_name="Fe",
         help_text="helptext for ion_f",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="F [ppb]",
     )
     ion_cl = models.DecimalField(
@@ -238,7 +238,7 @@ class Analyse(models.Model):
         verbose_name="Cl",
         help_text="helptext for ion_cl",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Cl [ppb]",
     )
     ion_br = models.DecimalField(
@@ -249,7 +249,7 @@ class Analyse(models.Model):
         verbose_name="Br",
         help_text="helptext for ion_br",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Br [ppb]",
     )
     ion_j = models.DecimalField(
@@ -260,7 +260,7 @@ class Analyse(models.Model):
         verbose_name="J",
         help_text="helptext for ion_j",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="J [ppb]",
     )
     ion_no3 = models.DecimalField(
@@ -271,7 +271,7 @@ class Analyse(models.Model):
         verbose_name="NO3",
         help_text="helptext for ion_no3",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="NO3 [ppb]",
     )
     ion_so4 = models.DecimalField(
@@ -282,7 +282,7 @@ class Analyse(models.Model):
         verbose_name="SO4",
         help_text="helptext for ion_so4",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="SO4 [ppb]",
     )
     ion_li_na = models.DecimalField(
@@ -293,7 +293,7 @@ class Analyse(models.Model):
         verbose_name="Li/Na",
         help_text="helptext for ion_li_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Li/Na",
     )
     ion_k_na = models.DecimalField(
@@ -304,7 +304,7 @@ class Analyse(models.Model):
         verbose_name="K/Na",
         help_text="helptext for ion_k_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="K/Na",
     )
     ion_cl_na = models.DecimalField(
@@ -315,7 +315,7 @@ class Analyse(models.Model):
         verbose_name="Cl/Na",
         help_text="helptext for ion_cl_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Cl/Na",
     )
     ion_br_na = models.DecimalField(
@@ -326,7 +326,7 @@ class Analyse(models.Model):
         verbose_name="Br/Na",
         help_text="helptext for ion_br_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Br/Na",
     )
     ion_i_na = models.DecimalField(
@@ -337,7 +337,7 @@ class Analyse(models.Model):
         verbose_name="I/Na",
         help_text="helptext for ion_i_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="I/Na",
     )
     ion_so4_na = models.DecimalField(
@@ -348,7 +348,7 @@ class Analyse(models.Model):
         verbose_name="SO4/Na",
         help_text="helptext for ion_so4_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="SO4/Na",
     )
     ion_f_na = models.DecimalField(
@@ -359,7 +359,7 @@ class Analyse(models.Model):
         verbose_name="F/Na",
         help_text="helptext for ion_f_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="F/Na",
     )
     ion_no3_na = models.DecimalField(
@@ -370,7 +370,7 @@ class Analyse(models.Model):
         verbose_name="NO3/Na",
         help_text="helptext for ion_no3_na",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="NO3/Na",
     )
     iso_d18o = models.DecimalField(
@@ -381,7 +381,7 @@ class Analyse(models.Model):
         verbose_name="d18O (PDB)",
         help_text="helptext for iso_d18o",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="D18O (PDB)",
     )
     iso_d13c = models.DecimalField(
@@ -392,7 +392,7 @@ class Analyse(models.Model):
         verbose_name="D13c (PDB)",
         help_text="helptext for iso_d13c",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="D13c (PDB)",
     )
     icp_mg = models.DecimalField(
@@ -403,7 +403,7 @@ class Analyse(models.Model):
         verbose_name="Mg",
         help_text="helptext for icp_mg",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Mg [%]",
     )
     icp_mn = models.DecimalField(
@@ -414,7 +414,7 @@ class Analyse(models.Model):
         verbose_name="Mn",
         help_text="helptext for icp_mn",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Mn [ppm] (ICP)",
     )
     icp_fe = models.DecimalField(
@@ -425,7 +425,7 @@ class Analyse(models.Model):
         verbose_name="Fe",
         help_text="helptext for icp_fe",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Fe [ppm]",
     )
     icp_sr = models.DecimalField(
@@ -436,7 +436,7 @@ class Analyse(models.Model):
         verbose_name="Sr",
         help_text="helptext for icp_sr",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Sr [ppm] (ICP)",
     )
     icp_cr = models.DecimalField(
@@ -447,7 +447,7 @@ class Analyse(models.Model):
         verbose_name="Cr",
         help_text="helptext for icp_cr",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Cr [No Gas] [ppm]",
     )
     icp_cr_n2o = models.DecimalField(
@@ -458,7 +458,7 @@ class Analyse(models.Model):
         verbose_name="Cr (N2O)",
         help_text="helptext for icp_cr_n2o",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Cr [ N2O ] [ppm]",
     )
     icp_v = models.DecimalField(
@@ -469,7 +469,7 @@ class Analyse(models.Model):
         verbose_name="V",
         help_text="helptext for icp_v",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="V [ppm]",
     )
     icp_y = models.DecimalField(
@@ -480,7 +480,7 @@ class Analyse(models.Model):
         verbose_name="Y",
         help_text="helptext for icp_y",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Y [ppm]",
     )
     icp_cd = models.DecimalField(
@@ -491,7 +491,7 @@ class Analyse(models.Model):
         verbose_name="Cd",
         help_text="helptext for icp_cd",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Cd [ppm]",
     )
     icp_ba = models.DecimalField(
@@ -502,7 +502,7 @@ class Analyse(models.Model):
         verbose_name="Ba",
         help_text="helptext for icp_ba",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Ba [ppm]",
     )
     icp_la = models.DecimalField(
@@ -513,7 +513,7 @@ class Analyse(models.Model):
         verbose_name="La",
         help_text="helptext for icp_la",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="La [ppm]",
     )
     icp_ce = models.DecimalField(
@@ -524,7 +524,7 @@ class Analyse(models.Model):
         verbose_name="Ce",
         help_text="helptext for icp_ce",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Ce [ppm]",
     )
     icp_pr = models.DecimalField(
@@ -535,7 +535,7 @@ class Analyse(models.Model):
         verbose_name="Pr",
         help_text="helptext for icp_pr",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Pr [ppm]",
     )
     icp_dy = models.DecimalField(
@@ -546,7 +546,7 @@ class Analyse(models.Model):
         verbose_name="Dy",
         help_text="helptext for icp_dy",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Dy [ppm]",
     )
     icp_ho = models.DecimalField(
@@ -557,7 +557,7 @@ class Analyse(models.Model):
         verbose_name="Ho",
         help_text="helptext for icp_ho",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Ho [ppm]",
     )
     icp_yb = models.DecimalField(
@@ -568,7 +568,7 @@ class Analyse(models.Model):
         verbose_name="Yb",
         help_text="helptext for icp_yb",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Yb [ppm]",
     )
     icp_pb = models.DecimalField(
@@ -579,7 +579,7 @@ class Analyse(models.Model):
         verbose_name="Pb",
         help_text="helptext for icp_pb",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Pb [ppm]",
     )
     icp_u = models.DecimalField(
@@ -590,7 +590,7 @@ class Analyse(models.Model):
         verbose_name="U",
         help_text="helptext for icp_u",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="U [ppm]",
     )
     epr_spectrometer = models.DecimalField(
@@ -601,7 +601,7 @@ class Analyse(models.Model):
         verbose_name="Gain of the Spectrometer",
         help_text="helptext for epr_spectrometer",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Gain of the Spectrometer",
     )
     epr_spectral_height = models.DecimalField(
@@ -612,7 +612,7 @@ class Analyse(models.Model):
         verbose_name="Spectral height",
         help_text="helptext for epr_spectral_height",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="Spectral height",
     )
     epr_dolom = models.DecimalField(
@@ -623,7 +623,7 @@ class Analyse(models.Model):
         verbose_name="DOLOM",
         help_text="Dolomitic Mn2+ DOLOM",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="DOLOM",
     )
     epr_tot6 = models.DecimalField(
@@ -634,7 +634,7 @@ class Analyse(models.Model):
         verbose_name="TOT6",
         help_text="Extension of doublet D6",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="TOT6",
     )
     epr_spli = models.DecimalField(
@@ -645,7 +645,7 @@ class Analyse(models.Model):
         verbose_name="SPLI",
         help_text="Line separation of doublet D6",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="SPLI",
     )
     epr_int = models.DecimalField(
@@ -656,7 +656,7 @@ class Analyse(models.Model):
         verbose_name="INT",
         help_text="Integral of the spectrum",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="INT",
     )
     epr_spread = models.DecimalField(
@@ -667,7 +667,7 @@ class Analyse(models.Model):
         verbose_name="SPREAD",
         help_text="Extension of the spectrum",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="SPREAD",
     )
     epr_w = models.DecimalField(
@@ -678,7 +678,7 @@ class Analyse(models.Model):
         verbose_name="W",
         help_text="Average spectral width",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="W",
     )
     epr_stdintens = models.DecimalField(
@@ -689,7 +689,7 @@ class Analyse(models.Model):
         verbose_name="STDINTENS",
         help_text="Value of the standard variable",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="STDINTENS",
     )
     epr_stdintegr = models.DecimalField(
@@ -700,7 +700,7 @@ class Analyse(models.Model):
         verbose_name="STDINTEGR",
         help_text="Value of the standard variable",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="STDINTEGR",
     )
     epr_stdw = models.DecimalField(
@@ -711,7 +711,7 @@ class Analyse(models.Model):
         verbose_name="STDW",
         help_text="Value of the standard variable",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="STDW",
     )
     epr_stdspli = models.DecimalField(
@@ -722,7 +722,7 @@ class Analyse(models.Model):
         verbose_name="STDSPLI",
         help_text="Value of the standard variable",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="STDSPLI",
     )
     epr_stdspread = models.DecimalField(
@@ -733,7 +733,7 @@ class Analyse(models.Model):
         verbose_name="STDSPREAD",
         help_text="Value of the standard variable",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="STDSPREAD",
     )
     epr_intens_standardised = models.DecimalField(
@@ -744,7 +744,7 @@ class Analyse(models.Model):
         verbose_name="INTENS Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="INTENS_Standardised",
     )
     epr_integr_standardised = models.DecimalField(
@@ -755,7 +755,7 @@ class Analyse(models.Model):
         verbose_name="INTEGR Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="INTEGR_Standardised",
     )
     epr_spli_standardised = models.DecimalField(
@@ -766,7 +766,7 @@ class Analyse(models.Model):
         verbose_name="SPLI Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="SPLI_Standardised",
     )
     epr_w_standardised = models.DecimalField(
@@ -777,7 +777,7 @@ class Analyse(models.Model):
         verbose_name="W Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="W_Standardised",
     )
     epr_spread_standardised = models.DecimalField(
@@ -788,8 +788,18 @@ class Analyse(models.Model):
         verbose_name="SPREAD Standardised",
         help_text="Standardised value of variables",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="SPREAD_Standardised",
+    )
+    open_access = models.BooleanField(
+        default=False,
+        blank=True,
+        null=True,
+        verbose_name="open access",
+        help_text="open access",
+    ).set_extra(
+        is_public=True,
+        data_lookup="open_access",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -888,7 +898,7 @@ class Artifact(models.Model):
         verbose_name="description",
         help_text="description of the artefact",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="description",
     )
     find_spot = models.ForeignKey(
@@ -909,7 +919,7 @@ class Artifact(models.Model):
         verbose_name="find spot notes",
         help_text="additional notes of the find spot",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="find_spot_extra",
     )
     storage_place = models.ForeignKey(
@@ -933,7 +943,7 @@ class Artifact(models.Model):
         verbose_name="material",
         help_text="the artefacts material; controlled vocabulary",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="material",
     )
     measurement = models.TextField(
@@ -942,7 +952,7 @@ class Artifact(models.Model):
         verbose_name="measurement",
         help_text="measurement information of the artefact",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="measurement",
     )
     preservation = models.TextField(
@@ -951,7 +961,7 @@ class Artifact(models.Model):
         verbose_name="preservation",
         help_text="preservation information",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="preservation",
     )
     dating = models.ForeignKey(
@@ -963,27 +973,25 @@ class Artifact(models.Model):
         verbose_name="dating",
         help_text="dating information; controlled vocabulary",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="dating",
     )
-    images = models.CharField(
-        max_length=250,
+    images = models.TextField(
         blank=True,
         null=True,
         verbose_name="images",
         help_text="images of the artefact",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="images",
     )
-    literature = models.CharField(
-        max_length=250,
+    literature = models.TextField(
         blank=True,
         null=True,
         verbose_name="literature",
         help_text="literature",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="literature",
     )
     reference = models.ManyToManyField(
@@ -1004,7 +1012,16 @@ class Artifact(models.Model):
         is_public=True,
         data_lookup="project",
     )
-
+    open_access = models.BooleanField(
+        default=False,
+        blank=True,
+        null=True,
+        verbose_name="open access",
+        help_text="open access",
+    ).set_extra(
+        is_public=True,
+        data_lookup="open_access",
+    )
     class Meta:
         ordering = [
             "id",
@@ -1057,12 +1074,68 @@ class Artifact(models.Model):
         if prev:
             return prev.get_absolute_url()
         return False
+    def oa(self):
+        return self.open_access
+    
+    def get_images(self):
+        Image = Images.objects.filter(artefact_id=self.id)
+        im_list = []
+
+        for x in Image:
+            if(x.image_stream != None):
+                im_dic={}
+                im_dic["beschreibung"]= x.description
+                im_dic["stream"]=x.image_stream
+                im_list.append(im_dic)
+            else:
+                im_list.append(Images.pictures(x.easydb_id, x.id))
+        return im_list
 
 
 class Geography(models.Model):
     """nan"""
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
+    continent = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="continent",
+        help_text="continent of the geographic location",
+    ).set_extra(
+        is_public=True,
+        data_lookup="continent",
+    )
+    land = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="land",
+        help_text="land of the geographic location",
+    ).set_extra(
+        is_public=True,
+        data_lookup="land",
+    )
+    province = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="province",
+        help_text="province of the geographic location",
+    ).set_extra(
+        is_public=True,
+        data_lookup="province",
+    )
+    location = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="location",
+        help_text="location of the geographic location",
+    ).set_extra(
+        is_public=True,
+        data_lookup="location",
+    )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -1130,10 +1203,9 @@ class Geography(models.Model):
 
     def coords(self):
         c = {
-            "lat": self.coordinates.coords[1],
-            "lon": self.coordinates.coords[0],
+            "lat": self.coordinates.coords[0],
+            "lon": self.coordinates.coords[1],
         }
-        #return [coord for coord in self.coordinates]
         return c
 
     @classmethod
@@ -1408,8 +1480,7 @@ class Quarry(models.Model):
         is_public=True,
         data_lookup="geography",
     )
-    images = models.CharField(
-        max_length=250,
+    images = models.TextField(
         blank=True,
         null=True,
         verbose_name="images",
@@ -1509,6 +1580,21 @@ class Quarry(models.Model):
         if prev:
             return prev.get_absolute_url()
         return False
+
+    def get_images(self):
+        Image = Images.objects.filter(quarry_id=self.id)
+        im_list = []
+
+        for x in Image:
+            if(x.image_stream != None):
+                im_dic={}
+                im_dic["beschreibung"]= x.description
+                im_dic["stream"]=x.image_stream
+                im_list.append(im_dic)
+            else:
+                im_list.append(Images.pictures(x.easydb_id, x.id))
+        return im_list
+
 
 
 class QuarryGroup(models.Model):
@@ -1624,7 +1710,7 @@ class Sample(models.Model):
         verbose_name="smell",
         help_text="smell of the sample; entries from 0 to 4",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="smell",
     )
     grain_size_min = models.ForeignKey(
@@ -1636,7 +1722,7 @@ class Sample(models.Model):
         verbose_name="grain size min",
         help_text="0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="grain_size_min",
     )
     grain_size_max = models.ForeignKey(
@@ -1648,7 +1734,7 @@ class Sample(models.Model):
         verbose_name="grain size max",
         help_text="0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="grain_size_max",
     )
     material = models.ForeignKey(
@@ -1660,7 +1746,7 @@ class Sample(models.Model):
         verbose_name="material",
         help_text="material of the sample; controlled vocabulary",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="material",
     )
     color = models.ForeignKey(
@@ -1672,7 +1758,7 @@ class Sample(models.Model):
         verbose_name="color",
         help_text="color of the sample; controlled vocabulary",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="color",
     )
     color_description = models.TextField(
@@ -1681,7 +1767,7 @@ class Sample(models.Model):
         verbose_name="color description",
         help_text="precise description of the color",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="color_description",
     )
     color_kodak = models.CharField(
@@ -1691,7 +1777,7 @@ class Sample(models.Model):
         verbose_name="color kodak",
         help_text="more detailed information about the kodak color",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="color_kodak",
     )
     stdcolor = models.CharField(
@@ -1701,7 +1787,7 @@ class Sample(models.Model):
         verbose_name="color stdcolor",
         help_text="more detailed information about the kodak color",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="stdcolor_kodak",
     )
     weight = models.DecimalField(
@@ -1712,7 +1798,7 @@ class Sample(models.Model):
         verbose_name="weight",
         help_text="weight of the sample",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="weight",
     )
     artefakt_id = models.ForeignKey(
@@ -1736,7 +1822,7 @@ class Sample(models.Model):
         verbose_name="quarry",
         help_text="sampled quarry",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="quarry",
     )
     quarry_group = models.ForeignKey(
@@ -1748,7 +1834,7 @@ class Sample(models.Model):
         verbose_name="quarry group",
         help_text="quarry group",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="quarry_group",
     )
     notes = models.TextField(
@@ -1757,7 +1843,7 @@ class Sample(models.Model):
         verbose_name="notes",
         help_text="notes",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="notes",
     )
     sampling = models.CharField(
@@ -1767,7 +1853,7 @@ class Sample(models.Model):
         verbose_name="sampling",
         help_text="information about the sampling",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="sampling",
     )
     literature = models.CharField(
@@ -1777,7 +1863,7 @@ class Sample(models.Model):
         verbose_name="literature",
         help_text="literature",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="literature",
     )
     reference = models.ManyToManyField(
@@ -1794,7 +1880,7 @@ class Sample(models.Model):
         verbose_name="images",
         help_text="images",
     ).set_extra(
-        is_public=True,
+        is_public=False,
         data_lookup="images",
     )
     open_access = models.BooleanField(
@@ -1832,6 +1918,9 @@ class Sample(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
+    
+    def oa(self):
+        return self.open_access
 
     @classmethod
     def get_listview_url(self):
@@ -1967,6 +2056,158 @@ class Project(models.Model):
 
     def get_edit_url(self):
         return reverse("archiv:project_edit", kwargs={"pk": self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return next.get_absolute_url()
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return prev.get_absolute_url()
+        return False
+
+class Images(models.Model):
+    """nan"""
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
+    quarry = models.ForeignKey(
+        "Quarry",
+        related_name="Images_Quarry",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="quarry_id",
+        help_text="images of the quarry ",
+    ).set_extra(
+        is_public=True,
+        data_lookup="quarry_id",
+    )
+    artefact = models.ForeignKey(
+        "Artifact",
+        related_name="Images_Artefact",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="artefact_id",
+        help_text="images of the artefact ",
+    ).set_extra(
+        is_public=True,
+        data_lookup="artefact_id",
+    )
+    analyse = models.ForeignKey(
+        "Analyse",
+        related_name="Images_Artefact",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="analyse_id",
+        help_text="images of the analyse ",
+    ).set_extra(
+        is_public=True,
+        data_lookup="analyse_id",
+    )
+    image_stream = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="image_stream",
+        help_text="image",
+    ).set_extra(
+        is_public=True,
+        data_lookup="image_stream",
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="description",
+        help_text="description of the image",
+    ).set_extra(
+        is_public=True,
+        data_lookup="description",
+    )
+    easydb_id = models.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name="easyDB ID",
+        help_text="whatever",
+    ).set_extra(
+        is_public=True,
+        data_lookup="easydb_id",
+    )
+
+    class Meta:
+        ordering = [
+            "quarry_id",
+        ]
+        verbose_name = "Images"
+
+    def __str__(self):
+        if self.id:
+            return "{}".format(self.id)
+        else:
+            return "{}".format(self.legacy_id)
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    def pictures(easy_db, image_id):
+        help_im = {}
+        host ="https://oeaidam.oeaw.ac.at/"
+        api_session = host+"api/v1/session"
+        prefix="data:image/jpg;base64,"
+
+        response = requests.get(api_session)
+        data = response.json()
+        token = data['token']
+        
+        #login on API
+        api_login = host+"api/v1/session/authenticate?token="+token+"&method=easydb&login=fwm&password=fwmOeai_!"
+        response = requests.post(api_login)
+
+        #get image from easyDB
+        api_download = host+"api/v1/objects/id/"+str(easy_db)+"/?token="+token
+        response_download = requests.get(api_download).json()
+
+        # small / preview / original
+        url_small = response_download['bilder']['bild'][0]['versions']['preview']['deep_link_url']
+        des = response_download['bilder']['bild'][0]['original_filename']
+        response_download_link = requests.get(url_small+"?token="+token)
+        img = response_download_link.content
+        
+        #Update/Cache image in DB
+        Images.objects.filter(id=image_id).update(image_stream=prefix + base64.b64encode(img).decode('utf-8'), description=des)
+        
+        #return dictionary with data
+        help_im["beschreibung"]=des
+        help_im["stream"]= prefix + base64.b64encode(img).decode('utf-8')
+        return help_im
+
+
+    #@classmethod
+    #def get_listview_url(self):
+    #    return reverse("archiv:image_browse")
+
+    @classmethod
+    def get_source_table(self):
+        return "./archiv/data/Images.csv"
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "id"
+
+   # @classmethod
+   # def get_createview_url(self):
+   #     return reverse("archiv:project_create")
+
+    def get_absolute_url(self):
+        return reverse("archiv:image_detail", kwargs={"pk": self.id})
+
+    def get_delete_url(self):
+        return reverse("archiv:image_delete", kwargs={"pk": self.id})
+
+    def get_edit_url(self):
+        return reverse("archiv:image_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = next_in_order(self)

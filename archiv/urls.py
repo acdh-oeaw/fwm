@@ -160,7 +160,7 @@ urlpatterns = [
         views.SampleDelete.as_view(),
         name="sample_delete",
     ),
-        path(
+    path(
         "project/",
         views.ProjectListView.as_view(),
         name="project_browse",
@@ -170,5 +170,21 @@ urlpatterns = [
         views.ProjectDetailView.as_view(),
         name="project_detail",
     ),
+    path(
+        "project/edit/<int:pk>",
+        views.ProjectUpdate.as_view(),
+        name="project_edit",
+    ),
+    path(
+        "project/delete/<int:pk>",
+        views.ProjectDelete.as_view(),
+        name="project_delete",
+    ),
     path("project/create/", views.ProjectCreate.as_view(), name="project_create"),
+
+    path(
+        "image/detail/<int:pk>",
+        views.ImageDetailView.as_view(),
+        name="image_detail",
+    ),
 ]
