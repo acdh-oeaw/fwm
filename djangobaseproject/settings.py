@@ -203,5 +203,5 @@ CELERY_RESULT_BACKEND = "django-db"
 CELERY_BROKER_URL = os.environ.get("amqp://")
 CELERY_TASK_TRACK_STARTED = True
 
-OEAIDAM_USER = ""
-OEAIDAM_USER_PW =""
+OEAIDAM_USER = os.environ.get("OEAIDAM_USER")
+OEAIDAM_USER_PW = os.environ.get("OEAIDAM_USER_PW")
