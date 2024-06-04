@@ -20,6 +20,7 @@ from PIL import ImageDraw
 from io import BytesIO
 import io
 
+from django.conf import settings
 from django.http import HttpResponse
 import base64
 
@@ -859,12 +860,29 @@ class Analyse(models.Model):
         if next:
             return next.get_absolute_url()
         return False
-
+    
+    def oa(self):
+        return self.open_access
+    
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
             return prev.get_absolute_url()
         return False
+    
+    def get_images(self):
+        Image = Images.objects.filter(analyse_id=self.id)
+        im_list = []
+
+        for x in Image:
+            if(x.image_stream != None):
+                im_dic={}
+                im_dic["beschreibung"]= x.description
+                im_dic["stream"]=x.image_stream
+                im_list.append(im_dic)
+            else:
+                im_list.append(Images.pictures(x.easydb_id, x.id))
+        return im_list
 
 
 class Artifact(models.Model):
@@ -2098,7 +2116,7 @@ class Images(models.Model):
     )
     analyse = models.ForeignKey(
         "Analyse",
-        related_name="Images_Artefact",
+        related_name="Images_Analyse",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -2162,9 +2180,8 @@ class Images(models.Model):
         token = data['token']
         
         #login on API
-        api_login = host+"api/v1/session/authenticate?token="+token+"&method=easydb&login=fwm&password=fwmOeai_!"
+        api_login = host+"api/v1/session/authenticate?token="+token+"&method=easydb&login="+settings.OEAIDAM_USER+"&password="+settings.OEAIDAM_USER_PW
         response = requests.post(api_login)
-
         #get image from easyDB
         api_download = host+"api/v1/objects/id/"+str(easy_db)+"/?token="+token
         response_download = requests.get(api_download).json()

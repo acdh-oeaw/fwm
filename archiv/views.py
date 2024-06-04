@@ -339,6 +339,7 @@ class QuarryListView(GenericListView):
         'id', 'name','description'
     ]
     enable_merge = False
+    ordering=['id']
 
 
 class QuarryDetailView(BaseDetailView):

@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "vxAeLYeo")
 if os.environ.get("DEBUG"):
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 ADD_ALLOWED_HOST = os.environ.get("ALLOWED_HOST", "*")
 
 ALLOWED_HOSTS = [
@@ -202,3 +202,6 @@ ZOTERO_URL = "https://api.zotero.org/groups/2745880/items"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_BROKER_URL = os.environ.get("amqp://")
 CELERY_TASK_TRACK_STARTED = True
+
+OEAIDAM_USER = ""
+OEAIDAM_USER_PW =""

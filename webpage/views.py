@@ -70,6 +70,9 @@ class GenericWebpageView(TemplateView):
 def show_archiv(request):
     return render(request, "webpage/explore.html")
 
+def show_imprint(request):
+    return HttpResponseRedirect("https://oeaw.ac.at/oeaw/impressum")
+
 #################################################################
 #               views for login/logout                          #
 #################################################################

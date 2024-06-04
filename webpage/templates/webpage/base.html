@@ -97,7 +97,7 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{% url 'infos:about-the-project' %}">About the project</a>
                                         <!--<a class="dropdown-item" href="{% url 'infos:project-team' %}">Team</a>-->
-                                        <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}">Imprint | Impressum</a>
+                                        <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}" target="_blank">Imprint | Impressum</a>
                                     </div>
                                 </li>
                                 <li class="nav-item ">
@@ -167,7 +167,7 @@
                 </div>
             </div>
             <div class="footer-imprint-bar" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;">
-                <a href="imprint.html">Impressum/Imprint</a>
+                <a href="{% url 'webpage:staticpage' template='imprint' %}" target="_blank">Impressum/Imprint</a>
                 {% if user.is_authenticated %}
                     {% if DB_NAME %}
                         <div class="footer-imprint-bar">

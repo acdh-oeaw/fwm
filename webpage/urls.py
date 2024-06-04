@@ -2,6 +2,7 @@ from django.urls import path
 from django.views.generic.base import RedirectView
 from . import views
 from django_spaghetti.views import Plate
+from django.shortcuts import render, redirect
 
 
 app_name = 'webpage'
@@ -9,7 +10,8 @@ app_name = 'webpage'
 favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
 
 urlpatterns = [
-    path('imprint', views.ImprintView.as_view(), name="imprint"),
+    #path('imprint', views.ImprintView.as_view(), name="imprint"),
+    path('imprint', views.show_imprint, name="imprint"),
     path(
         'data-model',
         Plate.as_view(

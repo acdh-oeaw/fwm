@@ -48,7 +48,7 @@
             <table class="table table-responsive table-hover">
               {% for x in object.field_dict %}
               {% if x.value and x.value != "None" %} <!-- Wenn keine Values zum Attribut vorhanden sind - nicht anzeigen-->
-              {% if x.verbose_name != "images" and x.verbose_name != "Images_Quarry" and x.verbose_name != "Images_Artefact" and x.verbose_name != "Legacy ID" and x.verbose_name != "ID" and x.verbose_name != "Analyse_Project" and x.verbose_name != "Artefact_Project" and x.verbose_name != "Sample_Project" %} <!-- Die einzelnen Einträge zu den Bildern nicht anzeigen-->
+              {% if x.verbose_name != "images" and x.verbose_name != "Images_Quarry" and x.verbose_name != "Images_Analyse" and x.verbose_name != "Images_Artefact" and x.verbose_name != "Legacy ID" and x.verbose_name != "ID" and x.verbose_name != "Analyse_Project" and x.verbose_name != "Artefact_Project" and x.verbose_name != "Sample_Project" %} <!-- Die einzelnen Einträge zu den Bildern nicht anzeigen-->
               {% if user.is_authenticated or object.oa or not x.extra_fields or x.extra_fields.is_public %} <!-- User ist eingeloggt oder der Datensatz ist Open Access -->
               <tr>
                 <th>
@@ -115,8 +115,8 @@
             {% leaflet_map "yourmap" callback="window.map_init_basic" %}
           {% endif %}
 
-          <!-- Zeige Bilder an wenn User eingeloggt oder Opeen Access -->
-          {% if user.is_authenticated or object.oa %} 
+          <!-- Zeige Bilder an wenn User eingeloggt oder Opeen Access. Quarry Fotos immer anzeigen -->
+          {% if user.is_authenticated or object.oa or class_name == "Quarry" %} 
           {% if object.get_images %}
           
           <section class="slider">
