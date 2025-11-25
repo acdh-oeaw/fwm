@@ -2,9 +2,9 @@
 # (by default) in the base.html and index.html
 
 PROJECT_METADATA = {
-    'title': 'Fingerprinting White Marbles',
+    'title': 'oeaiMETRIX',
     'author': 'Peter Andorfer',
-    'subtitle': 'QUARRIES AND CITIES OF ROMAN THRACE, 1ST-3RD CENTURY AD',
+    'subtitle': 'structured and accessible platform for the documentation, analysis, and dissemination of archaeometric research data',
     'description': 'lorem ipsum',
     'github': 'https://github.com/acdh-oeaw/fwm',
     'version': '0.0.2',

@@ -1,6 +1,7 @@
 from django.urls import path
 from django.views.generic.base import RedirectView
 from . import views
+from archiv.views import explore, export_zip
 from django_spaghetti.views import Plate
 from django.shortcuts import render, redirect
 
@@ -20,9 +21,10 @@ urlpatterns = [
         name="data_model"
     ),
     path('', views.GenericWebpageView.as_view(), name="start"),
-    path('explore/', views.show_archiv, name="explore"),
     path('accounts/login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='user_logout'),
     path('project-info/', views.project_info, name='project_info'),
     path('<slug:template>', views.GenericWebpageView.as_view(), name='staticpage'),
+    path("explore/", explore, name="explore"),
+    path('export-zip/', export_zip, name='export_zip'),
 ]

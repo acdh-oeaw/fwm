@@ -10,6 +10,11 @@ urlpatterns = [
         special_views.SpecialAboutView.as_view(),
         name="about-the-project",
     ),
+    path(
+        "contact/",
+        special_views.ContactView.as_view(),
+        name="contact",
+    ),
     path("about/", views.AboutTheProjectListView.as_view(), name="about_browse"),
     path(
         "about/detail/<int:pk>",

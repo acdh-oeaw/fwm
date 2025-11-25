@@ -79,6 +79,30 @@ class Analyse(models.Model):
         is_public=True,
         data_lookup="oeai_inventarnummer",
     )
+    license = models.ForeignKey(
+        SkosConcept,
+        related_name="rvn_analyse_license_skosconcept",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="license",
+        help_text="license of the analyse; controlled vocabulary",
+    ).set_extra(
+        is_public=True,
+        data_lookup="license",
+    )
+    new_analyse = models.ForeignKey(
+        'self',
+        related_name="old_analyse",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="new analyse",
+        help_text="optional reference to a newer version of this analyse",
+    ).set_extra(
+        is_public=True,
+        data_lookup="new_analyse",
+    )
     institute = models.ForeignKey(
         "Institution",
         related_name="Institution_Analysis",
@@ -823,7 +847,7 @@ class Analyse(models.Model):
     def __str__(self):
         if self.id:
             #return "{}".format(self.analyse_type)
-            return str(self.analyse_type)+" ("+str(self.date)+")"
+            return str(self.analyse_type)
         else:
             return "{}".format(self.legacy_id)
 
@@ -854,7 +878,10 @@ class Analyse(models.Model):
 
     def get_edit_url(self):
         return reverse("archiv:analyse_edit", kwargs={"pk": self.id})
-
+    
+    def has_new_analyse(self):
+        return self.new_analyse is not None
+    
     def get_next(self):
         next = next_in_order(self)
         if next:
@@ -909,6 +936,18 @@ class Artifact(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="artefact_type",
+    )
+    license = models.ForeignKey(
+        SkosConcept,
+        related_name="rvn_artifact_license_skosconcept",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="license",
+        help_text="license of the artifact; controlled vocabulary",
+    ).set_extra(
+        is_public=True,
+        data_lookup="license",
     )
     description = models.TextField(
         blank=True,
@@ -1766,6 +1805,18 @@ class Sample(models.Model):
     ).set_extra(
         is_public=False,
         data_lookup="material",
+    )
+    license = models.ForeignKey(
+        SkosConcept,
+        related_name="rvn_sample_license_skosconcept",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="license",
+        help_text="license of the sample; controlled vocabulary",
+    ).set_extra(
+        is_public=True,
+        data_lookup="license",
     )
     color = models.ForeignKey(
         SkosConcept,

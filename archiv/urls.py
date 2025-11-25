@@ -187,4 +187,9 @@ urlpatterns = [
         views.ImageDetailView.as_view(),
         name="image_detail",
     ),
+    path(
+        "projects/",
+        views.ProjectsView.as_view(),
+        name="projects",
+    ),
 ]

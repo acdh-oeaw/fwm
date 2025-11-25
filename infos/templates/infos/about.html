@@ -4,94 +4,29 @@
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
 
-<section class="light">
+<section class="light" style="color: black; padding-top: 20px;">
     <div class="container py-2">
-        <div class="h1 text-center text-dark" id="pageHeaderTitle">{{ object.title }}</div>
-        {% if object.subtitle %}
-        <div class="h3 text-center text-dark" id="pageHeaderUnderTitle">{{ object.subtitle}}</div>    
-        {% endif %}
-
-        <article class="postcard light blue">
-            <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a href="#">&nbsp;Overview</a></h1>
-                <div class="postcard__subtitle small">
-                    
+        <div class="row">
+            {% for x in objects %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-orange text-white">
+                            <h5 class="card-title mb-0">{{ x.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" style="text-align: justify;">{{ x.description }}</p>
+                            <p class="card-text">
+                                <b>Contact:</b> {{ x.contact_name }} <br>
+                                <a href="mailto:{{ x.contact_email }}">{{ x.contact_email }}</a>
+                            </p>
+                            <p><b>URL: </b><a href="{{ x.url }}" target="_blank">{{ x.url }}</a></p>
+                            <p><a href="/archiv/sample/?open_access=unknown&project={{ x.id }}&Filter=Search" class="btn btn-outline-orange">Browse samples</a></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="postcard__bar">
-                   
-                </div>
-                <div class="postcard__preview-txt"> 
-                    This program aims to investigate, examine, analyze, and deepen the subject of the production and use of white marble in Roman Thrace. The main domains of the research will be focused on both regional and long-distance trade in white marble, which represented a significant economic-historical component in the Roman imperial period (1st-3rd centuries AD), in the region of Thrace. <br>
-                    The Thracian quarries have received much less attention and no previously completed investigation. Within the first part of this research, the ancient white marble quarries of modern Bulgaria will be investigated. Also, the characteristics of the quarries, the extraction, production, and distribution processes are studied. The second main part of the project focuses on the demand for marble and the needs of the cities for architectural purposes, the choices, and the quality of marble in buildings. Possible different choices on marble in comparison with the building types (such as public or private buildings) are underlined. Finally, the connection between the workshops, as well as the marble of Asia Minor, which became highly prestigious and influenced the art of masonry and sculpture in other regions, in particular in the provinces along the lower Danube River, is considered. The quality and condition were decisive criteria for the processing and usage of white marbles in the quarrying industry, which developed in Asia Minor under Roman influence and its great export power, with the greatest examples being the Prokonnesian or the Aphrodisian quarries. Preliminary data on this approach, expanding knowledge on local, regional, and long-distance trade. Our approach is focused on the systematic exploration of marble in everyday life and localized patterns of used stones. Economic models of a regional market reacting to demand or requirements, and a socially embedded commercial operation are taken into consideration. The present study is undertaken as part of the “Fingerprinting White Marbles ¬– Quarries and Cities of Roman Thrace, 1st to the 3rd century AD” (Austrian Science Fund) project. <br>
-                    Through investigation of the Thracian quarries and Roman architectural elements in the main urban centres in the region of Thrace, theories regarding marble trade and the cultural and technological transfer between the Roman world, Asia Minor and Thrace are examined. A large number of methods are performed in this project for the investigation of the provenance studies. This project connects the antiquity-directed disciplines of archaeology and Roman economic history with geology and the application-based analysis procedures of petrography and geochemistry. 
-                    <br>Link: <a href="https://www.oeaw.ac.at/oeai/forschung/historische-archaeologie/objektitinerarien/provenienzstudien-weissmarmore">https://www.oeaw.ac.at/oeai/forschung/historische-archaeologie/objektitinerarien/provenienzstudien-weissmarmore</a>
-                    <br>The project was funded by the Austrian Science Fund (FWF) as the stand-alone project p33042.</br>
-                </div>
-            </div>
-        </article>
-        <article class="postcard light red">
-            <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a href="#">List of Publication</a></h1>
-                <div class="postcard__subtitle small">
-                    
-                </div>
-                <div class="postcard__bar">
-                   
-                </div>
-                <div class="postcard__preview-txt"> 
-                    Anevlavi V., Prochaska W., Ladstätter S., Kabakchieva G., Katsarova V., Provenance Matters. A Multi-Proxy Approach for the Determination of White Marbles from Villa Armira, Bulgaria. In: Yavuz et al. (eds) ASMOSIA XII - Association for the Study of Marble & Other Stones in Antiquity XII. INTERNATIONAL CONFERENCE Proceedings, (2023) İzmir, pp. 165-174 <br><br>
-                    Anevlavi, V., Prochaska, W., Cenati, C. et al., Geochemical and petrographic investigation of the provenance of white marble decorative elements from the Roman Villa Armira in south-eastern Bulgaria. Archaeol Anthropol Sci 14, 229 (2022). https://doi.org/10.1007/s12520-022-01699-9 <br><br>
-                    Anevlavi V., Cenati C., Katsarova V., Prochaska W., Ladstätter S., Marble Provenance Analysis: The case study of Kasnakovo. Metalla Sonderheft, Bd. 9, S. (2019) 52–55
-                    <br><br><br>
-                    <b>Forthcoming:</b><br>
-                    Andreeva P., Anevlavi V., Prochaska W. and Ladstätter S. (forthcoming) Statuary in the marble trade networks of Roman Thrace: A case study of unfinished and replicated products. In Ladstätter S., Prochaska W. and Anevlavi V. (eds.) Proceedings of the XIII ASMOSIA conference<br><br>
-                    Anevlavi V., Andreeva P., Prochaska W., Ladstätter S. and Popov H. (forthcoming) Marble trade between the borders of Roman Macedonia and Thrace: The case study of the funerary monuments. In Ladstätter S., Prochaska W. and Anevlavi V. (eds.) Proceedings of the XIII ASMOSIA conference
-                </div>
-            </div>
-        </article>
-
-        <article class="postcard light green">
-            <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a href="#">Project team</a></h1>
-                <div class="postcard__subtitle small">
-                    
-                </div>
-                <div class="postcard__bar">
-                   
-                </div>
-                <div class="postcard__preview-txt"> 
-                        <b>Sabine Ladstätter – Project Leader</b> <br>
-                        (Archaeology)<br><br>
-                        <a href="https://orcid.org/0000-0002-0131-5640" target="_blank">https://orcid.org/0000-0002-0131-5640</a> <br>
-                        <a href="https://www.oeaw.ac.at/oeai/institut/team/person/sabine-ladstaetter" target="_blank">https://www.oeaw.ac.at/oeai/institut/team/person/sabine-ladstaetter</a> <br>
-                        <a href="https://www.researchgate.net/profile/Sabine-Ladstaetter" target="_blank">https://www.researchgate.net/profile/Sabine-Ladstaetter</a> <br>
-                        <br><br>
-                        <b>Walter Prochaska</b> <br>
-                        (Archaeometry) <br><br>
-                        <a href="https://www.researchgate.net/profile/Walter-Prochaska" target="_blank">https://www.researchgate.net/profile/Walter-Prochaska</a> <br>
-                        <a href="https://www.oeaw.ac.at/oeai/institut/team/person/walter-prochaska" target="_blank">https://www.oeaw.ac.at/oeai/institut/team/person/walter-prochaska</a><br>
-                        <a href="https://www.walter-prochaska.at/" target="_blank">https://www.walter-prochaska.at/</a> <br>
-                        <br><br>
-                        <b>Vasiliki Anevlavi</b><br>
-                        (Archaeometry)<br><br>
-                        <a href="https://www.researchgate.net/profile/Vasiliki-Anevlavi" target="_blank">https://www.researchgate.net/profile/Vasiliki-Anevlavi</a> <br>
-                        <a href="https://orcid.org/0000-0001-7332-1129" target="_blank">https://orcid.org/0000-0001-7332-1129</a><br>
-                        <a href="https://www.oeaw.ac.at/oeai/institut/team/person/vasiliki-anevlavi" target="_blank">https://www.oeaw.ac.at/oeai/institut/team/person/vasiliki-anevlavi</a> <br>
-                        <br><br>
-                        <b>Petya Andreeva</b><br>
-                        (Archaeology)<br><br>
-                        <a href="https://orcid.org/0000-0001-6749-3880" target="_blank">https://orcid.org/0000-0001-6749-3880</a><br>
-                        <a href="https://www.oeaw.ac.at/oeai/institut/team/person/petya-andreeva" target="_blank">https://www.oeaw.ac.at/oeai/institut/team/person/petya-andreeva</a> <br>
-                        <a href="http://naim.bg/en/content/person/700/0/178/" target="_blank" >http://naim.bg/en/content/person/700/0/178/</a><br>
-                        <br><br>
-                        <b>Benjamin Frerix</b><br>
-                        <a href="https://www.oeaw.ac.at/oeai/institut/team/person/benjamin-frerix" target="_blank">https://www.oeaw.ac.at/oeai/institut/team/person/benjamin-frerix</a> <br>
-                        <a href="https://orcid.org/0009-0000-4955-9399" target="_blank">https://orcid.org/0009-0000-4955-9399</a> <br>
-                </div>
-            </div>
-        </article>
+            {% endfor %}
+        </div>
     </div>
 </section>
-
 
 {% endblock %}

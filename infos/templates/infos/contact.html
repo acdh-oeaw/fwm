@@ -1,0 +1,29 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+
+<section class="light" style="color: black; padding-top: 20px;">
+    <div class="container py-2">
+        <div class="row">
+                <div class="col-md-12 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-orange text-white">
+                            <h5 class="card-title mb-0">Contact</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" style="text-align: justify;"></p>
+                            <p class="card-text">
+                                <b>Contact: </b>DAC- Digital Archaeology and Classics <br>@ Austrian Archaeological Institute<br><br>
+                                <b>Email: </b> oeai-dac@oeaw.ac.at
+                            </p>
+                            <p><b>URL: </b><a href="https://www.oeaw.ac.at/oeai/oeaidigital/aufgaben" target="_blank">Homepage</a></p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

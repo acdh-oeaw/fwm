@@ -15,17 +15,17 @@
 {% block content %}
 <!-- <div class="container"> -->
 <div class="card w-100">
-  <div class="card-header">
+  <div class="card-header" style="background-color:#f7f7f7;">
     <div class="row">
       <div class="col-md-2">
       </div>
       <div class="col-md-8">
         <h2 style="text-align: center;">
           <small><a href="{{ object.get_listview_url }}" title="back to listview"><small>{{ class_name }}</small></a></small>
-          {{ object }}
+          <span style=color:black;>{{ object }}</span>
           {% if user.is_authenticated %}
             <a href="{{ object.get_edit_url }}" title="edit">
-              <i data-feather="edit"></i>
+              <i data-feather="edit">&#128196;</i>
             </a>
           {% endif %}
           {% if 'archeutils' in APPS %}
@@ -45,10 +45,17 @@
     <legend style="color:black">Basic Information</legend>
     <div class="row">
         <div class="col-md-6">
-            <table class="table table-responsive table-hover">
+            <table class="table table-responsive table-hover" style="text-align:left">
+                {% if class_name == 'Analyse' and object.has_new_analyse %}
+                <tr>
+                  <td colspan="2"> <b style="color:red">Attention: old entry. You can find the new one <a href="{% url 'archiv:analyse_detail' object.new_analyse.id %}">here</a>.</b></td>
+                 
+                </tr>
+                
+                {% endif %}
               {% for x in object.field_dict %}
               {% if x.value and x.value != "None" %} <!-- Wenn keine Values zum Attribut vorhanden sind - nicht anzeigen-->
-              {% if x.verbose_name != "images" and x.verbose_name != "Images_Quarry" and x.verbose_name != "Images_Analyse" and x.verbose_name != "Images_Artefact" and x.verbose_name != "Legacy ID" and x.verbose_name != "ID" and x.verbose_name != "Analyse_Project" and x.verbose_name != "Artefact_Project" and x.verbose_name != "Sample_Project" %} <!-- Die einzelnen Einträge zu den Bildern nicht anzeigen-->
+              {% if x.verbose_name != "images" and x.verbose_name != "Images_Quarry" and x.verbose_name != "Images_Analyse" and x.verbose_name != "Images_Artefact" and x.verbose_name != "Legacy ID" and x.verbose_name != "ID" and x.verbose_name != "Analyse_Project" and x.verbose_name != "Artefact_Project" and x.verbose_name != "Sample_Project" and x.verbose_name != "new analyse" %} <!-- Die einzelnen Einträge zu den Bildern nicht anzeigen-->
               {% if user.is_authenticated or object.oa or not x.extra_fields or x.extra_fields.is_public %} <!-- User ist eingeloggt oder der Datensatz ist Open Access -->
               <tr>
                 <th>
@@ -65,8 +72,6 @@
                     <a href="{{ y.get_absolute_url }}">{{ y }}</a>
                   </li>
                   {% endfor %}
-                  {% elif  x.f_type == 'FK' %}
-                  <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
                   {% elif  x.f_type == 'FK' %}
                   <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
                   {% elif  x.f_type == 'REVRESE_RELATION' %}
@@ -102,12 +107,14 @@
                   {% endif %}
                 </td>
               </tr>
+              
                 {% endif %}
                 {% endif %}
               {% endif %}
-
               {% endfor %}
+              
             </table>
+            
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-4">
@@ -115,7 +122,7 @@
             {% leaflet_map "yourmap" callback="window.map_init_basic" %}
           {% endif %}
 
-          <!-- Zeige Bilder an wenn User eingeloggt oder Opeen Access. Quarry Fotos immer anzeigen -->
+          <!-- Zeige Bilder an wenn User eingeloggt oder Open Access. Quarry Fotos immer anzeigen -->
           {% if user.is_authenticated or object.oa or class_name == "Quarry" %} 
           {% if object.get_images %}
           

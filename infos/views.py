@@ -25,7 +25,7 @@ from . tables import (
 from . models import (
     AboutTheProject,
     ProjectInst,
-    TeamMember
+    TeamMember, 
 )
 from browsing.browsing_utils import (
     GenericListView,
@@ -80,7 +80,12 @@ class TeamMemberDelete(DeleteView):
     def dispatch(self, *args, **kwargs):
         return super(TeamMemberDelete, self).dispatch(*args, **kwargs)
 
-
+    def get_context_data(self, **kwargs):
+        objects = Project.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['objects'] = objects
+        return context
+    template_name = 'infos/about.html'
 class AboutTheProjectListView(GenericListView):
 
     model = AboutTheProject

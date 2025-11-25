@@ -4,16 +4,16 @@
 {% load webpage_extras %}
 {% block content %}
 
-        <div class="jumbotron">
-            <div class="container">
-                <h1 style="text-align:center; color: #111;">{% projects_metadata 'title' %} - Archiv</h1>
-            </div>
+    <div class="container" style="padding-top: 20px;">
+        <div class="search-container">
+            <form method="get">
+                <input type="text" name="q" value="{{ query|default_if_none:'Type to search...' }}" placeholder="Type to search..." />
+                <button type="submit">Search</button>
+            </form>
         </div>
-
-    <div class="container">
         <div class="row">
             <div class="col-md-12" style="text-align:center">
-                <h4>Data-Count</h4>
+                &nbsp;
             </div>
             {% create_object_count app='archiv' as models %}
             {% for x in models %}
@@ -32,5 +32,203 @@
                 {% endif %}
             {% endfor %}
         </div>
+        
+    {% if query %}
+    <div class="search-container" style="margin-bottom:15px;">
+        <h4>Search results for "{{ query }}"</h4>
+            <a href="{% url 'webpage:export_zip' %}?q={{ request.GET.q }}" class="btn btn-sm-download btn-outline-secondary">
+             &#128196; Download </a>
+            
     </div>
+
+    <div class="search-container" style="margin-bottom:25px;">
+        {% if artifact_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards">
+                {% for item in artifact_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:artifact_detail' item.id %}" class="">
+                        <div class="card-header-artifact">
+                            <strong>Artifact ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.artefact_type }}</h5>
+                            <p class="card-subtitle"><b>Findspot</b>: {{ item.find_spot }}</p>
+                            <p class="card-subtitle"><b>Material</b>: {{ item.material }}</p>
+                            <p class="card-subtitle">{{ item.description | slice:200 }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% if geo_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards"> 
+                {% for item in geo_ergebnisse %}
+                <div class="artifact-card"> 
+                    <a href="{% url 'archiv:geography_detail' item.id %}" class="">
+                        <div class="card-header-geo">
+                            <strong>Geography ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-subtitle"><b>Notes</b>: {{ item.notes }}</p>
+                            <p class="card-subtitle"><b>Land</b>: {{ item.land }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if institution_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards"> 
+                {% for item in institution_ergebnisse %}
+                <div class="artifact-card"> 
+                    <a href="{% url 'archiv:institution_detail' item.id %}" class="">
+                        <div class="card-header-institution">
+                            <strong>Institution ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-subtitle"><b>Identifier</b>: {{ item.identifier }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if project_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards">
+                {% for item in project_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:project_detail' item.id %}" class="">
+                        <div class="card-header-project">
+                            <strong>Project ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-subtitle"><b>Description</b>: {{ item.description | slice:200 }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>    
+        {% endif %}
+
+        {% if quarry_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards">
+                {% for item in quarry_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:quarry_detail' item.id %}" class="">
+                        <div class="card-header-quarry">
+                            <strong>Quarry ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-subtitle"><b>Description</b>: {{ item.description }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if quarrygroup_ergebnisse %}
+        <div classe="row">
+            <div class="artifact-cards">
+
+                {% for item in quarrygroup_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:quarrygroup_detail' item.id %}" class="">
+                        <div class="card-header-quarrygroup">
+                            <strong>Quarrygroup ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-subtitle"><b>Description</b>: {{ item.description }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if sample_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards">
+                {% for item in sample_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:sample_detail' item.id %}" class="">
+                        <div class="card-header-sample">
+                            <strong>Sample ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Inventory Number: {{ item.oeai_inventory_number }}</h5>
+                            <p class="card-subtitle"><b>Material</b>: {{ item.material }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if number_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards">
+                {% for item in number_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:number_detail' item.id %}" class="">
+                        <div class="card-header-number">
+                            <strong>Number ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Inventory Number: {{ item.oeai_inventory_number }}</h5>
+                            <p class="card-subtitle"><b>Number</b>: {{ item.number }}</p>
+                            <p class="card-subtitle"><b>Type</b>: {{ item.number_type }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if analyse_ergebnisse %}
+        <div class="row">
+            <div class="artifact-cards">
+                {% for item in analyse_ergebnisse %}
+                <div class="artifact-card">
+                    <a href="{% url 'archiv:analyse_detail' item.id %}" class="">
+                        <div class="card-header-analyse">
+                            <strong>Analyse ID:</strong> {{ item.id }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Inventory Number: {{ item.oeai_inventory_number }}</h5>
+                            <p class="card-subtitle"><b>Type</b>: {{ item.analyse_type }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+
 {% endblock %}

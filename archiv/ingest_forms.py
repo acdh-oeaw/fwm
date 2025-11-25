@@ -10,5 +10,6 @@ def get_choices():
     return list(choices)
 
 
-class SelectSheeForm(forms.Form):
+class SelectSheetForm(forms.Form):
+    csv_file = forms.FileField()
     sheet = forms.ChoiceField(choices=get_choices())

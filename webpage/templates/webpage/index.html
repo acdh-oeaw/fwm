@@ -4,68 +4,31 @@
 {% load webpage_extras %}
 {% block content %}
        
-        <section class="light">
-            <div class="container py-2">
-                <div class="h1 text-center text-dark" id="pageHeaderTitle">{% projects_metadata 'title' %}</div>
-                <div class="h3 text-center text-dark" id="pageHeaderUnderTitle">{% projects_metadata 'subtitle' %}</div>    
-                <article class="postcard light blue">
-                    <a class="postcard__img_link" href="#">
-                        <img class="postcard__img" src="{% static 'webpage/img/FWM0061_small.png' %}" alt="Image Title" />
-                    </a>
-                    <div class="postcard__text t-dark">
-                        <h1 class="postcard__title blue"><a href="#">The Project</a></h1>
-                        <div class="postcard__subtitle small">
-                        </div>
-                        <div class="postcard__bar"></div>
-                        <div class="postcard__preview-txt">The project is positioned within a field of tension between prestige objects, works of art, and building materials, yet it also incorporates a new geographical space apart from the west-east division of the Mediterranean world. A large number of methods are being performed in this project for the investigation of the provenance studies. It connects the antiquity-directed disciplines of archaeology and Roman economic history with geology and the application-based analysis procedures of petrography and geochemistry. </div>
-                        <ul class="postcard__tagbox">
-                            <li class="tag__item play blue">
-                                <a href="#"><i class="fas fa-play mr-2"></i>Short Description</a>
-                            </li>
-                            <li class="tag__item play blue">
-                                <a href="#"><i class="fas fa-play mr-2"></i>Team</a>
-                            </li>
-                            Photo: The artefact FWM0061, the Thracian horseman vom Philippopolis (NAIM Museum, Sofia) (© ÖAW-ÖAI/V. Anevlavi)
-                        </ul>
-                    </div>
-                </article>
-                <article class="postcard light red">
-                    <a class="postcard__img_link" href="#">
-                        <img class="postcard__img" src="{% static 'webpage/img/DSC_0543_small.png' %}" alt="Image Title" />	
-                    </a>
-                    <div class="postcard__text t-dark">
-                        <h1 class="postcard__title red"><a href="#">The Methods</a></h1>
-                        <div class="postcard__subtitle small">
-                        </div>
-                        <div class="postcard__bar"></div>
-                        <div class="postcard__preview-txt">A combination of the following analytical procedures is applied: </br>petrography, analysis of the stable isotopes of C and O, trace element chemistry, and analysis of micro-inclusions.  
-
-                            For the analysis of stable isotopes of O and C, an amount of sample in the range of a few mg is required. However, extremely small samples in the order of about 1 mg taken from surfaces imply the risk of wrong results because of appreciable modification of the isotope composition. Therefore, a well-considered sampling is a prerequisite. Additional variables are obtained by trace element chemistry. In contrast to the outsized amount of stable isotope data, the information on other chemical parameters of ancient white marbles is rather moderate. In this context, it is important to mention that those elements that are incorporated into the carbonate lattice (Mg, Fe, Mn, Sr, and Zn) exhibit a fairly homogeneous and consistent distribution and can advantageously be used to discriminate between different types of white marbles. The analysis of micro-inclusions, based on the “crush and leach” analysis of extractable total dissolved solids - TDS - from marbles and carbonate rocks, are used. These solutes occur basically in very small fluid-filled cavities, the so-called fluid inclusions, which can be found in all marbles and are usually relatively homogeneous in composition. Petrography is applied systematically; if the size of the sample is sufficient, thin sections for microscopic investigations are prepared. </div>
-                            <ul class="postcard__tagbox">
-                                Photo: The Asenovgrad quarries near the Roman Philippopolis (Lovcation: Ravdin 1) (© ÖAW-ÖAI/V. Anevlavi)
-                            </ul>
-                    </div>
-
-                </article>
-                <article class="postcard light green">
-                    <a class="postcard__img_link" href="#">
-                        <img class="postcard__img" src="{% static 'webpage/img/fwm_4.PNG' %}" alt="Image Title" />
-                    </a>
-                    <div class="postcard__text t-dark">
-                        <h1 class="postcard__title green"><a href="#">The Data</a></h1>
-                        <div class="postcard__subtitle small">
-                        </div>
-                        <div class="postcard__bar"></div>
-                        <div class="postcard__preview-txt">The archaeological and archaeometric data acquired during the project, as well as all published (white) marble numerical data, are included in the database. These samples are referred to as archaeological and quarry samples. The metadata for each individual sample is first recorded. A description for each individual sample is provided as well as the material description and quarry description. Geographic data are available, including archaeological sites, quarries, and laboratories. The image data (space, objects, and thin sections) are linked to the corresponding sample. If there are publications on individual sites and objects, these are included in a bibliographic collection, also linked to the corresponding sample. </div>
-                        <ul class="postcard__tagbox">
-                            <li class="tag__item play green">
-                                <a href="#"><i class="fas fa-play mr-2"></i>Explore Data</a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </article>
-               
+<section class="light" style="margin-top: 20px; padding-top: 40px;">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Column: Image -->
+            <div class="col-md-5 mb-4 mb-md-0">
+                <img class="postcard__img img-fluid rounded shadow-lg" 
+                     src="{% static 'webpage/img/FWM0061_small.png' %}" 
+                     alt="Image Title" />
+                     Thracian horseman @ÖAW-ÖAI
             </div>
-        </section>
+            <!-- Right Column: Text -->
+            <div class="col-md-7" style="color: black;">
+                <h2 class="display-4 font-weight-bold">
+                    <span style="color: red;">oeai.</span>METRIX
+                </h2>
+                <h3 class="text-muted mb-4">Your Gateway to Archaeometric Data</h3>
+                <p class="text-justify" style="font-size: 1.1rem;">
+                    oeai.METRIX provides a structured and accessible platform for the documentation, analysis, and dissemination of archaeometric research data. 
+                    The primary goals of oeai.METRIX are to support interdisciplinary archaeological science and to offer accurate, reliable datasets derived from a variety of analytical methods, including materials characterization and provenance studies. 
+                    By employing controlled vocabularies and integrating visual resources from oeai.DAM, we ensure that the data is standardized, interoperable, and readily available for further research and comparative analysis.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 {% endblock %}

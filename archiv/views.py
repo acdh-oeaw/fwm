@@ -7,6 +7,11 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 from django.views.generic import TemplateView
+import csv
+import io
+import zipfile
+from django.db.models import Q
+from django.shortcuts import render
 from django_celery_results.models import TaskResult
 from . filters import (
     AnalyseListFilter,
@@ -59,6 +64,234 @@ from browsing.browsing_utils import (
 
 from archiv.tasks import count_geography
 
+def export_zip(request):
+    query = request.GET.get("q", "").strip()
+    print(query)
+
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+
+        # Helper-Funktion für CSV-Erzeugung
+        def write_csv_to_zip(queryset, fieldnames, filename, row_func):
+            output = io.StringIO()
+            writer = csv.writer(output)
+            writer.writerow(fieldnames)
+            for obj in queryset:
+                writer.writerow(row_func(obj))
+            zip_file.writestr(filename, output.getvalue())
+
+            # Artifact
+        artifact_ergebnisse = Artifact.objects.filter(
+            Q(description__icontains=query) | 
+            Q(find_spot_extra__icontains=query) | 
+            Q(preservation__icontains=query) |
+            Q(material_id__pref_label__icontains=query) |
+            Q(find_spot_id__name__icontains=query) |
+            Q(storage_place_id__name__icontains=query)
+        )
+        write_csv_to_zip(
+            artifact_ergebnisse,
+            ['ID', 'Beschreibung', 'Fundort (extra)', 'Erhaltungszustand', 'Material', 'Fundort', 'Lagerort'],
+            'artifacts.csv',
+            lambda a: [a.id, a.description, a.find_spot_extra, a.preservation,
+                       getattr(a.material_id, 'pref_label', ''), 
+                       getattr(a.find_spot_id, 'name', ''), 
+                       getattr(a.storage_place_id, 'name', '')]
+        )
+
+        # Geography
+        geo_ergebnisse = Geography.objects.filter(
+            Q(name__icontains=query) | 
+            Q(notes__icontains=query) |
+            Q(land__icontains=query) |
+            Q(location__icontains=query) |
+            Q(province__icontains=query)
+        )
+        write_csv_to_zip(
+            geo_ergebnisse,
+            ['ID', 'Name', 'Notizen', 'Land', 'Ort', 'Provinz'],
+            'geography.csv',
+            lambda g: [g.id, g.name, g.notes, g.land, g.location, g.province]
+        )
+
+        # Institution
+        institution_ergebnisse = Institution.objects.filter(
+            Q(name__icontains=query)
+        )
+        write_csv_to_zip(
+            institution_ergebnisse,
+            ['ID', 'Name'],
+            'institutions.csv',
+            lambda i: [i.id, i.name]
+        )
+
+        # Project
+        project_ergebnisse = Project.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(contact_name__icontains=query)
+        )
+        write_csv_to_zip(
+            project_ergebnisse,
+            ['ID', 'Name', 'Beschreibung', 'Kontaktperson'],
+            'projects.csv',
+            lambda p: [p.id, p.name, p.description, p.contact_name]
+        )
+
+        # Quarry
+        quarry_ergebnisse = Quarry.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(geography_id__name__icontains=query)
+        )
+        write_csv_to_zip(
+            quarry_ergebnisse,
+            ['ID', 'Name', 'Beschreibung', 'Geographie'],
+            'quarries.csv',
+            lambda q: [q.id, q.name, q.description, getattr(q.geography_id, 'name', '')]
+        )
+
+        # QuarryGroup
+        quarrygroup_ergebnisse = QuarryGroup.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query)
+        )
+        write_csv_to_zip(
+            quarrygroup_ergebnisse,
+            ['ID', 'Name', 'Beschreibung'],
+            'quarrygroups.csv',
+            lambda qg: [qg.id, qg.name, qg.description]
+        )
+
+        # Sample
+        sample_ergebnisse = Sample.objects.filter(
+            Q(oeai_inventory_number__icontains=query) | 
+            Q(notes__icontains=query) |
+            Q(material_id__pref_label__icontains=query) |
+            Q(quarry_id__name__icontains=query) |
+            Q(quarry_group_id__name__icontains=query)
+        )
+        write_csv_to_zip(
+            sample_ergebnisse,
+            ['ID', 'Inventarnummer', 'Notizen', 'Material', 'Steinbruch', 'Steinbruchgruppe'],
+            'samples.csv',
+            lambda s: [s.id, s.oeai_inventory_number, s.notes,
+                       getattr(s.material_id, 'pref_label', ''),
+                       getattr(s.quarry_id, 'name', ''),
+                       getattr(s.quarry_group_id, 'name', '')]
+        )
+
+        # Number
+        number_ergebnisse = Number.objects.filter(
+            Q(oeai_inventory_number_id__oeai_inventory_number__icontains=query) | 
+            Q(number__icontains=query) |
+            Q(number_type__pref_label__icontains=query)
+        )
+        write_csv_to_zip(
+            number_ergebnisse,
+            ['ID', 'Nummer', 'Typ', 'Inventarnummer'],
+            'numbers.csv',
+            lambda n: [n.id, n.number,
+                       getattr(n.number_type, 'pref_label', ''),
+                       getattr(n.oeai_inventory_number_id, 'oeai_inventory_number', '')]
+        )
+
+        # Analyse
+        analyse_ergebnisse = Analyse.objects.filter(
+            Q(oeai_inventory_number_id__oeai_inventory_number__icontains=query) |
+            Q(analyse_type_id__pref_label__icontains=query)
+        )
+        write_csv_to_zip(
+            analyse_ergebnisse,
+            ['ID', 'Inventarnummer', 'Analyse-Typ'],
+            'analyses.csv',
+            lambda a: [a.id,
+                       getattr(a.oeai_inventory_number_id, 'oeai_inventory_number', ''),
+                       getattr(a.analyse_type_id, 'pref_label', '')]
+        )
+        
+    response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
+    response['Content-Disposition'] = f'attachment; filename=suche_{query}.zip'
+    return response
+
+def explore(request):
+    query=request.GET.get("q", "").strip()
+    artifact_ergebnisse = []
+    geo_ergebnisse = []
+    institution_ergebnisse = []
+    project_ergebnisse = []
+    quarry_ergebnisse = []
+    quarrygroup_ergebnisse = []
+    sample_ergebnisse = []
+    number_ergebnisse = []
+    analyse_ergebnisse = []
+
+    if query: 
+        artifact_ergebnisse = Artifact.objects.filter(
+            Q(description__icontains=query) | 
+            Q(find_spot_extra__icontains=query) | 
+            Q(preservation__icontains=query) |
+            Q(material_id__pref_label__icontains=query) |
+            Q(find_spot_id__name__icontains=query) |
+            Q(storage_place_id__name__icontains=query)
+        )
+        geo_ergebnisse = Geography.objects.filter(
+            Q(name__icontains=query) | 
+            Q(notes__icontains=query) |
+            Q(land__icontains=query) |
+            Q(location__icontains=query) |
+            Q(province__icontains=query)
+        )
+        institution_ergebnisse = Institution.objects.filter(
+            Q(name__icontains=query)
+        )
+        project_ergebnisse = Project.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(contact_name__icontains=query)
+        )
+        quarry_ergebnisse = Quarry.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(geography_id__name__icontains=query)
+        )
+        quarrygroup_ergebnisse = QuarryGroup.objects.filter(
+            Q(name__icontains=query) | 
+            Q(description__icontains=query)
+        )
+        sample_ergebnisse = Sample.objects.filter(
+            Q(oeai_inventory_number__icontains=query) | 
+            Q(notes__icontains=query) |
+            Q(material_id__pref_label__icontains=query) |
+            Q(quarry_id__name__icontains=query) |
+            Q(quarry_group_id__name__icontains=query)
+        )
+        number_ergebnisse = Number.objects.filter(
+            Q(oeai_inventory_number_id__oeai_inventory_number__icontains=query) | 
+            Q(number__icontains=query) |
+            Q(number_type__pref_label__icontains=query) |
+            Q(oeai_inventory_number_id__oeai_inventory_number__icontains=query)
+        )
+        analyse_ergebnisse = Analyse.objects.filter(
+            Q(oeai_inventory_number_id__oeai_inventory_number__icontains=query) |
+            Q(analyse_type_id__pref_label__icontains=query)
+        )
+
+    context = {
+        "query":query,
+        "artifact_ergebnisse": artifact_ergebnisse,
+        "geo_ergebnisse": geo_ergebnisse,
+        "institution_ergebnisse": institution_ergebnisse,
+        "project_ergebnisse": project_ergebnisse, 
+        "quarry_ergebnisse": quarry_ergebnisse, 
+        "quarrygroup_ergebnisse": quarrygroup_ergebnisse,
+        "sample_ergebnisse": sample_ergebnisse,
+        "number_ergebnisse": number_ergebnisse,
+        "analyse_ergebnisse": analyse_ergebnisse
+    }
+    return render(request, "webpage/explore.html", context)
+
+        
 
 class AnalyseListView(GenericListView):
 
@@ -545,3 +778,12 @@ class ProjectDelete(DeleteView):
 class ImageDetailView(BaseDetailView):
     model = Image
     template_name = 'archiv/generic_detail.html'
+
+class ProjectsView(TemplateView):
+    model = Project
+    def get_context_data(self, **kwargs):
+        objects = Project.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['objects'] = objects
+        return context
+    template_name = 'infos/about.html'

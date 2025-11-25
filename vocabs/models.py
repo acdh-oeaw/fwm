@@ -122,3 +122,8 @@ class SkosConcept(MPTTModel):
     @classmethod
     def get_natural_primary_key(self):
         return "pref_label"
+    
+    def get_absolute_url(self):
+        if self.source_uri:
+            return self.source_uri
+        return "#"
