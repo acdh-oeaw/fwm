@@ -14,12 +14,10 @@ def count_geography(sleeping_seconds):
 
 @shared_task
 def ingest_data(model_name):
-    model = apps.get_model('archiv', model_name)
-    file_class_map_dict = {
-        model.__name__: model.get_source_table()
-    }
+    model = apps.get_model("archiv", model_name)
+    file_class_map_dict = {model.__name__: model.get_source_table()}
     run_import(
-        'archiv',
+        "archiv",
         file_class_map_dict=file_class_map_dict,
         limit=False,
     )

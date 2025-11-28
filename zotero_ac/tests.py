@@ -12,32 +12,29 @@ client = Client()
 
 @override_settings(ZOTERO_URL="https://api.zotero.org/groups/440857/items")
 class ZoteroAcTest(TestCase):
-    fixtures = ['dump.json']
+    fixtures = ["dump.json"]
 
     def test_001_no_schema_zotero_url(self):
         wrong_url = "aslödfkj"
-        result = search_zotero('asdf', url=wrong_url)
+        result = search_zotero("asdf", url=wrong_url)
         self.assertEqual(result, [])
 
     def test_002_wrong_zotero_url(self):
         wrong_url = "http://slödfkj"
-        result = search_zotero('asdf', url=wrong_url)
+        result = search_zotero("asdf", url=wrong_url)
         self.assertEqual(result, [])
 
     def test_003_good_url(self):
-        result = search_zotero('Histogis', url=ZOTERO_URL)
-        self.assertTrue('zotero_key' in result[0].keys())
+        result = search_zotero("Histogis", url=ZOTERO_URL)
+        self.assertTrue("zotero_key" in result[0].keys())
 
     def test_004_get_zotero_item(self):
-        result = get_zotero_item(
-            ZOTERO_ITEM, base_url=ZOTERO_URL
-        )
-        self.assertTrue(result['zotero_key'], ZOTERO_ITEM)
+        result = get_zotero_item(ZOTERO_ITEM, base_url=ZOTERO_URL)
+        self.assertTrue(result["zotero_key"], ZOTERO_ITEM)
 
     def test_005_save_object(self):
         item = ZoteroReference.objects.create(
-            zotero_key=ZOTERO_ITEM,
-            location="p. 10-12"
+            zotero_key=ZOTERO_ITEM, location="p. 10-12"
         )
         self.assertEqual(item.zotero_key, ZOTERO_ITEM)
         self.assertTrue(item.location in item.__str__())
@@ -57,7 +54,7 @@ class ZoteroAcTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_007_search_zotero_ac(self):
-        url = reverse('zotero-ac:zotero-ac')
+        url = reverse("zotero-ac:zotero-ac")
         response = client.get(url, {"q": "Schlüssel"})
         self.assertEqual(response.status_code, 200)
         response = client.get(url, {"q": "a"})
@@ -65,8 +62,7 @@ class ZoteroAcTest(TestCase):
 
     def test_008_save_non_exsting_item(self):
         item = ZoteroReference.objects.create(
-            zotero_key="ZOTERO_ITEM",
-            location="p. 10-12"
+            zotero_key="ZOTERO_ITEM", location="p. 10-12"
         )
         self.assertEqual(item.zotero_key, "ZOTERO_ITEM")
         self.assertTrue("No item with key" in item.__str__())

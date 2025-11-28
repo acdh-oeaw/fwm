@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class ZoteroAcConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'zotero_ac'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "zotero_ac"

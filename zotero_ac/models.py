@@ -15,18 +15,18 @@ class ZoteroItemBase(models.Model):
 
     class Meta:
         abstract = True
-        ordering = [
-            'zotero_creator', 'id'
-        ]
+        ordering = ["zotero_creator", "id"]
 
     @classmethod
     def cur_zotero_url(cls):
-        zotero = getattr(settings, 'ZOTERO_URL')
+        zotero = getattr(settings, "ZOTERO_URL")
         return zotero
 
     def save(self, *args, **kwargs):
         if self.zotero_key and not self.zotero_data:
-            zotero_object = get_zotero_item(self.zotero_key, base_url=self.cur_zotero_url())
+            zotero_object = get_zotero_item(
+                self.zotero_key, base_url=self.cur_zotero_url()
+            )
             for key, value in zotero_object.items():
                 setattr(self, key, value)
         super().save(*args, **kwargs)
@@ -36,25 +36,22 @@ class ZoteroItemBase(models.Model):
             if self.zotero_date:
                 my_str = f"{self.zotero_creator}, {self.zotero_title}, {self.zotero_date.year} || {self.zotero_key}"
             else:
-                my_str = f"{self.zotero_creator}, {self.zotero_title} || {self.zotero_key}"
+                my_str = (
+                    f"{self.zotero_creator}, {self.zotero_title} || {self.zotero_key}"
+                )
             return my_str
         else:
             return f"{self.zotero_key}"
 
 
 class ZoteroItem(ZoteroItemBase):
-
     @classmethod
     def get_ac_url(self):
-        return reverse('zotero-ac:zotero-item')
+        return reverse("zotero-ac:zotero-item")
 
 
 class ZoteroReference(ZoteroItemBase):
-    location = models.CharField(
-        max_length=20,
-        null=True,
-        blank=True
-    )
+    location = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         if self.zotero_title:
@@ -68,4 +65,4 @@ class ZoteroReference(ZoteroItemBase):
 
     @classmethod
     def get_ac_url(self):
-        return reverse('zotero-ac:zotero-reference')
+        return reverse("zotero-ac:zotero-reference")

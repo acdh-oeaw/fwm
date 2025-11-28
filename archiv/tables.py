@@ -2,7 +2,7 @@
 import django_tables2 as tables
 
 from browsing.utils import MergeColumn
-from . models import (
+from .models import (
     Analyse,
     Artifact,
     Geography,
@@ -11,103 +11,95 @@ from . models import (
     Quarry,
     QuarryGroup,
     Sample,
-    Project
+    Project,
 )
 
 
 class AnalyseTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Analyse
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class ArtifactTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Artifact
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class GeographyTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Geography
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class InstitutionTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Institution
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class NumberTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Number
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class QuarryTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Quarry
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class QuarryGroupTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = QuarryGroup
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class SampleTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Sample
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
-class ProjectTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+class ProjectTable(tables.Table):
+    id = tables.LinkColumn(verbose_name="ID")
+    merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
 
     class Meta:
         model = Project
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}

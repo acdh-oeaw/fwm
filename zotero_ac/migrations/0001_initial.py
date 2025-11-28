@@ -4,42 +4,62 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ZoteroItem',
+            name="ZoteroItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('zotero_key', models.CharField(max_length=20)),
-                ('zotero_title', models.TextField(blank=True, null=True)),
-                ('zotero_creator', models.CharField(blank=True, max_length=250, null=True)),
-                ('zotero_date', models.DateField(blank=True, null=True)),
-                ('zotero_data', models.JSONField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("zotero_key", models.CharField(max_length=20)),
+                ("zotero_title", models.TextField(blank=True, null=True)),
+                (
+                    "zotero_creator",
+                    models.CharField(blank=True, max_length=250, null=True),
+                ),
+                ("zotero_date", models.DateField(blank=True, null=True)),
+                ("zotero_data", models.JSONField(blank=True, null=True)),
             ],
             options={
-                'ordering': ['zotero_creator', 'id'],
-                'abstract': False,
+                "ordering": ["zotero_creator", "id"],
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='ZoteroReference',
+            name="ZoteroReference",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('zotero_key', models.CharField(max_length=20)),
-                ('zotero_title', models.TextField(blank=True, null=True)),
-                ('zotero_creator', models.CharField(blank=True, max_length=250, null=True)),
-                ('zotero_date', models.DateField(blank=True, null=True)),
-                ('zotero_data', models.JSONField(blank=True, null=True)),
-                ('location', models.CharField(blank=True, max_length=20, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("zotero_key", models.CharField(max_length=20)),
+                ("zotero_title", models.TextField(blank=True, null=True)),
+                (
+                    "zotero_creator",
+                    models.CharField(blank=True, max_length=250, null=True),
+                ),
+                ("zotero_date", models.DateField(blank=True, null=True)),
+                ("zotero_data", models.JSONField(blank=True, null=True)),
+                ("location", models.CharField(blank=True, max_length=20, null=True)),
             ],
             options={
-                'ordering': ['zotero_creator', 'id'],
-                'abstract': False,
+                "ordering": ["zotero_creator", "id"],
+                "abstract": False,
             },
         ),
     ]

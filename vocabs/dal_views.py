@@ -9,18 +9,18 @@ class SkosConceptAC(autocomplete.Select2QuerySetView):
         qs = SkosConcept.objects.all()
         if self.q:
             qs = qs.filter(
-                Q(pref_label__icontains=self.q) |
-                Q(source_uri__icontains=self.q)
+                Q(pref_label__icontains=self.q) | Q(source_uri__icontains=self.q)
             )
         return qs
 
 
 class SpecificConcepts(autocomplete.Select2QuerySetView):
-
     def get_queryset(self):
-        tech_collection = self.kwargs['tech_col']
+        tech_collection = self.kwargs["tech_col"]
         try:
-            selected_collection = SkosTechnicalCollection.objects.get(pref_label=tech_collection)
+            selected_collection = SkosTechnicalCollection.objects.get(
+                pref_label=tech_collection
+            )
             qs = SkosConcept.objects.filter(tech_collection=selected_collection)
         except ObjectDoesNotExist:
             qs = SkosConcept.objects.all()

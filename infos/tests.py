@@ -3,17 +3,14 @@ from django.contrib.auth.models import User
 from django.test import Client, TestCase
 
 
-MODELS = list(apps.all_models['archiv'].values())
+MODELS = list(apps.all_models["archiv"].values())
 
 client = Client()
-USER = {
-    "username": "temporary1",
-    "password": "temporary1"
-}
+USER = {"username": "temporary1", "password": "temporary1"}
 
 
 class InfosTest(TestCase):
-    fixtures = ['dump.json']
+    fixtures = ["dump.json"]
 
     def setUp(self):
         self.client = Client()
@@ -37,5 +34,5 @@ class InfosTest(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)
