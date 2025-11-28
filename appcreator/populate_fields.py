@@ -3,20 +3,16 @@ from dateutil.parser import parse
 from pandas import pandas as pd
 import math
 
-from vocabs.models import (
-    SkosCollection,
-    SkosConcept,
-    SkosTechnicalCollection
-)
+from vocabs.models import SkosCollection, SkosConcept, SkosTechnicalCollection
 
 
 def pop_char_field(temp_item, row, cur_attr, max_length=249, fd=None):
-    """ adds value to CharField on the current temp_item
-        :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
-        :param cur_attr: field name of the temp_item object
-        :param max_length: The max_length of the current CharField of the object
-        :return: The temp_item
+    """adds value to CharField on the current temp_item
+    :param temp_item: a model class object
+    :param row: A pandas DataFrame row with column names matching the items field names
+    :param cur_attr: field name of the temp_item object
+    :param max_length: The max_length of the current CharField of the object
+    :return: The temp_item
     """
     lookup_val = fd.get(cur_attr, cur_attr)
     try:
@@ -72,20 +68,17 @@ def pop_float_field(temp_item, row, cur_attr, fd=None):
     try:
         lookup_val = fd.get(cur_attr, cur_attr)
         my_val = float(row[lookup_val])
-        
+
     except ValueError:
         return temp_item
     if math.isnan(my_val):
-        return(temp_item)
+        return temp_item
     else:
         setattr(temp_item, cur_attr, my_val)
     return temp_item
 
 
-def pop_fk_field(
-        current_class, temp_item, row,
-        cur_attr, fd=None, source_name=False
-    ):
+def pop_fk_field(current_class, temp_item, row, cur_attr, fd=None, source_name=False):
     """ adds value to ForeignKey Field on the current temp_item
         :param current_class: a model class
         :param temp_item: a model class object
@@ -99,12 +92,10 @@ def pop_fk_field(
     rel_model_field = current_class._meta.get_field(cur_attr)
     rel_model = rel_model_field.related_model
     rel_model_npk_field = rel_model.get_natural_primary_key()
-    
-    if isinstance(row[lookup_val], str) and not row[lookup_val] == 'x':
+
+    if isinstance(row[lookup_val], str) and not row[lookup_val] == "x":
         my_val = row[lookup_val]
-        get_create_dict = {
-            rel_model_npk_field: my_val
-        }
+        get_create_dict = {rel_model_npk_field: my_val}
         rel_obj, _ = rel_model.objects.get_or_create(**get_create_dict)
         setattr(temp_item, cur_attr, rel_obj)
     else:
@@ -118,7 +109,9 @@ def pop_fk_field(
     return temp_item
 
 
-def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, source_name=None):
+def pop_m2m_field(
+    current_class, temp_item, row, cur_attr, sep="|", fd=None, source_name=None
+):
     """ adds value to ManyToMany Field on the current temp_item
         :param current_class: a model class
         :param temp_item: a model class object
@@ -131,7 +124,7 @@ def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, sou
     lookup_val = fd.get(cur_attr, cur_attr)
     fk = current_class._meta.get_field(cur_attr)
     rel_model_name = fk.related_model._meta.model_name
-    if rel_model_name == 'skosconcept':
+    if rel_model_name == "skosconcept":
         legacy_id = f"{source_name}__{row[lookup_val]}".strip().lower()
         return temp_item
     else:
@@ -139,7 +132,7 @@ def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, sou
             legacy_id = f"{float(row[lookup_val])}".strip().lower()
         except ValueError:
             legacy_id = f"{(row[lookup_val])}".strip().lower()
-    if rel_model_name == 'skosconcept':
+    if rel_model_name == "skosconcept":
         col, _ = SkosCollection.objects.get_or_create(
             name=f"{cur_attr}",
         )
@@ -212,7 +205,7 @@ def pop_date_range_field(temp_item, row, cur_attr, sep="|", fd=None):
         return temp_item
     elif isinstance(row[lookup_val], str) and sep in row[lookup_val]:
         if len(row[lookup_val].split(sep)) == 2:
-            start_date, end_date = row[lookup_val].split('/')
+            start_date, end_date = row[lookup_val].split("/")
             try:
                 valid_start = parse(start_date)
                 valid_end = parse(end_date)

@@ -43,10 +43,10 @@ def get_help_text(instance, field_name):
         return "No helptext for '{}' provided".format(field_name)
 
 
-@register.inclusion_tag('webpage/tags/social_media.html', takes_context=True)
+@register.inclusion_tag("webpage/tags/social_media.html", takes_context=True)
 def social_media(context):
-    """ looks for a 'social_media' key in webpage.py and renders html-tags for each entry """
+    """looks for a 'social_media' key in webpage.py and renders html-tags for each entry"""
     values = {}
-    values['sm_items'] = PM['social_media']
-    values['sm_len'] = len(PM['social_media'])
+    values["sm_items"] = PM["social_media"]
+    values["sm_len"] = len(PM["social_media"])
     return values

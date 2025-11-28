@@ -5,15 +5,22 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0002_analyse_new_analyse'),
+        ("archiv", "0002_analyse_new_analyse"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='analyse',
-            name='new_analyse',
-            field=models.ForeignKey(blank=True, help_text='optional reference to a newer version of this analyse', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='old_analyse', to='archiv.analyse', verbose_name='new analyse'),
+            model_name="analyse",
+            name="new_analyse",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="optional reference to a newer version of this analyse",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="old_analyse",
+                to="archiv.analyse",
+                verbose_name="new analyse",
+            ),
         ),
     ]

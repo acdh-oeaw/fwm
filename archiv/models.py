@@ -25,7 +25,6 @@ from django.http import HttpResponse
 import base64
 
 
-
 OUT_DIR = "./archiv/data/"
 
 
@@ -92,7 +91,7 @@ class Analyse(models.Model):
         data_lookup="license",
     )
     new_analyse = models.ForeignKey(
-        'self',
+        "self",
         related_name="old_analyse",
         on_delete=models.SET_NULL,
         null=True,
@@ -829,7 +828,7 @@ class Analyse(models.Model):
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
-    project=models.ManyToManyField(
+    project = models.ManyToManyField(
         "Project",
         related_name="Analyse_Project",
         help_text="project analyse",
@@ -846,7 +845,7 @@ class Analyse(models.Model):
 
     def __str__(self):
         if self.id:
-            #return "{}".format(self.analyse_type)
+            # return "{}".format(self.analyse_type)
             return str(self.analyse_type)
         else:
             return "{}".format(self.legacy_id)
@@ -878,34 +877,34 @@ class Analyse(models.Model):
 
     def get_edit_url(self):
         return reverse("archiv:analyse_edit", kwargs={"pk": self.id})
-    
+
     def has_new_analyse(self):
         return self.new_analyse is not None
-    
+
     def get_next(self):
         next = next_in_order(self)
         if next:
             return next.get_absolute_url()
         return False
-    
+
     def oa(self):
         return self.open_access
-    
+
     def get_prev(self):
         prev = prev_in_order(self)
         if prev:
             return prev.get_absolute_url()
         return False
-    
+
     def get_images(self):
         Image = Images.objects.filter(analyse_id=self.id)
         im_list = []
 
         for x in Image:
-            if(x.image_stream != None):
-                im_dic={}
-                im_dic["beschreibung"]= x.description
-                im_dic["stream"]=x.image_stream
+            if x.image_stream != None:
+                im_dic = {}
+                im_dic["beschreibung"] = x.description
+                im_dic["stream"] = x.image_stream
                 im_list.append(im_dic)
             else:
                 im_list.append(Images.pictures(x.easydb_id, x.id))
@@ -1061,7 +1060,7 @@ class Artifact(models.Model):
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
-    project=models.ManyToManyField(
+    project = models.ManyToManyField(
         "Project",
         related_name="Artefact_Project",
         help_text="project artefact",
@@ -1079,6 +1078,7 @@ class Artifact(models.Model):
         is_public=True,
         data_lookup="open_access",
     )
+
     class Meta:
         ordering = [
             "id",
@@ -1087,8 +1087,8 @@ class Artifact(models.Model):
 
     def __str__(self):
         if self.id:
-            return str(self.artefact_type)+" ("+str(self.id)+")"
-            #return "{}".format(self.artefact_type, self.id)
+            return str(self.artefact_type) + " (" + str(self.id) + ")"
+            # return "{}".format(self.artefact_type, self.id)
         else:
             return "{}".format(self.legacy_id)
 
@@ -1131,18 +1131,19 @@ class Artifact(models.Model):
         if prev:
             return prev.get_absolute_url()
         return False
+
     def oa(self):
         return self.open_access
-    
+
     def get_images(self):
         Image = Images.objects.filter(artefact_id=self.id)
         im_list = []
 
         for x in Image:
-            if(x.image_stream != None):
-                im_dic={}
-                im_dic["beschreibung"]= x.description
-                im_dic["stream"]=x.image_stream
+            if x.image_stream != None:
+                im_dic = {}
+                im_dic["beschreibung"] = x.description
+                im_dic["stream"] = x.image_stream
                 im_list.append(im_dic)
             else:
                 im_list.append(Images.pictures(x.easydb_id, x.id))
@@ -1465,8 +1466,8 @@ class Number(models.Model):
 
     def __str__(self):
         if self.id:
-            return str(self.number)+" ("+str(self.institute)+")"
-            #return "{}".format(self.number)
+            return str(self.number) + " (" + str(self.institute) + ")"
+            # return "{}".format(self.number)
         else:
             return "{}".format(self.legacy_id)
 
@@ -1643,15 +1644,14 @@ class Quarry(models.Model):
         im_list = []
 
         for x in Image:
-            if(x.image_stream != None):
-                im_dic={}
-                im_dic["beschreibung"]= x.description
-                im_dic["stream"]=x.image_stream
+            if x.image_stream != None:
+                im_dic = {}
+                im_dic["beschreibung"] = x.description
+                im_dic["stream"] = x.image_stream
                 im_list.append(im_dic)
             else:
                 im_list.append(Images.pictures(x.easydb_id, x.id))
         return im_list
-
 
 
 class QuarryGroup(models.Model):
@@ -1679,9 +1679,9 @@ class QuarryGroup(models.Model):
     )
 
     quarry = models.ManyToManyField(
-    "Quarry",
-    related_name="Quarrygroup_Quarry",
-    help_text="Quarry Quarrygroup",
+        "Quarry",
+        related_name="Quarrygroup_Quarry",
+        help_text="Quarry Quarrygroup",
     ).set_extra(
         is_public=True,
         data_lookup="quarry",
@@ -1965,7 +1965,7 @@ class Sample(models.Model):
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
     ).set_extra(is_public=True)
-    project=models.ManyToManyField(
+    project = models.ManyToManyField(
         "Project",
         related_name="Sample_Project",
         help_text="project sample",
@@ -1973,6 +1973,7 @@ class Sample(models.Model):
         is_public=True,
         data_lookup="project",
     )
+
     class Meta:
         ordering = [
             "id",
@@ -1987,7 +1988,7 @@ class Sample(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
-    
+
     def oa(self):
         return self.open_access
 
@@ -2029,9 +2030,9 @@ class Sample(models.Model):
         return False
 
 
-
 class Project(models.Model):
     """nan"""
+
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     name = models.CharField(
         max_length=250,
@@ -2113,9 +2114,9 @@ class Project(models.Model):
     def get_natural_primary_key(self):
         return "name"
 
-   # @classmethod
-   # def get_createview_url(self):
-   #     return reverse("archiv:project_create")
+    # @classmethod
+    # def get_createview_url(self):
+    #     return reverse("archiv:project_create")
 
     def get_absolute_url(self):
         return reverse("archiv:project_detail", kwargs={"pk": self.id})
@@ -2138,8 +2139,10 @@ class Project(models.Model):
             return prev.get_absolute_url()
         return False
 
+
 class Images(models.Model):
     """nan"""
+
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     quarry = models.ForeignKey(
         "Quarry",
@@ -2222,38 +2225,49 @@ class Images(models.Model):
 
     def pictures(easy_db, image_id):
         help_im = {}
-        host ="https://oeaidam.oeaw.ac.at/"
-        api_session = host+"api/v1/session"
-        prefix="data:image/jpg;base64,"
+        host = "https://oeaidam.oeaw.ac.at/"
+        api_session = host + "api/v1/session"
+        prefix = "data:image/jpg;base64,"
 
         response = requests.get(api_session)
         data = response.json()
-        token = data['token']
-        
-        #login on API
-        api_login = host+"api/v1/session/authenticate?token="+token+"&method=easydb&login="+settings.OEAIDAM_USER+"&password="+settings.OEAIDAM_USER_PW
+        token = data["token"]
+
+        # login on API
+        api_login = (
+            host
+            + "api/v1/session/authenticate?token="
+            + token
+            + "&method=easydb&login="
+            + settings.OEAIDAM_USER
+            + "&password="
+            + settings.OEAIDAM_USER_PW
+        )
         response = requests.post(api_login)
-        #get image from easyDB
-        api_download = host+"api/v1/objects/id/"+str(easy_db)+"/?token="+token
+        # get image from easyDB
+        api_download = host + "api/v1/objects/id/" + str(easy_db) + "/?token=" + token
         response_download = requests.get(api_download).json()
 
         # small / preview / original
-        url_small = response_download['bilder']['bild'][0]['versions']['preview']['deep_link_url']
-        des = response_download['bilder']['bild'][0]['original_filename']
-        response_download_link = requests.get(url_small+"?token="+token)
+        url_small = response_download["bilder"]["bild"][0]["versions"]["preview"][
+            "deep_link_url"
+        ]
+        des = response_download["bilder"]["bild"][0]["original_filename"]
+        response_download_link = requests.get(url_small + "?token=" + token)
         img = response_download_link.content
-        
-        #Update/Cache image in DB
-        Images.objects.filter(id=image_id).update(image_stream=prefix + base64.b64encode(img).decode('utf-8'), description=des)
-        
-        #return dictionary with data
-        help_im["beschreibung"]=des
-        help_im["stream"]= prefix + base64.b64encode(img).decode('utf-8')
+
+        # Update/Cache image in DB
+        Images.objects.filter(id=image_id).update(
+            image_stream=prefix + base64.b64encode(img).decode("utf-8"), description=des
+        )
+
+        # return dictionary with data
+        help_im["beschreibung"] = des
+        help_im["stream"] = prefix + base64.b64encode(img).decode("utf-8")
         return help_im
 
-
-    #@classmethod
-    #def get_listview_url(self):
+    # @classmethod
+    # def get_listview_url(self):
     #    return reverse("archiv:image_browse")
 
     @classmethod
@@ -2264,9 +2278,9 @@ class Images(models.Model):
     def get_natural_primary_key(self):
         return "id"
 
-   # @classmethod
-   # def get_createview_url(self):
-   #     return reverse("archiv:project_create")
+    # @classmethod
+    # def get_createview_url(self):
+    #     return reverse("archiv:project_create")
 
     def get_absolute_url(self):
         return reverse("archiv:image_detail", kwargs={"pk": self.id})

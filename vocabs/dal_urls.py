@@ -4,19 +4,13 @@ from django.urls import path
 from vocabs import dal_views
 from vocabs.models import SkosConcept
 
-app_name = 'vocabs'
+app_name = "vocabs"
 
 urlpatterns = [
+    path("concept", dal_views.SkosConceptAC.as_view(), name="concept-ac"),
     path(
-        'concept',
-        dal_views.SkosConceptAC.as_view(),
-        name='concept-ac'
+        r"concept/<str:tech_col>",
+        dal_views.SpecificConcepts.as_view(model=SkosConcept),
+        name="specific-concept-ac",
     ),
-    path(
-        r'concept/<str:tech_col>',
-        dal_views.SpecificConcepts.as_view(
-            model=SkosConcept
-        ),
-        name='specific-concept-ac',
-    )
 ]

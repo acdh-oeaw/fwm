@@ -5,26 +5,49 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('vocabs', '0001_initial'),
-        ('archiv', '0003_alter_analyse_new_analyse'),
+        ("vocabs", "0001_initial"),
+        ("archiv", "0003_alter_analyse_new_analyse"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='analyse',
-            name='license',
-            field=models.ForeignKey(blank=True, help_text='license of the analyse; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_analyse_license_skosconcept', to='vocabs.skosconcept', verbose_name='license'),
+            model_name="analyse",
+            name="license",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="license of the analyse; controlled vocabulary",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="rvn_analyse_license_skosconcept",
+                to="vocabs.skosconcept",
+                verbose_name="license",
+            ),
         ),
         migrations.AddField(
-            model_name='artifact',
-            name='license',
-            field=models.ForeignKey(blank=True, help_text='license of the artifact; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_artifact_license_skosconcept', to='vocabs.skosconcept', verbose_name='license'),
+            model_name="artifact",
+            name="license",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="license of the artifact; controlled vocabulary",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="rvn_artifact_license_skosconcept",
+                to="vocabs.skosconcept",
+                verbose_name="license",
+            ),
         ),
         migrations.AddField(
-            model_name='sample',
-            name='license',
-            field=models.ForeignKey(blank=True, help_text='license of the sample; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_sample_license_skosconcept', to='vocabs.skosconcept', verbose_name='license'),
+            model_name="sample",
+            name="license",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="license of the sample; controlled vocabulary",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="rvn_sample_license_skosconcept",
+                to="vocabs.skosconcept",
+                verbose_name="license",
+            ),
         ),
     ]

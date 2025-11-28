@@ -7,4 +7,4 @@ class Command(BaseCommand):
     help = "Import Data"
 
     def handle(self, *args, **kwargs):
-        delete_all('vocabs')
+        delete_all("vocabs")

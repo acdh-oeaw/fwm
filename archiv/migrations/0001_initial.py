@@ -7,313 +7,1829 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('vocabs', '0001_initial'),
-        ('zotero_ac', '0001_initial'),
+        ("vocabs", "0001_initial"),
+        ("zotero_ac", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Analyse',
+            name="Analyse",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('legacy_pk', models.IntegerField(blank=True, help_text='whatever', null=True, verbose_name='alt id')),
-                ('date', models.DateField(blank=True, help_text='analyse date', null=True, verbose_name='date')),
-                ('notes_thinsection', models.TextField(blank=True, help_text='helptext for notes_thinsection', null=True, verbose_name='thinsection notes')),
-                ('mgco3', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for mgco3', max_digits=19, null=True, verbose_name='MgCO3')),
-                ('fe', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for fe', max_digits=19, null=True, verbose_name='Fe')),
-                ('mn', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for mn', max_digits=19, null=True, verbose_name='Mn')),
-                ('sr', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for sr', max_digits=19, null=True, verbose_name='Sr')),
-                ('ion_li', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_li', max_digits=19, null=True, verbose_name='Li')),
-                ('ion_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_na', max_digits=19, null=True, verbose_name='Na')),
-                ('ion_k', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_k', max_digits=19, null=True, verbose_name='K')),
-                ('ion_mg', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_mg', max_digits=19, null=True, verbose_name='MgCO3')),
-                ('ion_ca', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_ca', max_digits=19, null=True, verbose_name='Ca')),
-                ('ion_f', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_f', max_digits=19, null=True, verbose_name='Fe')),
-                ('ion_cl', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_cl', max_digits=19, null=True, verbose_name='Cl')),
-                ('ion_br', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_br', max_digits=19, null=True, verbose_name='Br')),
-                ('ion_j', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_j', max_digits=19, null=True, verbose_name='J')),
-                ('ion_no3', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_no3', max_digits=19, null=True, verbose_name='NO3')),
-                ('ion_so4', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_so4', max_digits=19, null=True, verbose_name='SO4')),
-                ('ion_li_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_li_na', max_digits=19, null=True, verbose_name='Li/Na')),
-                ('ion_k_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_k_na', max_digits=19, null=True, verbose_name='K/Na')),
-                ('ion_cl_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_cl_na', max_digits=19, null=True, verbose_name='Cl/Na')),
-                ('ion_br_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_br_na', max_digits=19, null=True, verbose_name='Br/Na')),
-                ('ion_i_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_i_na', max_digits=19, null=True, verbose_name='I/Na')),
-                ('ion_so4_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_so4_na', max_digits=19, null=True, verbose_name='SO4/Na')),
-                ('ion_f_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_f_na', max_digits=19, null=True, verbose_name='F/Na')),
-                ('ion_no3_na', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for ion_no3_na', max_digits=19, null=True, verbose_name='NO3/Na')),
-                ('iso_d18o', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for iso_d18o', max_digits=19, null=True, verbose_name='d18O (PDB)')),
-                ('iso_d13c', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for iso_d13c', max_digits=19, null=True, verbose_name='D13c (PDB)')),
-                ('icp_mg', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_mg', max_digits=19, null=True, verbose_name='Mg')),
-                ('icp_mn', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_mn', max_digits=19, null=True, verbose_name='Mn')),
-                ('icp_fe', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_fe', max_digits=19, null=True, verbose_name='Fe')),
-                ('icp_sr', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_sr', max_digits=19, null=True, verbose_name='Sr')),
-                ('icp_cr', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_cr', max_digits=19, null=True, verbose_name='Cr')),
-                ('icp_cr_n2o', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_cr_n2o', max_digits=19, null=True, verbose_name='Cr (N2O)')),
-                ('icp_v', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_v', max_digits=19, null=True, verbose_name='V')),
-                ('icp_y', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_y', max_digits=19, null=True, verbose_name='Y')),
-                ('icp_cd', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_cd', max_digits=19, null=True, verbose_name='Cd')),
-                ('icp_ba', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_ba', max_digits=19, null=True, verbose_name='Ba')),
-                ('icp_la', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_la', max_digits=19, null=True, verbose_name='La')),
-                ('icp_ce', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_ce', max_digits=19, null=True, verbose_name='Ce')),
-                ('icp_pr', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_pr', max_digits=19, null=True, verbose_name='Pr')),
-                ('icp_dy', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_dy', max_digits=19, null=True, verbose_name='Dy')),
-                ('icp_ho', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_ho', max_digits=19, null=True, verbose_name='Ho')),
-                ('icp_yb', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_yb', max_digits=19, null=True, verbose_name='Yb')),
-                ('icp_pb', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_pb', max_digits=19, null=True, verbose_name='Pb')),
-                ('icp_u', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for icp_u', max_digits=19, null=True, verbose_name='U')),
-                ('epr_spectrometer', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for epr_spectrometer', max_digits=19, null=True, verbose_name='Gain of the Spectrometer')),
-                ('epr_spectral_height', models.DecimalField(blank=True, decimal_places=2, help_text='helptext for epr_spectral_height', max_digits=19, null=True, verbose_name='Spectral height')),
-                ('epr_dolom', models.DecimalField(blank=True, decimal_places=2, help_text='Dolomitic Mn2+ DOLOM', max_digits=19, null=True, verbose_name='DOLOM')),
-                ('epr_tot6', models.DecimalField(blank=True, decimal_places=2, help_text='Extension of doublet D6', max_digits=19, null=True, verbose_name='TOT6')),
-                ('epr_spli', models.DecimalField(blank=True, decimal_places=2, help_text='Line separation of doublet D6', max_digits=19, null=True, verbose_name='SPLI')),
-                ('epr_int', models.DecimalField(blank=True, decimal_places=2, help_text='Integral of the spectrum', max_digits=19, null=True, verbose_name='INT')),
-                ('epr_spread', models.DecimalField(blank=True, decimal_places=2, help_text='Extension of the spectrum', max_digits=19, null=True, verbose_name='SPREAD')),
-                ('epr_w', models.DecimalField(blank=True, decimal_places=2, help_text='Average spectral width', max_digits=19, null=True, verbose_name='W')),
-                ('epr_stdintens', models.DecimalField(blank=True, decimal_places=2, help_text='Value of the standard variable', max_digits=19, null=True, verbose_name='STDINTENS')),
-                ('epr_stdintegr', models.DecimalField(blank=True, decimal_places=2, help_text='Value of the standard variable', max_digits=19, null=True, verbose_name='STDINTEGR')),
-                ('epr_stdw', models.DecimalField(blank=True, decimal_places=2, help_text='Value of the standard variable', max_digits=19, null=True, verbose_name='STDW')),
-                ('epr_stdspli', models.DecimalField(blank=True, decimal_places=2, help_text='Value of the standard variable', max_digits=19, null=True, verbose_name='STDSPLI')),
-                ('epr_stdspread', models.DecimalField(blank=True, decimal_places=2, help_text='Value of the standard variable', max_digits=19, null=True, verbose_name='STDSPREAD')),
-                ('epr_intens_standardised', models.DecimalField(blank=True, decimal_places=2, help_text='Standardised value of variables', max_digits=19, null=True, verbose_name='INTENS Standardised')),
-                ('epr_integr_standardised', models.DecimalField(blank=True, decimal_places=2, help_text='Standardised value of variables', max_digits=19, null=True, verbose_name='INTEGR Standardised')),
-                ('epr_spli_standardised', models.DecimalField(blank=True, decimal_places=2, help_text='Standardised value of variables', max_digits=19, null=True, verbose_name='SPLI Standardised')),
-                ('epr_w_standardised', models.DecimalField(blank=True, decimal_places=2, help_text='Standardised value of variables', max_digits=19, null=True, verbose_name='W Standardised')),
-                ('epr_spread_standardised', models.DecimalField(blank=True, decimal_places=2, help_text='Standardised value of variables', max_digits=19, null=True, verbose_name='SPREAD Standardised')),
-                ('open_access', models.BooleanField(blank=True, default=False, help_text='open access', null=True, verbose_name='open access')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
-                ('analyse_type', models.ForeignKey(blank=True, help_text='analyse typ', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_analyse_analyse_type_skosconcept', to='vocabs.skosconcept', verbose_name='analyse typ')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "legacy_pk",
+                    models.IntegerField(
+                        blank=True,
+                        help_text="whatever",
+                        null=True,
+                        verbose_name="alt id",
+                    ),
+                ),
+                (
+                    "date",
+                    models.DateField(
+                        blank=True,
+                        help_text="analyse date",
+                        null=True,
+                        verbose_name="date",
+                    ),
+                ),
+                (
+                    "notes_thinsection",
+                    models.TextField(
+                        blank=True,
+                        help_text="helptext for notes_thinsection",
+                        null=True,
+                        verbose_name="thinsection notes",
+                    ),
+                ),
+                (
+                    "mgco3",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for mgco3",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="MgCO3",
+                    ),
+                ),
+                (
+                    "fe",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for fe",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Fe",
+                    ),
+                ),
+                (
+                    "mn",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for mn",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Mn",
+                    ),
+                ),
+                (
+                    "sr",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for sr",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Sr",
+                    ),
+                ),
+                (
+                    "ion_li",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_li",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Li",
+                    ),
+                ),
+                (
+                    "ion_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Na",
+                    ),
+                ),
+                (
+                    "ion_k",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_k",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="K",
+                    ),
+                ),
+                (
+                    "ion_mg",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_mg",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="MgCO3",
+                    ),
+                ),
+                (
+                    "ion_ca",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_ca",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Ca",
+                    ),
+                ),
+                (
+                    "ion_f",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_f",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Fe",
+                    ),
+                ),
+                (
+                    "ion_cl",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_cl",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Cl",
+                    ),
+                ),
+                (
+                    "ion_br",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_br",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Br",
+                    ),
+                ),
+                (
+                    "ion_j",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_j",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="J",
+                    ),
+                ),
+                (
+                    "ion_no3",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_no3",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="NO3",
+                    ),
+                ),
+                (
+                    "ion_so4",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_so4",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="SO4",
+                    ),
+                ),
+                (
+                    "ion_li_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_li_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Li/Na",
+                    ),
+                ),
+                (
+                    "ion_k_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_k_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="K/Na",
+                    ),
+                ),
+                (
+                    "ion_cl_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_cl_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Cl/Na",
+                    ),
+                ),
+                (
+                    "ion_br_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_br_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Br/Na",
+                    ),
+                ),
+                (
+                    "ion_i_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_i_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="I/Na",
+                    ),
+                ),
+                (
+                    "ion_so4_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_so4_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="SO4/Na",
+                    ),
+                ),
+                (
+                    "ion_f_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_f_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="F/Na",
+                    ),
+                ),
+                (
+                    "ion_no3_na",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for ion_no3_na",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="NO3/Na",
+                    ),
+                ),
+                (
+                    "iso_d18o",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for iso_d18o",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="d18O (PDB)",
+                    ),
+                ),
+                (
+                    "iso_d13c",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for iso_d13c",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="D13c (PDB)",
+                    ),
+                ),
+                (
+                    "icp_mg",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_mg",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Mg",
+                    ),
+                ),
+                (
+                    "icp_mn",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_mn",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Mn",
+                    ),
+                ),
+                (
+                    "icp_fe",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_fe",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Fe",
+                    ),
+                ),
+                (
+                    "icp_sr",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_sr",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Sr",
+                    ),
+                ),
+                (
+                    "icp_cr",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_cr",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Cr",
+                    ),
+                ),
+                (
+                    "icp_cr_n2o",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_cr_n2o",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Cr (N2O)",
+                    ),
+                ),
+                (
+                    "icp_v",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_v",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="V",
+                    ),
+                ),
+                (
+                    "icp_y",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_y",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Y",
+                    ),
+                ),
+                (
+                    "icp_cd",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_cd",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Cd",
+                    ),
+                ),
+                (
+                    "icp_ba",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_ba",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Ba",
+                    ),
+                ),
+                (
+                    "icp_la",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_la",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="La",
+                    ),
+                ),
+                (
+                    "icp_ce",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_ce",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Ce",
+                    ),
+                ),
+                (
+                    "icp_pr",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_pr",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Pr",
+                    ),
+                ),
+                (
+                    "icp_dy",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_dy",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Dy",
+                    ),
+                ),
+                (
+                    "icp_ho",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_ho",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Ho",
+                    ),
+                ),
+                (
+                    "icp_yb",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_yb",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Yb",
+                    ),
+                ),
+                (
+                    "icp_pb",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_pb",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Pb",
+                    ),
+                ),
+                (
+                    "icp_u",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for icp_u",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="U",
+                    ),
+                ),
+                (
+                    "epr_spectrometer",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for epr_spectrometer",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Gain of the Spectrometer",
+                    ),
+                ),
+                (
+                    "epr_spectral_height",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="helptext for epr_spectral_height",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="Spectral height",
+                    ),
+                ),
+                (
+                    "epr_dolom",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Dolomitic Mn2+ DOLOM",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="DOLOM",
+                    ),
+                ),
+                (
+                    "epr_tot6",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Extension of doublet D6",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="TOT6",
+                    ),
+                ),
+                (
+                    "epr_spli",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Line separation of doublet D6",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="SPLI",
+                    ),
+                ),
+                (
+                    "epr_int",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Integral of the spectrum",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="INT",
+                    ),
+                ),
+                (
+                    "epr_spread",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Extension of the spectrum",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="SPREAD",
+                    ),
+                ),
+                (
+                    "epr_w",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Average spectral width",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="W",
+                    ),
+                ),
+                (
+                    "epr_stdintens",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Value of the standard variable",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="STDINTENS",
+                    ),
+                ),
+                (
+                    "epr_stdintegr",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Value of the standard variable",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="STDINTEGR",
+                    ),
+                ),
+                (
+                    "epr_stdw",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Value of the standard variable",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="STDW",
+                    ),
+                ),
+                (
+                    "epr_stdspli",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Value of the standard variable",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="STDSPLI",
+                    ),
+                ),
+                (
+                    "epr_stdspread",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Value of the standard variable",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="STDSPREAD",
+                    ),
+                ),
+                (
+                    "epr_intens_standardised",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Standardised value of variables",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="INTENS Standardised",
+                    ),
+                ),
+                (
+                    "epr_integr_standardised",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Standardised value of variables",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="INTEGR Standardised",
+                    ),
+                ),
+                (
+                    "epr_spli_standardised",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Standardised value of variables",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="SPLI Standardised",
+                    ),
+                ),
+                (
+                    "epr_w_standardised",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Standardised value of variables",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="W Standardised",
+                    ),
+                ),
+                (
+                    "epr_spread_standardised",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="Standardised value of variables",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="SPREAD Standardised",
+                    ),
+                ),
+                (
+                    "open_access",
+                    models.BooleanField(
+                        blank=True,
+                        default=False,
+                        help_text="open access",
+                        null=True,
+                        verbose_name="open access",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
+                (
+                    "analyse_type",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="analyse typ",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_analyse_analyse_type_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="analyse typ",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Analyse',
-                'ordering': ['id'],
+                "verbose_name": "Analyse",
+                "ordering": ["id"],
             },
         ),
         migrations.CreateModel(
-            name='Artifact',
+            name="Artifact",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('legacy_pk', models.IntegerField(blank=True, help_text='whatever', null=True, verbose_name='alt id')),
-                ('description', models.TextField(blank=True, help_text='description of the artefact', null=True, verbose_name='description')),
-                ('find_spot_extra', models.TextField(blank=True, help_text='additional notes of the find spot', null=True, verbose_name='find spot notes')),
-                ('measurement', models.TextField(blank=True, help_text='measurement information of the artefact', null=True, verbose_name='measurement')),
-                ('preservation', models.TextField(blank=True, help_text='preservation information', null=True, verbose_name='preservation')),
-                ('images', models.TextField(blank=True, help_text='images of the artefact', null=True, verbose_name='images')),
-                ('literature', models.TextField(blank=True, help_text='literature', null=True, verbose_name='literature')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
-                ('open_access', models.BooleanField(blank=True, default=False, help_text='open access', null=True, verbose_name='open access')),
-                ('artefact_type', models.ForeignKey(blank=True, help_text='type of the artefact; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_artifact_artefact_type_skosconcept', to='vocabs.skosconcept', verbose_name='artefact type')),
-                ('dating', models.ForeignKey(blank=True, help_text='dating information; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_artifact_dating_skosconcept', to='vocabs.skosconcept', verbose_name='dating')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "legacy_pk",
+                    models.IntegerField(
+                        blank=True,
+                        help_text="whatever",
+                        null=True,
+                        verbose_name="alt id",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="description of the artefact",
+                        null=True,
+                        verbose_name="description",
+                    ),
+                ),
+                (
+                    "find_spot_extra",
+                    models.TextField(
+                        blank=True,
+                        help_text="additional notes of the find spot",
+                        null=True,
+                        verbose_name="find spot notes",
+                    ),
+                ),
+                (
+                    "measurement",
+                    models.TextField(
+                        blank=True,
+                        help_text="measurement information of the artefact",
+                        null=True,
+                        verbose_name="measurement",
+                    ),
+                ),
+                (
+                    "preservation",
+                    models.TextField(
+                        blank=True,
+                        help_text="preservation information",
+                        null=True,
+                        verbose_name="preservation",
+                    ),
+                ),
+                (
+                    "images",
+                    models.TextField(
+                        blank=True,
+                        help_text="images of the artefact",
+                        null=True,
+                        verbose_name="images",
+                    ),
+                ),
+                (
+                    "literature",
+                    models.TextField(
+                        blank=True,
+                        help_text="literature",
+                        null=True,
+                        verbose_name="literature",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
+                (
+                    "open_access",
+                    models.BooleanField(
+                        blank=True,
+                        default=False,
+                        help_text="open access",
+                        null=True,
+                        verbose_name="open access",
+                    ),
+                ),
+                (
+                    "artefact_type",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="type of the artefact; controlled vocabulary",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_artifact_artefact_type_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="artefact type",
+                    ),
+                ),
+                (
+                    "dating",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="dating information; controlled vocabulary",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_artifact_dating_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="dating",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Artifact',
-                'ordering': ['id'],
+                "verbose_name": "Artifact",
+                "ordering": ["id"],
             },
         ),
         migrations.CreateModel(
-            name='DataSheet',
+            name="DataSheet",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('upload', models.FileField(blank=True, null=True, storage=archiv.storage.OverwriteStorage(), upload_to='archiv/data')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "upload",
+                    models.FileField(
+                        blank=True,
+                        null=True,
+                        storage=archiv.storage.OverwriteStorage(),
+                        upload_to="archiv/data",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Geography',
+            name="Geography",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('continent', models.CharField(blank=True, help_text='continent of the geographic location', max_length=250, null=True, verbose_name='continent')),
-                ('land', models.CharField(blank=True, help_text='land of the geographic location', max_length=250, null=True, verbose_name='land')),
-                ('province', models.CharField(blank=True, help_text='province of the geographic location', max_length=250, null=True, verbose_name='province')),
-                ('location', models.CharField(blank=True, help_text='location of the geographic location', max_length=250, null=True, verbose_name='location')),
-                ('name', models.CharField(blank=True, help_text='name of the geographic location', max_length=250, null=True, verbose_name='name')),
-                ('identifier', models.CharField(blank=True, help_text='identifier of the geographic location; gazetteers', max_length=250, null=True, verbose_name='identifier')),
-                ('coordinates', django.contrib.gis.db.models.fields.PointField(blank=True, help_text='coordinates of the geographic location (X, Y)', null=True, srid=4326, verbose_name='coordinates')),
-                ('polygon', django.contrib.gis.db.models.fields.MultiPolygonField(blank=True, help_text='MultiPolygonField to depict the area of the location', null=True, srid=4326, verbose_name='polygon')),
-                ('notes', models.TextField(blank=True, help_text='additional notes', null=True, verbose_name='notes')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "continent",
+                    models.CharField(
+                        blank=True,
+                        help_text="continent of the geographic location",
+                        max_length=250,
+                        null=True,
+                        verbose_name="continent",
+                    ),
+                ),
+                (
+                    "land",
+                    models.CharField(
+                        blank=True,
+                        help_text="land of the geographic location",
+                        max_length=250,
+                        null=True,
+                        verbose_name="land",
+                    ),
+                ),
+                (
+                    "province",
+                    models.CharField(
+                        blank=True,
+                        help_text="province of the geographic location",
+                        max_length=250,
+                        null=True,
+                        verbose_name="province",
+                    ),
+                ),
+                (
+                    "location",
+                    models.CharField(
+                        blank=True,
+                        help_text="location of the geographic location",
+                        max_length=250,
+                        null=True,
+                        verbose_name="location",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        help_text="name of the geographic location",
+                        max_length=250,
+                        null=True,
+                        verbose_name="name",
+                    ),
+                ),
+                (
+                    "identifier",
+                    models.CharField(
+                        blank=True,
+                        help_text="identifier of the geographic location; gazetteers",
+                        max_length=250,
+                        null=True,
+                        verbose_name="identifier",
+                    ),
+                ),
+                (
+                    "coordinates",
+                    django.contrib.gis.db.models.fields.PointField(
+                        blank=True,
+                        help_text="coordinates of the geographic location (X, Y)",
+                        null=True,
+                        srid=4326,
+                        verbose_name="coordinates",
+                    ),
+                ),
+                (
+                    "polygon",
+                    django.contrib.gis.db.models.fields.MultiPolygonField(
+                        blank=True,
+                        help_text="MultiPolygonField to depict the area of the location",
+                        null=True,
+                        srid=4326,
+                        verbose_name="polygon",
+                    ),
+                ),
+                (
+                    "notes",
+                    models.TextField(
+                        blank=True,
+                        help_text="additional notes",
+                        null=True,
+                        verbose_name="notes",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Geography',
-                'ordering': ['name'],
+                "verbose_name": "Geography",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Institution',
+            name="Institution",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('name', models.CharField(blank=True, help_text='name of the institution', max_length=250, null=True, verbose_name='name')),
-                ('identifier', models.CharField(blank=True, help_text='identifier of the institution; gazetteers', max_length=250, null=True, verbose_name='identifier')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        help_text="name of the institution",
+                        max_length=250,
+                        null=True,
+                        verbose_name="name",
+                    ),
+                ),
+                (
+                    "identifier",
+                    models.CharField(
+                        blank=True,
+                        help_text="identifier of the institution; gazetteers",
+                        max_length=250,
+                        null=True,
+                        verbose_name="identifier",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Institution',
-                'ordering': ['name'],
+                "verbose_name": "Institution",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('name', models.CharField(blank=True, help_text='name of the project', max_length=250, null=True, verbose_name='name')),
-                ('description', models.TextField(blank=True, help_text='description of the project', null=True, verbose_name='description')),
-                ('url', models.CharField(blank=True, help_text='URL of the project', max_length=250, null=True, verbose_name='url')),
-                ('contact_name', models.CharField(blank=True, help_text='contact name of the project', max_length=250, null=True, verbose_name='contact name')),
-                ('contact_email', models.CharField(blank=True, help_text='contact email of the project', max_length=250, null=True, verbose_name='contact email')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        help_text="name of the project",
+                        max_length=250,
+                        null=True,
+                        verbose_name="name",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="description of the project",
+                        null=True,
+                        verbose_name="description",
+                    ),
+                ),
+                (
+                    "url",
+                    models.CharField(
+                        blank=True,
+                        help_text="URL of the project",
+                        max_length=250,
+                        null=True,
+                        verbose_name="url",
+                    ),
+                ),
+                (
+                    "contact_name",
+                    models.CharField(
+                        blank=True,
+                        help_text="contact name of the project",
+                        max_length=250,
+                        null=True,
+                        verbose_name="contact name",
+                    ),
+                ),
+                (
+                    "contact_email",
+                    models.CharField(
+                        blank=True,
+                        help_text="contact email of the project",
+                        max_length=250,
+                        null=True,
+                        verbose_name="contact email",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Project',
-                'ordering': ['name'],
+                "verbose_name": "Project",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Quarry',
+            name="Quarry",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('name', models.CharField(blank=True, help_text='name of the quarry', max_length=250, null=True, verbose_name='name')),
-                ('images', models.TextField(blank=True, help_text='images', null=True, verbose_name='images')),
-                ('description', models.TextField(blank=True, help_text='description of the quarry', null=True, verbose_name='description')),
-                ('literature', models.CharField(blank=True, help_text='literature', max_length=250, null=True, verbose_name='literature')),
-                ('open_access', models.BooleanField(blank=True, default=False, help_text='open access', null=True, verbose_name='open access')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
-                ('geography', models.ForeignKey(blank=True, help_text='geographical location of the quarry', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Geography_Quarry', to='archiv.geography', verbose_name='geographical location')),
-                ('reference', models.ManyToManyField(blank=True, help_text='please provide some', related_name='reference_for_quarry', to='zotero_ac.zoteroreference', verbose_name='Literatur')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        help_text="name of the quarry",
+                        max_length=250,
+                        null=True,
+                        verbose_name="name",
+                    ),
+                ),
+                (
+                    "images",
+                    models.TextField(
+                        blank=True, help_text="images", null=True, verbose_name="images"
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="description of the quarry",
+                        null=True,
+                        verbose_name="description",
+                    ),
+                ),
+                (
+                    "literature",
+                    models.CharField(
+                        blank=True,
+                        help_text="literature",
+                        max_length=250,
+                        null=True,
+                        verbose_name="literature",
+                    ),
+                ),
+                (
+                    "open_access",
+                    models.BooleanField(
+                        blank=True,
+                        default=False,
+                        help_text="open access",
+                        null=True,
+                        verbose_name="open access",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
+                (
+                    "geography",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="geographical location of the quarry",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="Geography_Quarry",
+                        to="archiv.geography",
+                        verbose_name="geographical location",
+                    ),
+                ),
+                (
+                    "reference",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="please provide some",
+                        related_name="reference_for_quarry",
+                        to="zotero_ac.zoteroreference",
+                        verbose_name="Literatur",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Quarry',
-                'ordering': ['name'],
+                "verbose_name": "Quarry",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='QuarryGroup',
+            name="QuarryGroup",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('name', models.CharField(blank=True, help_text='name of the quarry group', max_length=250, null=True, verbose_name='name')),
-                ('description', models.TextField(blank=True, help_text='description of the quarry group', null=True, verbose_name='description')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
-                ('quarry', models.ManyToManyField(help_text='Quarry Quarrygroup', related_name='Quarrygroup_Quarry', to='archiv.quarry')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        help_text="name of the quarry group",
+                        max_length=250,
+                        null=True,
+                        verbose_name="name",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="description of the quarry group",
+                        null=True,
+                        verbose_name="description",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
+                (
+                    "quarry",
+                    models.ManyToManyField(
+                        help_text="Quarry Quarrygroup",
+                        related_name="Quarrygroup_Quarry",
+                        to="archiv.quarry",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'QuarryGroup',
-                'ordering': ['name'],
+                "verbose_name": "QuarryGroup",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Sample',
+            name="Sample",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('oeai_inventory_number', models.CharField(blank=True, help_text='OeAI inventory number; unique', max_length=250, null=True, verbose_name='OeAI inventory number')),
-                ('color_description', models.TextField(blank=True, help_text='precise description of the color', null=True, verbose_name='color description')),
-                ('color_kodak', models.CharField(blank=True, help_text='more detailed information about the kodak color', max_length=250, null=True, verbose_name='color kodak')),
-                ('stdcolor', models.CharField(blank=True, help_text='more detailed information about the kodak color', max_length=250, null=True, verbose_name='color stdcolor')),
-                ('weight', models.DecimalField(blank=True, decimal_places=2, help_text='weight of the sample', max_digits=19, null=True, verbose_name='weight')),
-                ('notes', models.TextField(blank=True, help_text='notes', null=True, verbose_name='notes')),
-                ('sampling', models.CharField(blank=True, help_text='information about the sampling', max_length=250, null=True, verbose_name='sampling')),
-                ('literature', models.CharField(blank=True, help_text='literature', max_length=250, null=True, verbose_name='literature')),
-                ('image', models.CharField(blank=True, help_text='images', max_length=250, null=True, verbose_name='images')),
-                ('open_access', models.BooleanField(blank=True, default=False, help_text='open access', null=True, verbose_name='open access')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
-                ('artefakt_id', models.ForeignKey(blank=True, help_text='sampled artefact', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='artefact_samples', to='archiv.artifact', verbose_name='artefact')),
-                ('color', models.ForeignKey(blank=True, help_text='color of the sample; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_sample_color_skosconcept', to='vocabs.skosconcept', verbose_name='color')),
-                ('grain_size_max', models.ForeignKey(blank=True, help_text='0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_sample_grain_size_max_skosconcept', to='vocabs.skosconcept', verbose_name='grain size max')),
-                ('grain_size_min', models.ForeignKey(blank=True, help_text='0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_sample_grain_size_min_skosconcept', to='vocabs.skosconcept', verbose_name='grain size min')),
-                ('material', models.ForeignKey(blank=True, help_text='material of the sample; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_sample_material_skosconcept', to='vocabs.skosconcept', verbose_name='material')),
-                ('project', models.ManyToManyField(help_text='project sample', related_name='Sample_Project', to='archiv.project')),
-                ('quarry', models.ForeignKey(blank=True, help_text='sampled quarry', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Quarry_Samples', to='archiv.quarry', verbose_name='quarry')),
-                ('quarry_group', models.ForeignKey(blank=True, help_text='quarry group', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='QuarryGroup_Samples', to='archiv.quarrygroup', verbose_name='quarry group')),
-                ('reference', models.ManyToManyField(blank=True, help_text='please provide some', related_name='reference_for_sample', to='zotero_ac.zoteroreference', verbose_name='Literatur')),
-                ('smell', models.ForeignKey(blank=True, help_text='smell of the sample; entries from 0 to 4', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_sample_smell_skosconcept', to='vocabs.skosconcept', verbose_name='smell')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "oeai_inventory_number",
+                    models.CharField(
+                        blank=True,
+                        help_text="OeAI inventory number; unique",
+                        max_length=250,
+                        null=True,
+                        verbose_name="OeAI inventory number",
+                    ),
+                ),
+                (
+                    "color_description",
+                    models.TextField(
+                        blank=True,
+                        help_text="precise description of the color",
+                        null=True,
+                        verbose_name="color description",
+                    ),
+                ),
+                (
+                    "color_kodak",
+                    models.CharField(
+                        blank=True,
+                        help_text="more detailed information about the kodak color",
+                        max_length=250,
+                        null=True,
+                        verbose_name="color kodak",
+                    ),
+                ),
+                (
+                    "stdcolor",
+                    models.CharField(
+                        blank=True,
+                        help_text="more detailed information about the kodak color",
+                        max_length=250,
+                        null=True,
+                        verbose_name="color stdcolor",
+                    ),
+                ),
+                (
+                    "weight",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        help_text="weight of the sample",
+                        max_digits=19,
+                        null=True,
+                        verbose_name="weight",
+                    ),
+                ),
+                (
+                    "notes",
+                    models.TextField(
+                        blank=True, help_text="notes", null=True, verbose_name="notes"
+                    ),
+                ),
+                (
+                    "sampling",
+                    models.CharField(
+                        blank=True,
+                        help_text="information about the sampling",
+                        max_length=250,
+                        null=True,
+                        verbose_name="sampling",
+                    ),
+                ),
+                (
+                    "literature",
+                    models.CharField(
+                        blank=True,
+                        help_text="literature",
+                        max_length=250,
+                        null=True,
+                        verbose_name="literature",
+                    ),
+                ),
+                (
+                    "image",
+                    models.CharField(
+                        blank=True,
+                        help_text="images",
+                        max_length=250,
+                        null=True,
+                        verbose_name="images",
+                    ),
+                ),
+                (
+                    "open_access",
+                    models.BooleanField(
+                        blank=True,
+                        default=False,
+                        help_text="open access",
+                        null=True,
+                        verbose_name="open access",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
+                (
+                    "artefakt_id",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="sampled artefact",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="artefact_samples",
+                        to="archiv.artifact",
+                        verbose_name="artefact",
+                    ),
+                ),
+                (
+                    "color",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="color of the sample; controlled vocabulary",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_sample_color_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="color",
+                    ),
+                ),
+                (
+                    "grain_size_max",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_sample_grain_size_max_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="grain size max",
+                    ),
+                ),
+                (
+                    "grain_size_min",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="0,5-1,2mm - fine grain; 1,2-2,5 mm medium grain; >2,5mm - coarse grain",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_sample_grain_size_min_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="grain size min",
+                    ),
+                ),
+                (
+                    "material",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="material of the sample; controlled vocabulary",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_sample_material_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="material",
+                    ),
+                ),
+                (
+                    "project",
+                    models.ManyToManyField(
+                        help_text="project sample",
+                        related_name="Sample_Project",
+                        to="archiv.project",
+                    ),
+                ),
+                (
+                    "quarry",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="sampled quarry",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="Quarry_Samples",
+                        to="archiv.quarry",
+                        verbose_name="quarry",
+                    ),
+                ),
+                (
+                    "quarry_group",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="quarry group",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="QuarryGroup_Samples",
+                        to="archiv.quarrygroup",
+                        verbose_name="quarry group",
+                    ),
+                ),
+                (
+                    "reference",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="please provide some",
+                        related_name="reference_for_sample",
+                        to="zotero_ac.zoteroreference",
+                        verbose_name="Literatur",
+                    ),
+                ),
+                (
+                    "smell",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="smell of the sample; entries from 0 to 4",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_sample_smell_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="smell",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Sample',
-                'ordering': ['id'],
+                "verbose_name": "Sample",
+                "ordering": ["id"],
             },
         ),
         migrations.CreateModel(
-            name='Number',
+            name="Number",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('legacy_pk', models.IntegerField(blank=True, help_text='whatever', null=True, verbose_name='alt id')),
-                ('number', models.CharField(blank=True, help_text='other number', max_length=250, null=True, verbose_name='number')),
-                ('notes', models.TextField(blank=True, help_text='additional notes', null=True, verbose_name='notes')),
-                ('orig_data_csv', models.TextField(blank=True, null=True, verbose_name='The original data')),
-                ('institute', models.ForeignKey(blank=True, help_text='institute that assigned then number', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_number_institute_institution', to='archiv.institution', verbose_name='institute')),
-                ('number_type', models.ForeignKey(blank=True, help_text='type of the number; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_number_number_type_skosconcept', to='vocabs.skosconcept', verbose_name='number type')),
-                ('oeai_inventory_number', models.ForeignKey(blank=True, help_text='OeAI inventory number', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Sample_Other_Numbers', to='archiv.sample', verbose_name='OeAI inventory number')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "legacy_pk",
+                    models.IntegerField(
+                        blank=True,
+                        help_text="whatever",
+                        null=True,
+                        verbose_name="alt id",
+                    ),
+                ),
+                (
+                    "number",
+                    models.CharField(
+                        blank=True,
+                        help_text="other number",
+                        max_length=250,
+                        null=True,
+                        verbose_name="number",
+                    ),
+                ),
+                (
+                    "notes",
+                    models.TextField(
+                        blank=True,
+                        help_text="additional notes",
+                        null=True,
+                        verbose_name="notes",
+                    ),
+                ),
+                (
+                    "orig_data_csv",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="The original data"
+                    ),
+                ),
+                (
+                    "institute",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="institute that assigned then number",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_number_institute_institution",
+                        to="archiv.institution",
+                        verbose_name="institute",
+                    ),
+                ),
+                (
+                    "number_type",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="type of the number; controlled vocabulary",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="rvn_number_number_type_skosconcept",
+                        to="vocabs.skosconcept",
+                        verbose_name="number type",
+                    ),
+                ),
+                (
+                    "oeai_inventory_number",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="OeAI inventory number",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="Sample_Other_Numbers",
+                        to="archiv.sample",
+                        verbose_name="OeAI inventory number",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Number',
-                'ordering': ['id', 'number'],
+                "verbose_name": "Number",
+                "ordering": ["id", "number"],
             },
         ),
         migrations.CreateModel(
-            name='Images',
+            name="Images",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('legacy_id', models.CharField(blank=True, max_length=300, verbose_name='Legacy ID')),
-                ('image_stream', models.TextField(blank=True, help_text='image', null=True, verbose_name='image_stream')),
-                ('description', models.TextField(blank=True, help_text='description of the image', null=True, verbose_name='description')),
-                ('easydb_id', models.IntegerField(blank=True, help_text='whatever', null=True, verbose_name='easyDB ID')),
-                ('analyse', models.ForeignKey(blank=True, help_text='images of the analyse ', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Images_Analyse', to='archiv.analyse', verbose_name='analyse_id')),
-                ('artefact', models.ForeignKey(blank=True, help_text='images of the artefact ', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Images_Artefact', to='archiv.artifact', verbose_name='artefact_id')),
-                ('quarry', models.ForeignKey(blank=True, help_text='images of the quarry ', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Images_Quarry', to='archiv.quarry', verbose_name='quarry_id')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "legacy_id",
+                    models.CharField(
+                        blank=True, max_length=300, verbose_name="Legacy ID"
+                    ),
+                ),
+                (
+                    "image_stream",
+                    models.TextField(
+                        blank=True,
+                        help_text="image",
+                        null=True,
+                        verbose_name="image_stream",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="description of the image",
+                        null=True,
+                        verbose_name="description",
+                    ),
+                ),
+                (
+                    "easydb_id",
+                    models.IntegerField(
+                        blank=True,
+                        help_text="whatever",
+                        null=True,
+                        verbose_name="easyDB ID",
+                    ),
+                ),
+                (
+                    "analyse",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="images of the analyse ",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="Images_Analyse",
+                        to="archiv.analyse",
+                        verbose_name="analyse_id",
+                    ),
+                ),
+                (
+                    "artefact",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="images of the artefact ",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="Images_Artefact",
+                        to="archiv.artifact",
+                        verbose_name="artefact_id",
+                    ),
+                ),
+                (
+                    "quarry",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="images of the quarry ",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="Images_Quarry",
+                        to="archiv.quarry",
+                        verbose_name="quarry_id",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Images',
-                'ordering': ['quarry_id'],
+                "verbose_name": "Images",
+                "ordering": ["quarry_id"],
             },
         ),
         migrations.AddField(
-            model_name='artifact',
-            name='find_spot',
-            field=models.ForeignKey(blank=True, help_text='find spot of the artefact ', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Geography_Artefact_Findspot', to='archiv.geography', verbose_name='find spot'),
+            model_name="artifact",
+            name="find_spot",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="find spot of the artefact ",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="Geography_Artefact_Findspot",
+                to="archiv.geography",
+                verbose_name="find spot",
+            ),
         ),
         migrations.AddField(
-            model_name='artifact',
-            name='material',
-            field=models.ForeignKey(blank=True, help_text='the artefacts material; controlled vocabulary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rvn_artifact_material_skosconcept', to='vocabs.skosconcept', verbose_name='material'),
+            model_name="artifact",
+            name="material",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="the artefacts material; controlled vocabulary",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="rvn_artifact_material_skosconcept",
+                to="vocabs.skosconcept",
+                verbose_name="material",
+            ),
         ),
         migrations.AddField(
-            model_name='artifact',
-            name='project',
-            field=models.ManyToManyField(help_text='project artefact', related_name='Artefact_Project', to='archiv.project'),
+            model_name="artifact",
+            name="project",
+            field=models.ManyToManyField(
+                help_text="project artefact",
+                related_name="Artefact_Project",
+                to="archiv.project",
+            ),
         ),
         migrations.AddField(
-            model_name='artifact',
-            name='reference',
-            field=models.ManyToManyField(blank=True, help_text='please provide some', related_name='reference_for_artefact', to='zotero_ac.zoteroreference', verbose_name='Literatur'),
+            model_name="artifact",
+            name="reference",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="please provide some",
+                related_name="reference_for_artefact",
+                to="zotero_ac.zoteroreference",
+                verbose_name="Literatur",
+            ),
         ),
         migrations.AddField(
-            model_name='artifact',
-            name='storage_place',
-            field=models.ForeignKey(blank=True, help_text='storage institution', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Institution_Artefact_Storage', to='archiv.institution', verbose_name='storage place'),
+            model_name="artifact",
+            name="storage_place",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="storage institution",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="Institution_Artefact_Storage",
+                to="archiv.institution",
+                verbose_name="storage place",
+            ),
         ),
         migrations.AddField(
-            model_name='analyse',
-            name='institute',
-            field=models.ForeignKey(blank=True, help_text='institute where the analysis took place', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Institution_Analysis', to='archiv.institution', verbose_name='institute'),
+            model_name="analyse",
+            name="institute",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="institute where the analysis took place",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="Institution_Analysis",
+                to="archiv.institution",
+                verbose_name="institute",
+            ),
         ),
         migrations.AddField(
-            model_name='analyse',
-            name='oeai_inventory_number',
-            field=models.ForeignKey(blank=True, help_text='OeAI inventory number; unique', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Samples_Analysis', to='archiv.sample', verbose_name='OeAI inventory number'),
+            model_name="analyse",
+            name="oeai_inventory_number",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="OeAI inventory number; unique",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="Samples_Analysis",
+                to="archiv.sample",
+                verbose_name="OeAI inventory number",
+            ),
         ),
         migrations.AddField(
-            model_name='analyse',
-            name='project',
-            field=models.ManyToManyField(help_text='project analyse', related_name='Analyse_Project', to='archiv.project'),
+            model_name="analyse",
+            name="project",
+            field=models.ManyToManyField(
+                help_text="project analyse",
+                related_name="Analyse_Project",
+                to="archiv.project",
+            ),
         ),
     ]

@@ -181,7 +181,6 @@ urlpatterns = [
         name="project_delete",
     ),
     path("project/create/", views.ProjectCreate.as_view(), name="project_create"),
-
     path(
         "image/detail/<int:pk>",
         views.ImageDetailView.as_view(),

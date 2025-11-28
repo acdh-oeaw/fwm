@@ -13,7 +13,7 @@ class Command(BaseCommand):
         # }
 
         run_import(
-            'archiv',
+            "archiv",
             file_class_map_dict=None,
             limit=10,
         )

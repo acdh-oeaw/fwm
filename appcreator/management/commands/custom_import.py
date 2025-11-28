@@ -15,9 +15,9 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         source_file = Geography.get_source_table()
         df = pd.read_csv(source_file)
-        df = df.drop(df[df.coordinates == 'x'].index)
+        df = df.drop(df[df.coordinates == "x"].index)
         for i, row in tqdm(df.iterrows(), total=len(df)):
-            x, y = [float(x.strip()) for x in row['coordinates'].split('|')]
-            geo = Geography.objects.get(name=row['name'])
+            x, y = [float(x.strip()) for x in row["coordinates"].split("|")]
+            geo = Geography.objects.get(name=row["name"])
             geo.coordinates = Point(y, x)
             geo.save()

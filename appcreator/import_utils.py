@@ -12,49 +12,51 @@ from appcreator.populate_fields import *
 
 
 def field_mapping(some_class):
-    """ returns a dictionary mapping model field names to lookukp values
-        :param some_class: Any django model class with extra field properties
-        :return: A dict mapping model field names to lookukp values
+    """returns a dictionary mapping model field names to lookukp values
+    :param some_class: Any django model class with extra field properties
+    :return: A dict mapping model field names to lookukp values
     """
     field_mapping_dict = {}
     for x in some_class._meta.get_fields():
         try:
-            field_mapping_dict[(x.extra['data_lookup']).lower().strip()] = x.name
+            field_mapping_dict[(x.extra["data_lookup"]).lower().strip()] = x.name
         except:
             pass
     return field_mapping_dict
 
 
 def field_mapping_inverse(some_class):
-    """ returns a dictionary mapping model field names to lookukp values
-        :param some_class: Any django model class with extra field properties
-        :return: A dict mapping model field names to lookukp values
+    """returns a dictionary mapping model field names to lookukp values
+    :param some_class: Any django model class with extra field properties
+    :return: A dict mapping model field names to lookukp values
     """
     field_mapping_dict = {}
     for x in some_class._meta.get_fields():
         try:
-            field_mapping_dict[x.name] = x.extra['data_lookup'].lower().strip()
+            field_mapping_dict[x.name] = x.extra["data_lookup"].lower().strip()
         except:
             pass
     return field_mapping_dict
 
 
 def fetch_models(app_name):
-    """ returns all models from an app
-        :param app_name: The name of the application you'd like to recieve the models from
-        :return: A list of the app's model classes {app}.models.{ModelName}
+    """returns all models from an app
+    :param app_name: The name of the application you'd like to recieve the models from
+    :return: A list of the app's model classes {app}.models.{ModelName}
     """
-    all_models = [x for x in apps.all_models[app_name].values() if '_' not in x.__name__]
+    all_models = [
+        x for x in apps.all_models[app_name].values() if "_" not in x.__name__
+    ]
     return all_models
 
 
 def create_file_class_map(app_name, format_string, glob_pattern):
-    """ create a dictionary mapping model names to their spreadsheets
-        (the spreadsheet must contain the model name)
-        :param app_name: The name of the app you'd like to work with
-        :format string: A python format string with one placeholder for the actual class name
-        :glob_pattern: A python glob pattern matching the files you'd like to import data from
-        :return: A dict where class names are keys and the full path to their matching files
+    """create a dictionary mapping model names to their spreadsheets
+    (the spreadsheet must contain the model name)
+    :param app_name: The name of the app you'd like to work with
+    :format string: A python format string with one placeholder for the actual class name
+    :glob_pattern: A python glob pattern matching the files you'd like to import data from
+    :return: A dict where class names are keys and the full path to their matching files
     """
     all_models = fetch_models(app_name)
     files = glob.glob(glob_pattern)
@@ -68,9 +70,9 @@ def create_file_class_map(app_name, format_string, glob_pattern):
 
 
 def get_class_sources_map(app_name):
-    """ create a dictionary mapping model names to their data source tables
-        :param app_name: The name of the app you'd like to work with
-        :return: A dict where class names are keys and the full path to their matching source tables
+    """create a dictionary mapping model names to their data source tables
+    :param app_name: The name of the app you'd like to work with
+    :return: A dict where class names are keys and the full path to their matching source tables
     """
     file_class_map = {}
     for x in fetch_models(app_name):
@@ -83,19 +85,18 @@ def get_class_sources_map(app_name):
 
 
 def run_import(
-    app_name, m2m_sep="|", date_range_sep="/", limit=False,
-    file_class_map_dict=False
+    app_name, m2m_sep="|", date_range_sep="/", limit=False, file_class_map_dict=False
 ):
-    """ runs data import from a collection of excel-files matching the model class of the
-        passed in applications
-        :param app_name: name of the application
-        :param m2m_sep: Character used in your data to separate values in a cell, defaults to '|'
-        :param date_range_sep: Character used in your data to separate date ranges in a cell,
-        defaults to '|'
-        :param limit: The number of rows which should be imported, defaults to 'False', meaning all
-        rows of each spreadsheet will be imported.
-        :return: prints the name of the spraedsheet which is currently imported
-        the populated database
+    """runs data import from a collection of excel-files matching the model class of the
+    passed in applications
+    :param app_name: name of the application
+    :param m2m_sep: Character used in your data to separate values in a cell, defaults to '|'
+    :param date_range_sep: Character used in your data to separate date ranges in a cell,
+    defaults to '|'
+    :param limit: The number of rows which should be imported, defaults to 'False', meaning all
+    rows of each spreadsheet will be imported.
+    :return: prints the name of the spraedsheet which is currently imported
+    the populated database
     """
     if file_class_map_dict:
         file_class_map = file_class_map_dict
@@ -103,7 +104,9 @@ def run_import(
         print("new file class created")
         file_class_map = get_class_sources_map(app_name)
         print(file_class_map)
-    for current_class in tqdm(fetch_models(app_name), total=len(fetch_models(app_name))):
+    for current_class in tqdm(
+        fetch_models(app_name), total=len(fetch_models(app_name))
+    ):
         model_name = current_class.__name__
         print(model_name)
         try:
@@ -130,17 +133,15 @@ def run_import(
             else:
                 import_df = df_data
             for i, row in tqdm(import_df.iterrows(), total=len(import_df)):
-                create_dict = {
-                    legacy_id_field: row[legacy_id_source_field]
-                }
-                temp_item, _ = current_class.objects.get_or_create(
-                    **create_dict
-                )
+                create_dict = {legacy_id_field: row[legacy_id_source_field]}
+                temp_item, _ = current_class.objects.get_or_create(**create_dict)
                 row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
                 temp_item.orig_data_csv = row_data
                 col_counter = 0
                 while col_counter < nr_cols:
-                    cur_attr = field_mapping_dict.get(df_keys[col_counter], df_keys[col_counter])
+                    cur_attr = field_mapping_dict.get(
+                        df_keys[col_counter], df_keys[col_counter]
+                    )
                     source_attr_name = df_keys[col_counter]
                     try:
                         cur_attr_type = current_class._meta.get_field(
@@ -155,36 +156,53 @@ def run_import(
                             row[source_attr_name], str
                         ):
                             pop_char_field(
-                                temp_item, row, cur_attr, max_length=249, fd=field_mapping_inverse_dict
+                                temp_item,
+                                row,
+                                cur_attr,
+                                max_length=249,
+                                fd=field_mapping_inverse_dict,
                             )
 
                         elif "{}".format(cur_attr_type) == "TextField" and isinstance(
                             row[source_attr_name], str
                         ):
-                            pop_text_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
+                            pop_text_field(
+                                temp_item, row, cur_attr, fd=field_mapping_inverse_dict
+                            )
 
                         elif "{}".format(cur_attr_type) == "IntegerField":
-                            pop_int_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
-                        
+                            pop_int_field(
+                                temp_item, row, cur_attr, fd=field_mapping_inverse_dict
+                            )
+
                         elif "{}".format(cur_attr_type) == "FloatField":
-                            pop_float_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
+                            pop_float_field(
+                                temp_item, row, cur_attr, fd=field_mapping_inverse_dict
+                            )
                         elif "{}".format(cur_attr_type) == "DecimalField":
-                            pop_float_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
+                            pop_float_field(
+                                temp_item, row, cur_attr, fd=field_mapping_inverse_dict
+                            )
                         elif "{}".format(cur_attr_type) == "DateField":
-                            pop_date_field(temp_item, row, cur_attr, fd=field_mapping_inverse_dict)
+                            pop_date_field(
+                                temp_item, row, cur_attr, fd=field_mapping_inverse_dict
+                            )
                         if "{}".format(cur_attr_type) == "DateRangeField":
                             pop_date_range_field(
                                 temp_item,
                                 row,
                                 cur_attr,
                                 sep=date_range_sep,
-                                fd=field_mapping_inverse_dict
+                                fd=field_mapping_inverse_dict,
                             )
                         elif "{}".format(cur_attr_type) == "ForeignKey":
                             pop_fk_field(
-                                current_class, temp_item,
-                                row, cur_attr, fd=field_mapping_inverse_dict,
-                                source_name=source_name
+                                current_class,
+                                temp_item,
+                                row,
+                                cur_attr,
+                                fd=field_mapping_inverse_dict,
+                                source_name=source_name,
                             )
                         # elif "{}".format(cur_attr_type) == "ManyToManyField" and isinstance(
                         #     row[source_attr_name], str
@@ -206,8 +224,8 @@ def run_import(
 
 
 def delete_all(app_name):
-    """ deletes all objects from passed in app
-        :param app_name: the app to delte all model class objects from
+    """deletes all objects from passed in app
+    :param app_name: the app to delte all model class objects from
     """
     print(app_name)
     all_models = fetch_models(app_name)
@@ -219,31 +237,30 @@ def delete_all(app_name):
 
 def import_m2m_tables(app_name, m2m_df, db_connection):
     """
-        links objects listed in typical m2m tables
-        :param app_name: the name of the app
-        :param m2m_df: A dataframe derived from the gsheet-datamodel
-        :param db_connection: A sqlalchemy create_engine object
-        :returns: Acutally nothing, just populates the database.
+    links objects listed in typical m2m tables
+    :param app_name: the name of the app
+    :param m2m_df: A dataframe derived from the gsheet-datamodel
+    :param db_connection: A sqlalchemy create_engine object
+    :returns: Acutally nothing, just populates the database.
     """
 
     model_dict = {x.__name__: x for x in fetch_models(app_name)}
-    classes = m2m_df.groupby('class name technical')
+    classes = m2m_df.groupby("class name technical")
     for x in classes:
         local_df = x[1].fillna(False)
         class_name = x[0]
         curr_class = model_dict[class_name]
         print(f"###########{curr_class}########")
         for i, row in local_df.iterrows():
-
-            if row['value from']:
-                source = row['value from']
+            if row["value from"]:
+                source = row["value from"]
             else:
                 continue
 
-            if '#' in source:
+            if "#" in source:
                 continue
-            cur_model_attr = row['field name technical']
-            table, prop_1, prop_2 = source.split('___')
+            cur_model_attr = row["field name technical"]
+            table, prop_1, prop_2 = source.split("___")
             print(f"cur_model_attr: {cur_model_attr}; table: {table}; prop 1: {prop_1}")
             query = f"SELECT * FROM {table}"
             data_source = pd.read_sql(query, con=db_connection).dropna()
@@ -257,8 +274,10 @@ def import_m2m_tables(app_name, m2m_df, db_connection):
                     legacy_id_target = f"{float(ds_row[prop_2])}"
                     fk = curr_class._meta.get_field(cur_model_attr)
                     rel_model_name = fk.related_model._meta.model_name
-                    if rel_model_name == 'skosconcept':
-                        legacy_id_source = f"{cur_model_attr}__{legacy_id_target}".strip().lower()
+                    if rel_model_name == "skosconcept":
+                        legacy_id_source = (
+                            f"{cur_model_attr}__{legacy_id_target}".strip().lower()
+                        )
                     else:
                         legacy_id_source = legacy_id_target
                     try:
@@ -274,35 +293,36 @@ def import_m2m_tables(app_name, m2m_df, db_connection):
 
 def import_and_create_m2m(app_name, m2m_df, db_connection):
     """
-        creates and links new objects with existing ones
-        :param app_name: the name of the app
-        :param m2m_df: A dataframe derived from the gsheet-datamodel
-        :param db_connection: A sqlalchemy create_engine object
-        :returns: Acutally nothing, just populates the database.
+    creates and links new objects with existing ones
+    :param app_name: the name of the app
+    :param m2m_df: A dataframe derived from the gsheet-datamodel
+    :param db_connection: A sqlalchemy create_engine object
+    :returns: Acutally nothing, just populates the database.
     """
 
     model_dict = {x.__name__: x for x in fetch_models(app_name)}
-    classes = m2m_df.groupby('class name technical')
+    classes = m2m_df.groupby("class name technical")
     for x in classes:
         local_df = x[1].fillna(False)
         class_name = x[0]
         curr_class = model_dict[class_name]
         print(f"###########{curr_class}########")
         for i, row in local_df.iterrows():
-
-            if row['value from']:
-                source = row['value from']
+            if row["value from"]:
+                source = row["value from"]
             else:
                 continue
-            cur_model_attr = row['field name technical']
-            table, prop_1, prop_2 =  source.split('___')
+            cur_model_attr = row["field name technical"]
+            table, prop_1, prop_2 = source.split("___")
 
-            if '#' in source:
-                prop_2, source_natural_pk = prop_2.split('#')
+            if "#" in source:
+                prop_2, source_natural_pk = prop_2.split("#")
             else:
                 source_natural_pk = None
-            print(f"cur_model_attr: {cur_model_attr}; table: {table}; prop 1: {prop_1}, source_natural_pk: {source_natural_pk}")
-            if '#' in source:
+            print(
+                f"cur_model_attr: {cur_model_attr}; table: {table}; prop 1: {prop_1}, source_natural_pk: {source_natural_pk}"
+            )
+            if "#" in source:
                 query = f"SELECT * FROM {table}"
                 data_source = pd.read_sql(query, con=db_connection).dropna()
                 for ds_i, ds_row in data_source.dropna().iterrows():
@@ -314,14 +334,14 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                     if curr_source is not None:
                         if source_natural_pk is not None:
                             legacy_id_target = f"{(ds_row[prop_2])}"
-    #                         print(legacy_id_target)
+                        #                         print(legacy_id_target)
                         else:
                             pass
                             legacy_id_target = f"{float(ds_row[prop_2])}"
                         fk = curr_class._meta.get_field(cur_model_attr)
                         rel_model_name = fk.related_model._meta.model_name
                         if source_natural_pk is not None:
-                            if rel_model_name == 'skosconcept':
+                            if rel_model_name == "skosconcept":
                                 scheme, _ = SkosConceptScheme.objects.get_or_create(
                                     dc_title=f"{cur_model_attr}"
                                 )
@@ -329,21 +349,27 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                                     name=f"{cur_model_attr}"
                                 )
                                 curr_target, _ = fk.related_model.objects.get_or_create(
-                                        legacy_id=legacy_id_target[:249]
-                                    )
+                                    legacy_id=legacy_id_target[:249]
+                                )
                                 curr_target.pref_label = legacy_id_target
                                 curr_target.scheme.add(scheme)
                                 curr_target.collection.add(skos_col)
                                 curr_target.save()
                             else:
                                 curr_target, _ = fk.related_model.objects.get_or_create(
-                                        legacy_id=legacy_id_target[:249]
-                                    )
-                                setattr(curr_target, source_natural_pk, legacy_id_target)
+                                    legacy_id=legacy_id_target[:249]
+                                )
+                                setattr(
+                                    curr_target, source_natural_pk, legacy_id_target
+                                )
                                 try:
                                     curr_target.save()
                                 except Exception as e:
-                                    setattr(curr_target, source_natural_pk, legacy_id_target[:249])
+                                    setattr(
+                                        curr_target,
+                                        source_natural_pk,
+                                        legacy_id_target[:249],
+                                    )
                                     curr_target.save()
                             if curr_source is not None and curr_target is not None:
                                 m2m_attr = getattr(curr_source, cur_model_attr)
