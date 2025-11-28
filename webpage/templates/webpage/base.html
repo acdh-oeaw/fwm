@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
 {% load webpage_extras %}
-{% load browsing_extras %}
 {% load infos_extras %}
 <html lang="en">
 <head>
@@ -44,33 +43,18 @@
           border-radius: 0;
         }
       </style>
-    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-    <script type="text/javascript">
-        window.cookieconsent_options = {
-            "message":"This website uses cookies to ensure you get the best experience on our website",
-            "dismiss":"Got it!",
-            "learnMore":"More info",
-            "link":"{% projects_metadata 'imprint' %}",
-            "theme":"dark-bottom"};
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://matomo.acdh.oeaw.ac.at/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '176']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
     </script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-    <!-- End Cookie Consent plugin -->
-    <!-- Matomo -->
-      <script type="text/javascript">
-        var _paq = _paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-          var u="{% projects_metadata 'matomo_url' %}";
-          _paq.push(['setTrackerUrl', u+'piwik.php']);
-          _paq.push(['setSiteId', '{% projects_metadata "matomo_id" %}']);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-        })();
-      </script>
-    <!-- End Matomo Code -->
     {% block scriptHeader %}
     {% endblock %}
 </head>
@@ -103,8 +87,6 @@
                                 </li>                               
                                 {% if request.user.is_superuser %}
                                 <li class="nav-item dropdown">
-                                    <!--<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Curation
-                                            --->
                                     <span class="caret"/>
                                     </a>
                                     <div class="dropdown-menu">
@@ -140,7 +122,6 @@
                                     <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-
                                     <a class="dropdown-item" href="https://oeaidam.oeaw.ac.at" target="_blank">
                                     <span class="oeai">oeai.</span>DAM
                                     </a>
@@ -159,18 +140,11 @@
                             </li>
                         </ul>
                     </div>
-                        <!-- .collapse navbar-collapse -->
                 </div>
-                    <!-- .container -->
             </nav>
-                <!-- .site-navigation -->
+                
         </div>
         <div id="content">
-            {% if DEV_VERSION %}
-            <div class="alert alert-danger" role="alert">
-                This is a DEVELOPMENT instance. Click <a href="https://{{ PROJECT_NAME }}.acdh.oeaw.ac.at">here</a> for the Production version
-            </div>
-            {% endif %}
             {% block content %}{% endblock %}
         </div>
         <div class="wrapper fundament-default-footer" id="wrapper-footer-full">
@@ -191,18 +165,8 @@
 
         <div class="footer-imprint-bar" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;">
             <a href="{% url 'webpage:staticpage' template='imprint' %}" target="_blank">Impressum/Imprint</a>
-            {% if user.is_authenticated %}
-                {% if DB_NAME %}
-                    <div class="footer-imprint-bar">
-                        <small>{{ DB_NAME }}</small>
-                    </div>
-                {% endif %}
-            {% endif %}
         </div>
         {% block scripts %}
-            <script src="{{ SHARED_URL }}fundament/dist/fundament/js/fundament.min.js"></script>
-            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-            <script src="{{ SHARED_URL }}apis/libraries/scroll-to-top/js/ap-scroll-top.min.js"></script>
         {% endblock %}
         {% block scripts2 %}
         {% endblock scripts2 %}
