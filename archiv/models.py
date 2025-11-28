@@ -8,7 +8,7 @@ from django.contrib.gis.db.models import MultiPolygonField, PointField
 from tqdm import tqdm
 from next_prev import next_in_order, prev_in_order
 
-from browsing.browsing_utils import model_to_dict
+from browsing.utils import model_to_dict
 from vocabs.models import SkosConcept
 from zotero_ac.models import ZoteroReference
 

@@ -27,7 +27,7 @@ from . models import (
     ProjectInst,
     TeamMember, 
 )
-from browsing.browsing_utils import (
+from browsing.utils import (
     GenericListView,
     BaseCreateView,
     BaseUpdateView

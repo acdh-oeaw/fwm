@@ -58,7 +58,7 @@ from . models import (
     Project,
     Image
 )
-from browsing.browsing_utils import (
+from browsing.utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
 
