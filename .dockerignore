@@ -1,5 +1,10 @@
 myenv
 env
+.venv
+.git
+secret.env
+.github
+export_env_variables.sh
 db.sqlite3
 .env
 env.default

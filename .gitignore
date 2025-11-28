@@ -41,3 +41,4 @@ archiv/data/.~lock.*
 staticfiles/
 media/archiv
 *.xlsx
+secret.env
