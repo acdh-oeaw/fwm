@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.gis",
     "crispy_forms",
-    "crispy_bootstrap4",
+    "crispy_bootstrap5",
     "django_celery_results",
     "django_filters",
     "django_tables2",
@@ -73,13 +73,12 @@ INSTALLED_APPS = [
     "django_spaghetti",
     "appcreator",
     "archiv",
-    "netvis",
     "django_extensions",
     "zotero_ac",
 ]
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 SPAGHETTI_SAUCE = {
     "apps": [
         "archiv",
