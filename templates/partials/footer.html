@@ -1,0 +1,23 @@
+{% load webpage_extras %}
+{% load static %}
+<footer class="footer mt-auto bg-body-tertiary">
+  <div class="wrapper fundament-default-footer" id="wrapper-footer-full">
+            <div class="container-fluid" id="footer-full-content" tabindex="-1">
+                <div class="row justify-content-md-center" style="text-align:center">
+                <a href="https://www.fwf.ac.at" target="_blank">
+                    <img src="{% static 'webpage/img/fwf_logo.png' %}" alt="FWF Logo" class="footer-logo"/>
+                </a>
+                <a href="https://www.oeaw.ac.at/oeai" target="_blank">
+                    <img src="{% static 'webpage/img/oeai_logo.png' %}" alt="OEAI Logo" class="footer-logo"/>
+                </a>
+                <a href="https://www.oeaw.ac.at/acdh" target="_blank">
+                    <img src="{% static 'webpage/img/acdh_logo.png' %}" alt="ACDH Logo" class="footer-logo"/>
+                </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-imprint-bar" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;">
+            <a href="{% url 'webpage:staticpage' template='imprint' %}" target="_blank">Impressum/Imprint</a>
+        </div>
+</footer>

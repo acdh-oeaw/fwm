@@ -1,47 +1,21 @@
 <!DOCTYPE html>
 {% load static %}
 {% load webpage_extras %}
-{% load infos_extras %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>{% block title %} {% projects_metadata 'title' %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block metaDescription %}
-        <meta name="description" content="{{ metadata.description }}">
-        <meta name="author" content="{{ metadata.author }}">
+        <meta name="description" content=""">
     {% endblock %}
-    <!-- favicons -->
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ SHARED_URL }}favicon/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ SHARED_URL }}favicon/favicon-16x16.png"/>
-        <link rel="manifest" href="{{ SHARED_URL }}favicon/manifest.json"/>
-        <link rel="mask-icon" href="{{ SHARED_URL }}favicon/safari-pinned-tab.svg" color="#00aba9"/>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css" /> 
-	<meta name="theme-color" content="#ffffff"/>
-    <!--favicons end -->
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500" rel="stylesheet" />
-    <link rel="stylesheet" id="fundament-styles"  href="{{ SHARED_URL }}fundament/dist/fundament/css/fundament.min.css" type="text/css"/>
+    <!--favicons end -->
     <link rel="stylesheet" href="{% static 'webpage/css/style.css' %}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{ SHARED_URL }}apis/libraries/scroll-to-top/css/ap-scroll-top.min.css" />
     <!-- css for image-slider -->
     <link rel="stylesheet" href="{% static 'webpage/css/flexslider.css' %}" rel="stylesheet"/>
     <style type="text/css">
-        .flex-caption {
-          
-          padding: 2%;
-          left: 0;
-          bottom: 0;
-          background: rgba(0,0,0,.5);
-          color: #fff;
-          text-shadow: 0 -1px 0 rgba(0,0,0,.3);
-          font-size: 14px;
-          line-height: 18px;
-        }
-        li.css a {
-          border-radius: 0;
-        }
+        
       </style>
     <script>
       var _paq = window._paq = window._paq || [];
