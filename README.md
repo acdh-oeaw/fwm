@@ -1,4 +1,5 @@
 [![Linting](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml)
+[![Test](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml)
 
 # Fingerprinting White Marbles
 
@@ -14,6 +15,23 @@ Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](h
 * run migrations `python manage.py migrate`
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
+
+### linting and testing
+
+### run tests
+```shell
+uv run coverage run ./manage.py test -v 2
+```
+
+### check linting
+```bash
+ruff check .
+```
+
+### fix linting
+```bash
+ruff format .
+```
 
 ## DB-config
 
