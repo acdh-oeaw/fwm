@@ -12,9 +12,28 @@ Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](h
 
 * clone the repo `git clone https://github.com/acdh-oeaw/fwm.git`
 * change into the project's root directory e.g. `cd fwm`
+* create a Postgresql database `fwm` and install postgis extension
+* expose environment variables from `default.env` (adapt if necessary, see `djangobaseproject/settings.py`)
+  ```shell
+  source ./export_env_variables.sh
+  ```
 * run migrations `python manage.py migrate`
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
+
+### celery
+
+To use celery task manager you'll need to
+* have rabbit-mq installed and running
+    ```shell
+    sudo apt install rabbitmq-server
+    sudo systemctl stop rabbitmq-server
+    ```
+* [to start run `sudo systemctl stop rabbitmq-server`]
+* start celery
+    ```shell
+    uv run celery -A djangobaseproject worker -l INFO
+    ```
 
 ### linting and testing
 

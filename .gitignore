@@ -43,3 +43,4 @@ media/archiv
 *.xlsx
 secret.env
 fwm_dump.sql
+rabbit_mq.log
