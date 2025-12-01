@@ -1,7 +1,8 @@
 import datetime
+import math
+
 from dateutil.parser import parse
 from pandas import pandas as pd
-import math
 
 from vocabs.models import SkosCollection, SkosConcept, SkosTechnicalCollection
 
@@ -207,7 +208,7 @@ def pop_date_range_field(temp_item, row, cur_attr, sep="|", fd=None):
         if len(row[lookup_val].split(sep)) == 2:
             start_date, end_date = row[lookup_val].split("/")
             try:
-                valid_start = parse(start_date)
+                parse(start_date)
                 valid_end = parse(end_date)
             except Exception as e:
                 print(f"could not parse {start_date} or {end_date} due to: {e}")

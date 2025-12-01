@@ -891,7 +891,7 @@ class Analyse(models.Model):
         im_list = []
 
         for x in Image:
-            if x.image_stream != None:
+            if x.image_stream is not None:
                 im_dic = {}
                 im_dic["beschreibung"] = x.description
                 im_dic["stream"] = x.image_stream
@@ -1130,7 +1130,7 @@ class Artifact(models.Model):
         im_list = []
 
         for x in Image:
-            if x.image_stream != None:
+            if x.image_stream is not None:
                 im_dic = {}
                 im_dic["beschreibung"] = x.description
                 im_dic["stream"] = x.image_stream
@@ -1634,7 +1634,7 @@ class Quarry(models.Model):
         im_list = []
 
         for x in Image:
-            if x.image_stream != None:
+            if x.image_stream is not None:
                 im_dic = {}
                 im_dic["beschreibung"] = x.description
                 im_dic["stream"] = x.image_stream

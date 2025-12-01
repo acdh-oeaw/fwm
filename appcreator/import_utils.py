@@ -1,14 +1,22 @@
 import glob
 import json
 
-from tqdm import tqdm
-
-from django.core.serializers.json import DjangoJSONEncoder
 from django.apps import apps
 from django.core.exceptions import FieldDoesNotExist
-
+from django.core.serializers.json import DjangoJSONEncoder
 from pandas import pandas as pd
-from appcreator.populate_fields import *
+from tqdm import tqdm
+
+from appcreator.populate_fields import (
+    pop_char_field,
+    pop_date_field,
+    pop_date_range_field,
+    pop_fk_field,
+    pop_float_field,
+    pop_int_field,
+    pop_text_field,
+)
+from vocabs.models import SkosCollection, SkosConceptScheme
 
 
 def field_mapping(some_class):
@@ -20,7 +28,7 @@ def field_mapping(some_class):
     for x in some_class._meta.get_fields():
         try:
             field_mapping_dict[(x.extra["data_lookup"]).lower().strip()] = x.name
-        except:
+        except:  # noqa: E722
             pass
     return field_mapping_dict
 
@@ -34,7 +42,7 @@ def field_mapping_inverse(some_class):
     for x in some_class._meta.get_fields():
         try:
             field_mapping_dict[x.name] = x.extra["data_lookup"].lower().strip()
-        except:
+        except:  # noqa: E722
             pass
     return field_mapping_dict
 
@@ -119,7 +127,7 @@ def run_import(
         field_mapping_inverse_dict = field_mapping_inverse(current_class)
         try:
             df_data = pd.read_csv(source_name)
-        except:
+        except:  # noqa: E722
             continue
         print(source_name)
         if isinstance(df_data, pd.DataFrame):
@@ -284,7 +292,7 @@ def import_m2m_tables(app_name, m2m_df, db_connection):
                         curr_target = fk.related_model.objects.get(
                             legacy_id=legacy_id_source
                         )
-                    except:
+                    except:  # noqa: E722
                         curr_target = None
                     if curr_source is not None and curr_target is not None:
                         m2m_attr = getattr(curr_source, cur_model_attr)
@@ -319,9 +327,6 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                 prop_2, source_natural_pk = prop_2.split("#")
             else:
                 source_natural_pk = None
-            print(
-                f"cur_model_attr: {cur_model_attr}; table: {table}; prop 1: {prop_1}, source_natural_pk: {source_natural_pk}"
-            )
             if "#" in source:
                 query = f"SELECT * FROM {table}"
                 data_source = pd.read_sql(query, con=db_connection).dropna()
@@ -334,7 +339,6 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                     if curr_source is not None:
                         if source_natural_pk is not None:
                             legacy_id_target = f"{(ds_row[prop_2])}"
-                        #                         print(legacy_id_target)
                         else:
                             pass
                             legacy_id_target = f"{float(ds_row[prop_2])}"
