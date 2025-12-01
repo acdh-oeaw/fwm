@@ -1,7 +1,4 @@
-[![Test](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/test.yml)
-[![flake8 Lint](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml)
-[![codecov](https://codecov.io/gh/acdh-oeaw/fwm/branch/master/graph/badge.svg?token=KNMH134J0Q)](https://codecov.io/gh/acdh-oeaw/fwm)
-[![Build and push to DockerHub](https://github.com/acdh-oeaw/fwm/actions/workflows/build.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/build.yml)
+[![Linting](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/fwm/actions/workflows/lint.yml)
 
 # Fingerprinting White Marbles
 
@@ -9,10 +6,11 @@ Web-Application for the FWF-Project "Fingerprinting White Marbles" [(P 33042)](h
 
 ## install
 
+> [!NOTE]  
+> This project uses [uv](https://docs.astral.sh/uv/) to manage dependencies. See [uv-docs](https://docs.astral.sh/uv/getting-started/installation/) on how to install it.
+
 * clone the repo `git clone https://github.com/acdh-oeaw/fwm.git`
 * change into the project's root directory e.g. `cd fwm`
-* create a virtual environment e.g. `virtualenv env` and activate it `source env/bin/activate`
-* install required packages `pip install -r requirements_test.txt`
 * run migrations `python manage.py migrate`
 * start the dev sever `python manage.py runserver`
 * go to [http://127.0.0.1:8000](http://127.0.0.1:8000/) and check if everything works
@@ -24,7 +22,7 @@ configuration of database settings (and debug mode) is done via env variables, s
 ## running async tasks
 
 In order to run async task, you'll need to start a celery worker e.g. with
-* `celery -A djangobaseproject worker -l INFO`
+* `uv run celery -A djangobaseproject worker -l INFO`
 
 
 ## Docker
