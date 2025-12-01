@@ -16,7 +16,6 @@ from appcreator.populate_fields import (
     pop_int_field,
     pop_text_field,
 )
-from vocabs.models import SkosCollection, SkosConceptScheme
 
 
 def field_mapping(some_class):
@@ -331,38 +330,20 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                             pass
                             legacy_id_target = f"{float(ds_row[prop_2])}"
                         fk = curr_class._meta.get_field(cur_model_attr)
-                        rel_model_name = fk.related_model._meta.model_name
                         if source_natural_pk is not None:
-                            if rel_model_name == "skosconcept":
-                                scheme, _ = SkosConceptScheme.objects.get_or_create(
-                                    dc_title=f"{cur_model_attr}"
-                                )
-                                skos_col, _ = SkosCollection.objects.get_or_create(
-                                    name=f"{cur_model_attr}"
-                                )
-                                curr_target, _ = fk.related_model.objects.get_or_create(
-                                    legacy_id=legacy_id_target[:249]
-                                )
-                                curr_target.pref_label = legacy_id_target
-                                curr_target.scheme.add(scheme)
-                                curr_target.collection.add(skos_col)
+                            curr_target, _ = fk.related_model.objects.get_or_create(
+                                legacy_id=legacy_id_target[:249]
+                            )
+                            setattr(curr_target, source_natural_pk, legacy_id_target)
+                            try:
                                 curr_target.save()
-                            else:
-                                curr_target, _ = fk.related_model.objects.get_or_create(
-                                    legacy_id=legacy_id_target[:249]
-                                )
+                            except Exception:
                                 setattr(
-                                    curr_target, source_natural_pk, legacy_id_target
+                                    curr_target,
+                                    source_natural_pk,
+                                    legacy_id_target[:249],
                                 )
-                                try:
-                                    curr_target.save()
-                                except Exception:
-                                    setattr(
-                                        curr_target,
-                                        source_natural_pk,
-                                        legacy_id_target[:249],
-                                    )
-                                    curr_target.save()
+                                curr_target.save()
                             if curr_source is not None and curr_target is not None:
                                 m2m_attr = getattr(curr_source, cur_model_attr)
                                 m2m_attr.add(curr_target)

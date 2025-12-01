@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load leaflet_tags %}
 {% load static %}
-{% load netvis_extras %}
 {% load webpage_extras %}
 
 {% block title %}{{ object.name }}{% endblock %}
@@ -9,8 +8,6 @@
 {% leaflet_js %}
 {% leaflet_css %}
 
-  <link rel="stylesheet" href="{% static 'netvis/css/netvis.css' %}" /> <!-- optional -->
-  {% load_netvis_js %}
 {% endblock %}
 {% block content %}
 <!-- <div class="container"> -->
@@ -151,13 +148,7 @@
           {% endif %}
           
 
-          {% if class_name == "Sample" %}
-          <div id="visualization"></div>
-          <script src="{% static 'netvis/js/netvis.js' %}"></script>
-          <script type="text/javascript">
-            showGraph("visualization", "{% url 'netvis:graph' app_name=app_name model_name=class_name|lower pk=object.id %}")
-          </script>
-          {% endif %}
+          
           {% endif %}
           
           
