@@ -2256,10 +2256,6 @@ class Images(models.Model):
         help_im["stream"] = prefix + base64.b64encode(img).decode("utf-8")
         return help_im
 
-    # @classmethod
-    # def get_listview_url(self):
-    #    return reverse("archiv:image_browse")
-
     @classmethod
     def get_source_table(self):
         return "./archiv/data/Images.csv"
@@ -2267,10 +2263,6 @@ class Images(models.Model):
     @classmethod
     def get_natural_primary_key(self):
         return "id"
-
-    # @classmethod
-    # def get_createview_url(self):
-    #     return reverse("archiv:project_create")
 
     def get_absolute_url(self):
         return reverse("archiv:image_detail", kwargs={"pk": self.id})
