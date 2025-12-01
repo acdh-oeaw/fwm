@@ -180,7 +180,7 @@ def pop_date_field(temp_item, row, cur_attr, fd=None):
     elif isinstance(row[lookup_val], str):
         try:
             value = parse(row[lookup_val])
-        except Exception as e:
+        except Exception:
             # print(f"{row[lookup_val]} for field: {cur_attr} could not be\
             # parsed, due to Error: {e}")
             value = None

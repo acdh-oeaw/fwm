@@ -1,10 +1,10 @@
 from django.urls import path
 from django.views.generic.base import RedirectView
-from . import views
-from archiv.views import explore, export_zip
 from django_spaghetti.views import Plate
-from django.shortcuts import render, redirect
 
+from archiv.views import explore, export_zip
+
+from . import views
 
 app_name = "webpage"
 

@@ -1,14 +1,10 @@
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic.edit import FormView
 
 from archiv.ingest_forms import SelectSheetForm
-from archiv.tasks import ingest_data
 import csv
 from io import TextIOWrapper
 from .models import Sample
-from .models import Artifact
 from vocabs.models import SkosConcept
 
 

@@ -56,7 +56,7 @@ from .models import (
     Analyse,
     Artifact,
     Geography,
-    Image,
+    Images,
     Institution,
     Number,
     Project,
@@ -858,7 +858,7 @@ class ProjectDelete(DeleteView):
 
 
 class ImageDetailView(BaseDetailView):
-    model = Image
+    model = Images
     template_name = "archiv/generic_detail.html"
 
 

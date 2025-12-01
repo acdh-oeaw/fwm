@@ -2,7 +2,6 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 
 register = template.Library()
-from django.apps import apps
 
 
 @register.simple_tag

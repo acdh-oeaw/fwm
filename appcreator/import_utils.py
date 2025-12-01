@@ -268,7 +268,7 @@ def import_m2m_tables(app_name, m2m_df, db_connection):
                 legacy_id_source = f"{float(ds_row[prop_1])}"
                 try:
                     curr_source = curr_class.objects.get(legacy_id=legacy_id_source)
-                except Exception as e:
+                except Exception:
                     curr_source = None
                 if curr_source is not None:
                     legacy_id_target = f"{float(ds_row[prop_2])}"
@@ -329,7 +329,7 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                     legacy_id_source = f"{float(ds_row[prop_1])}"
                     try:
                         curr_source = curr_class.objects.get(legacy_id=legacy_id_source)
-                    except Exception as e:
+                    except Exception:
                         curr_source = None
                     if curr_source is not None:
                         if source_natural_pk is not None:
@@ -364,7 +364,7 @@ def import_and_create_m2m(app_name, m2m_df, db_connection):
                                 )
                                 try:
                                     curr_target.save()
-                                except Exception as e:
+                                except Exception:
                                     setattr(
                                         curr_target,
                                         source_natural_pk,
