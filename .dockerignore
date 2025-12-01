@@ -1,5 +1,8 @@
 myenv
 env
+*.sql
+.ruff_cache
+secret.*
 .venv
 .git
 secret.env
