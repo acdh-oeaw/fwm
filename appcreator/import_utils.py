@@ -156,10 +156,8 @@ def run_import(
                             cur_attr
                         ).get_internal_type()
                     except FieldDoesNotExist:
-                        # print(f"Field: {cur_attr} does not exist")
                         cur_attr_type = None
                     if cur_attr_type is not None:
-                        # print("{}".format(cur_attr_type))
                         if "{}".format(cur_attr_type) == "CharField" and isinstance(
                             row[source_attr_name], str
                         ):
@@ -212,18 +210,8 @@ def run_import(
                                 fd=field_mapping_inverse_dict,
                                 source_name=source_name,
                             )
-                        # elif "{}".format(cur_attr_type) == "ManyToManyField" and isinstance(
-                        #     row[source_attr_name], str
-                        # ):
-                        #     pop_m2m_field(
-                        #         current_class, temp_item, row, cur_attr,
-                        #         sep=m2m_sep, fd=field_mapping_inverse_dict,
-                        #         source_name=source_name
-                        #     )
                         else:
                             pass
-                    # else:
-                    #     print(f"cur: {cur_attr}, source: {source_attr_name}")
                     try:
                         temp_item.save()
                     except Exception as e:
