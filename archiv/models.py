@@ -2218,8 +2218,6 @@ class Images(models.Model):
         host = "https://oeaidam.oeaw.ac.at/"
         api_session = host + "api/v1/session"
         prefix = "data:image/jpg;base64,"
-        foo = "bar"
-
         response = requests.get(api_session)
         data = response.json()
         token = data["token"]
