@@ -818,7 +818,7 @@ class ProjectListView(GenericListView):
     filter_class = ProjectListFilter
     formhelper_class = ProjectFilterFormHelper
     table_class = ProjectTable
-    init_columns = ["id", "name"]
+    init_columns = ["name"]
     enable_merge = False
 
 
