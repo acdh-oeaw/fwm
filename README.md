@@ -24,12 +24,12 @@ uv run coverage run ./manage.py test -v 2
 ```
 
 ### check linting
-```bash
+```shell
 ruff check .
 ```
 
 ### fix linting
-```bash
+```shell
 ruff format .
 ```
 
