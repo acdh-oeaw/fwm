@@ -2,9 +2,12 @@
 {% load static %}
 {% load stats_extras %}
 {% load webpage_extras %}
+{% block title %} Explore {% endblock %}
 {% block content %}
+{% include 'archiv/partials/listview_breadcrumb.html' %}
 
-    <div class="container" style="padding-top: 20px;">
+    <div class="container">
+        <h1 class="text-center">Explore</h1>
         <div class="search-container">
             <form method="get">
                 <input type="text" name="q" value="{{ query|default_if_none:'Type to search...' }}" placeholder="Type to search..." />
