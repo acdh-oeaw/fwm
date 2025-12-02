@@ -335,6 +335,7 @@ def explore(request):
 
 
 class AnalyseListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Analyse
     filter_class = AnalyseListFilter
     formhelper_class = AnalyseFilterFormHelper
@@ -451,6 +452,7 @@ class AnalyseDelete(DeleteView):
 
 
 class ArtifactListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Artifact
     filter_class = ArtifactListFilter
     formhelper_class = ArtifactFilterFormHelper
@@ -510,6 +512,7 @@ class ArtifactDelete(DeleteView):
 
 
 class GeographyListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Geography
     filter_class = GeographyListFilter
     formhelper_class = GeographyFilterFormHelper
@@ -556,6 +559,7 @@ class GeographyDelete(DeleteView):
 
 
 class InstitutionListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Institution
     filter_class = InstitutionListFilter
     formhelper_class = InstitutionFilterFormHelper
@@ -601,6 +605,7 @@ class InstitutionDelete(DeleteView):
 
 
 class NumberListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Number
     filter_class = NumberListFilter
     formhelper_class = NumberFilterFormHelper
@@ -645,6 +650,7 @@ class NumberDelete(DeleteView):
 
 
 class QuarryListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Quarry
     filter_class = QuarryListFilter
     formhelper_class = QuarryFilterFormHelper
@@ -690,6 +696,7 @@ class QuarryDelete(DeleteView):
 
 
 class QuarryGroupListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = QuarryGroup
     filter_class = QuarryGroupListFilter
     formhelper_class = QuarryGroupFilterFormHelper
@@ -737,6 +744,7 @@ class QuarryGroupDelete(DeleteView):
 
 
 class SampleListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Sample
     filter_class = SampleListFilter
     formhelper_class = SampleFilterFormHelper
@@ -823,6 +831,7 @@ class TaskOveriewView(TemplateView):
 
 
 class ProjectListView(GenericListView):
+    template_name = "archiv/generic_list.html"
     model = Project
     filter_class = ProjectListFilter
     formhelper_class = ProjectFilterFormHelper
