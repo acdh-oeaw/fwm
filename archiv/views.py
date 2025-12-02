@@ -456,7 +456,6 @@ class ArtifactListView(GenericListView):
     formhelper_class = ArtifactFilterFormHelper
     table_class = ArtifactTable
     init_columns = ["id", "artefact_type", "material", "find_spot", "storage_place"]
-    # hier fehlt die überprüfung ob der User eingeloggt ist oder nicht
     exclude_columns = [
         "legacy_pk",
         "description",
@@ -469,6 +468,10 @@ class ArtifactListView(GenericListView):
         "orig_data_csv",
     ]
     enable_merge = False
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ArtifactListView, self).dispatch(*args, **kwargs)
 
 
 class ArtifactDetailView(BaseDetailView):
@@ -745,6 +748,12 @@ class SampleListView(GenericListView):
     ]
 
     # hier fehlt die überprüfung ob der User eingeloggt ist oder nicht
+    # uncomment following lines to request users to log in to access this view
+
+    # @method_decorator(login_required)
+    # def dispatch(self, *args, **kwargs):
+    #     return super(SampleListView, self).dispatch(*args, **kwargs)
+
     exclude_columns = [
         "quarry_group",
         "grain_size_max",
