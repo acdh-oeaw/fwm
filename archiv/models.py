@@ -2189,9 +2189,11 @@ class Images(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
-    def pictures(self, update=False):
+    def pictures(self, update=False, verbose=False):
         if update or self.image_stream is None:
             easy_db = self.easydb_id
+            if verbose:
+                print(f"downloading image from easy-db {easy_db}")
             host = "https://oeaidam.oeaw.ac.at/"
             api_session = f"{host}api/v1/session"
             response = requests.get(api_session)
@@ -2209,9 +2211,12 @@ class Images(models.Model):
             response = requests.post(api_login)
             api_download = f"{host}api/v1/objects/id/{easy_db}/?token={token}"
             response_download = requests.get(api_download).json()
-            url_small = response_download["bilder"]["bild"][0]["versions"]["preview"][
-                "deep_link_url"
-            ]
+            try:
+                url_small = response_download["bilder"]["bild"][0]["versions"][
+                    "preview"
+                ]["deep_link_url"]
+            except KeyError:
+                return self
             des = response_download["bilder"]["bild"][0]["original_filename"]
             response_download_link = requests.get(url_small + "?token=" + token)
             image_data = response_download_link.content
