@@ -35,7 +35,7 @@
     {% block custom %}
     <legend style="color:black">Basic Information</legend>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <table class="table table-responsive table-hover" style="text-align:left">
                 {% if class_name == 'Analyse' and object.has_new_analyse %}
                 <tr>
@@ -100,17 +100,29 @@
                   {% endif %}
                 </td>
               </tr>
-              
                 {% endif %}
                 {% endif %}
               {% endif %}
               {% endfor %}
+
+          {% if object.get_images %}
+          <tr>
+            <th>Images</th>
+            <td>
+              <ul>
+              {% for x in object.get_images %}
+                <li>{{ x.description }}</li>
+              {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %}
               
             </table>
             
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           {% if class_name == "Geography" %}
             {% leaflet_map "yourmap" callback="window.map_init_basic" %}
           {% endif %}
@@ -118,37 +130,30 @@
           <!-- Zeige Bilder an wenn User eingeloggt oder Open Access. Quarry Fotos immer anzeigen -->
           {% if user.is_authenticated or object.oa or class_name == "Quarry" %} 
           {% if object.get_images %}
-          
-          <section class="slider">
-            <div class="flexslider">
-              <ul class="slides">
-                {% for x in object.get_images %}
-                <li>
-                  <img src="{{ x.stream }}" alt=""/>
-                  <p class="flex-caption">{{ x.beschreibung}} </p>
-                </li>
-                {% endfor %}
-              </ul>
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              {% for x in object.get_images %}
+              {% if x.image_stream %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <figure class="figure">
+                <img src="/media/images/{{ x.image_stream }}" class="d-block w-100" alt="{{ x.description }}">
+                <figcaption class="figure-caption">{{ x.description }}</figcaption>
+                </figure>
+              </div>
+              {% endif %}
+              {% endfor %}
             </div>
-          </section>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-          <script defer src="{% static 'webpage/js/jquery.flexslider.js' %}"></script>
-          <script type="text/javascript">
-          $(window).load(function() {
-              $('.flexslider').flexslider({
-                animation: "slide"
-              });
-            });
-          </script>
-
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
           {% endif %}
-          
-
-          
           {% endif %}
-          
-          
-
       </div>
 
     </div>

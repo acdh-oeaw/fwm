@@ -41,3 +41,17 @@ server.py
 .coverage
 /htmlcov
 /staticfiles
+# other things
+.env
+*.ipynb
+archiv/data/*.csv
+# archiv/data/*.xlsx
+env.secret
+archiv/data/.~lock.*
+staticfiles/
+media/archiv
+*.xlsx
+secret.env
+fwm_dump.sql
+rabbit_mq.log
+media/images/*.webp
