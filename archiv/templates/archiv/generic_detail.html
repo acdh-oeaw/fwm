@@ -100,11 +100,23 @@
                   {% endif %}
                 </td>
               </tr>
-              
                 {% endif %}
                 {% endif %}
               {% endif %}
               {% endfor %}
+
+          {% if object.get_images %}
+          <tr>
+            <th>Images</th>
+            <td>
+              <ul>
+              {% for x in object.get_images %}
+                <li>{{ x.description }}</li>
+              {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %}
               
             </table>
             
@@ -121,10 +133,10 @@
           <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
               {% for x in object.get_images %}
-              {% if x.get_image_file_name %}
+              {% if x.image_stream %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <figure class="figure">
-                <img src="/media/images/{{ x.get_image_file_name }}" class="d-block w-100" alt="{{ x.description }}">
+                <img src="/media/images/{{ x.image_stream }}" class="d-block w-100" alt="{{ x.description }}">
                 <figcaption class="figure-caption">{{ x.description }}</figcaption>
                 </figure>
               </div>
@@ -142,9 +154,6 @@
           </div>
           {% endif %}
           {% endif %}
-          
-          
-
       </div>
 
     </div>

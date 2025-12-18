@@ -44,4 +44,4 @@ media/archiv
 secret.env
 fwm_dump.sql
 rabbit_mq.log
-media/images/*.jpg
+media/images/*.webp
