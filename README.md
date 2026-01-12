@@ -52,6 +52,18 @@ ruff check .
 ruff format .
 ```
 
+## Images
+Images from Axiell are stored on disk. There is a dedicated management-command to download all images
+```shell
+uv run manage.py populate_streams
+```
+
+You can also delete all images (and remove the matching database entries), you can run
+```shell
+uv run manage.py delete_streams
+```
+This might become necessary if you somehow deleted (some) images on disk but kept the databse entries
+
 ## DB-config
 
 configuration of database settings (and debug mode) is done via env variables, see `djangobaseproject/settings.py` which variables can be set
@@ -60,7 +72,6 @@ configuration of database settings (and debug mode) is done via env variables, s
 
 In order to run async task, you'll need to start a celery worker e.g. with
 * `uv run celery -A djangobaseproject worker -l INFO`
-
 
 ## Docker
 
