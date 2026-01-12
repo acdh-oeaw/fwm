@@ -2211,6 +2211,7 @@ class Images(models.Model):
                     "preview"
                 ]["deep_link_url"]
             except KeyError:
+                print(f"download of image {easy_db} failed")
                 return self
             des = response_download["bilder"]["bild"][0]["original_filename"]
             response_download_link = requests.get(url_small + "?token=" + token)
@@ -2219,6 +2220,7 @@ class Images(models.Model):
             file_path = os.path.join(IMAGES_DIR, file_name)
             im = PilImage.open(io.BytesIO(image_data)).convert("RGB")
             im.save(file_path)
+            os.chmod(file_path, 0o644)
             self.image_stream = file_name
             self.description = des
             self.save()
