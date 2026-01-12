@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "vxAeLYeo")
 if os.environ.get("DEBUG"):
     DEBUG = True
 else:
-    DEBUG = True
+    DEBUG = False
 ADD_ALLOWED_HOST = os.environ.get("ALLOWED_HOST", "*")
 
 ALLOWED_HOSTS = [
