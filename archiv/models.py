@@ -19,6 +19,7 @@ from zotero_ac.models import ZoteroReference
 
 OUT_DIR = "./archiv/data/"
 IMAGES_DIR = settings.IMAGES_DIR
+os.makedirs(IMAGES_DIR, exist_ok=True)
 OEAIDAM_USER = settings.OEAIDAM_USER
 OEAIDAM_USER_PW = settings.OEAIDAM_USER_PW
 
