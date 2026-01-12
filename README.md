@@ -88,7 +88,7 @@ docker build -t fwm:latest .
 To run the image you should provide an `.env` file to pass in needed environment variables; see example below:
 
 ```shell
-docker run -it -p 8020:8020 --network="host" --rm --env-file default.env --name fwm fwm:latest
+docker run -it --network="host" --rm --env-file secret.env --name fwm fwm:latest
 ```
 
 -----

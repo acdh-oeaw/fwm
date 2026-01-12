@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # start-server.sh
 echo "Hello from Projet Fingerprinting White Marbles"
+mkdir -p /opt/app/media/images
+chown -R www-data:www-data /opt/app/media
+chmod -R 755 /opt/app/media
 echo "starting rabbitmq"
 rabbitmq-server > rabbit_mq.log 1>&1 &
 echo "starting celery server"

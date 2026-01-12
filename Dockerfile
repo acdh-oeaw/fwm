@@ -11,7 +11,7 @@ RUN mkdir -p /opt/app
 COPY . /opt/app
 WORKDIR /opt/app
 RUN uv sync --no-install-project --no-dev
-RUN chown -R www-data:www-data /opt/app
+# RUN chown -R www-data:www-data /opt/app
 
 # start server
 EXPOSE 80
