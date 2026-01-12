@@ -79,7 +79,6 @@ from .tables import (
 
 def export_zip(request):
     query = request.GET.get("q", "").strip()
-    print(query)
 
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:

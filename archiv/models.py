@@ -892,12 +892,8 @@ class Analyse(models.Model):
         images = Images.objects.filter(analyse_id=self.id)
         image_objects = []
         for x in images:
-            if x.image_stream is not None:
-                print(x)
-                image_objects.append(x)
-            else:
-                image = Images.pictures(x)
-                image_objects.append(image)
+            image = Images.pictures(x)
+            image_objects.append(image)
         return image_objects
 
 
@@ -1126,12 +1122,8 @@ class Artifact(models.Model):
         images = Images.objects.filter(artefact_id=self.id)
         image_objects = []
         for x in images:
-            if x.image_stream is not None:
-                print(x)
-                image_objects.append(x)
-            else:
-                image = Images.pictures(x)
-                image_objects.append(image)
+            image = Images.pictures(x)
+            image_objects.append(image)
         return image_objects
 
 
@@ -1619,12 +1611,8 @@ class Quarry(models.Model):
         images = Images.objects.filter(quarry_id=self.id)
         image_objects = []
         for x in images:
-            if x.image_stream is not None:
-                print(x)
-                image_objects.append(x)
-            else:
-                image = Images.pictures(x)
-                image_objects.append(image)
+            image = Images.pictures(x)
+            image_objects.append(image)
         return image_objects
 
 
@@ -2190,7 +2178,13 @@ class Images(models.Model):
         return model_to_dict(self)
 
     def pictures(self, update=False, verbose=False):
-        if update or self.image_stream is None:
+        if self.easydb_id:
+            file_name = f"{self.easydb_id}.webp"
+            file_path = os.path.join(IMAGES_DIR, file_name)
+            file_exists = os.path.exists(file_path)
+        else:
+            file_exists = False
+        if update or self.image_stream is None or not file_exists:
             easy_db = self.easydb_id
             if verbose:
                 print(f"downloading image from easy-db {easy_db}")

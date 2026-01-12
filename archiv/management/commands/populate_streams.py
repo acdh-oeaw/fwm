@@ -6,7 +6,7 @@ from archiv.models import Images
 
 
 class Command(BaseCommand):
-    help = "removes binary stream data from Image"
+    help = "downlaods images"
 
     def handle(self, *args, **kwargs):
         pause = 5
